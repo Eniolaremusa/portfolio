@@ -57,16 +57,14 @@ function NavLinks({
   );
 }
 
-interface FooterPanelPosition {
-  bottom: number;
-  paddingInline: number;
-}
-
-function useFooterPanelPosition(
+function useFooterPanelLayout(
   open: boolean,
   buttonRef: React.RefObject<HTMLButtonElement | null>,
 ) {
-  const [position, setPosition] = useState<FooterPanelPosition | null>(null);
+  const [layout, setLayout] = useState<{
+    bottom: number;
+    paddingClass: "px-page" | "px-page-case-study";
+  } | null>(null);
 
   useEffect(() => {
     if (!open || !buttonRef.current) return;
@@ -76,10 +74,11 @@ function useFooterPanelPosition(
 
     function update() {
       const footerRect = footer!.getBoundingClientRect();
-      const styles = window.getComputedStyle(footer!);
-      setPosition({
+      setLayout({
         bottom: window.innerHeight - footerRect.top + 12,
-        paddingInline: parseFloat(styles.paddingLeft),
+        paddingClass: footer!.classList.contains("px-page-case-study")
+          ? "px-page-case-study"
+          : "px-page",
       });
     }
 
@@ -92,7 +91,7 @@ function useFooterPanelPosition(
     };
   }, [open, buttonRef]);
 
-  return position;
+  return layout;
 }
 
 interface MobileNavMenuProps {
@@ -104,7 +103,7 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const footerPosition = useFooterPanelPosition(open, buttonRef);
+  const footerPanelLayout = useFooterPanelLayout(open, buttonRef);
   const isFooter = placement === "footer";
   const menuButtonClass =
     theme === "dark" ? "text-nav text-nav-link-on-dark cursor-pointer" : "text-nav text-nav-link cursor-pointer";
@@ -134,9 +133,7 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
   }, [open]);
 
   const panelContent = (
-    <nav
-      className={`text-nav flex flex-col gap-4 ${isFooter ? "items-start" : ""}`}
-    >
+    <nav className={`text-nav flex w-full flex-col gap-4 ${isFooter ? "items-start" : "items-end"}`}>
       <NavLinks onNavigate={() => setOpen(false)} align={isFooter ? "start" : "default"} theme={theme} />
     </nav>
   );
@@ -153,14 +150,11 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
       >
         {"{menu}"}
       </button>
-      {open && isFooter && footerPosition ? (
+      {open && isFooter && footerPanelLayout ? (
         <div
           role="menu"
-          className="fixed inset-x-0 z-50"
-          style={{
-            bottom: footerPosition.bottom,
-            paddingInline: footerPosition.paddingInline,
-          }}
+          className={`fixed inset-x-0 z-50 ${footerPanelLayout.paddingClass}`}
+          style={{ bottom: footerPanelLayout.bottom }}
         >
           <div className="w-full rounded-lg border border-light-image-bg bg-light-bg p-4 shadow-photo">
             {panelContent}

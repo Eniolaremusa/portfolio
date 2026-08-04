@@ -33,7 +33,7 @@ export function EmailLink({ email, className = "" }: EmailLinkProps) {
     <button
       type="button"
       onClick={handleCopy}
-      className={`text-nav cursor-pointer ${className}`}
+      className={`text-nav cursor-pointer text-left ${className}`}
     >
       {copied ? "{Copied}" : "{email me}"}
     </button>

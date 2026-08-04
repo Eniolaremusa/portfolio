@@ -5,17 +5,22 @@ import { siteConfig } from "@/data/home";
 interface SiteNavProps {
   as?: "header" | "footer";
   theme?: "light" | "dark";
+  paddingClass?: "px-page" | "px-page-case-study";
 }
 
-export function SiteNav({ as = "header", theme = "light" }: SiteNavProps) {
+export function SiteNav({
+  as = "header",
+  theme = "light",
+  paddingClass = "px-page",
+}: SiteNavProps) {
   const Tag = as;
   const isDark = theme === "dark";
 
   return (
     <Tag
-      className={`px-page py-6 ${isDark ? "bg-case-study-hero-bg" : "bg-light-bg"}`}
+      className={`${paddingClass} py-6 ${isDark ? "bg-case-study-hero-bg" : "bg-light-bg"}`}
     >
-      <div className="mx-auto flex max-w-[1312px] items-center justify-between gap-6">
+      <div className="mx-auto flex w-full min-w-0 max-w-page items-center justify-between gap-6">
         <Link
           href="/"
           className={`text-wordmark shrink-0 ${isDark ? "text-on-dark" : "text-text-on-light"}`}

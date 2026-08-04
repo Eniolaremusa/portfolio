@@ -13,7 +13,7 @@ export const cbfFlo: CaseStudy = {
   team: "Founder & 2 engineers",
   timeline: "7 months",
   images: {
-    hero: ["/images/cbf-flo/hero.png"],
+    hero: ["/case study/CBF FLO/Hero.svg"],
     pullQuote: "/images/cbf-flo/pull-quote-map.png",
   },
   productContext:
@@ -33,7 +33,7 @@ export const cbfFlo: CaseStudy = {
       decided:
         "Each card shows current state next to projected state: assign this job, and efficiency moves from 96.7% to 97%, drive time from 30 to 38 minutes, revenue from $289 to $391. A day timeline highlights exactly where the new job lands in that cleaner's route. The manager sees the consequence before committing, not after.",
       layoutVariant: "three-column",
-      image: "/images/cbf-flo/decision-1.png",
+      image: "/case study/CBF FLO/Ds1.svg",
     },
     {
       eyebrow: "DESIGN DECISION 02",
@@ -45,7 +45,7 @@ export const cbfFlo: CaseStudy = {
       decided:
         "Three coordinated views. Then, as a supporting beat within \"map,\" mention the colour shift specifically, assigned/unassigned to live status, as the reasoning behind that view once you'd decided it needed to exist.",
       layoutVariant: "three-column",
-      image: "/images/cbf-flo/decision-2.png",
+      image: "/case study/CBF FLO/ds2.svg",
     },
     {
       eyebrow: "DESIGN DECISION 03",
@@ -57,7 +57,7 @@ export const cbfFlo: CaseStudy = {
       decided:
         "Cleaners get their full day mapped, home to each appointment and back, with complete client context embedded at every stop, the same details the back office sees. For sales, a Zillow integration auto-fills property details, bedrooms, bathrooms, square footage, from an address, so onboarding a new client no longer means manual lookup mid-conversation.",
       layoutVariant: "three-column",
-      image: "/images/cbf-flo/decision-3.png",
+      image: "/case study/CBF FLO/ds3.svg",
     },
   ],
   constraints:
@@ -67,5 +67,5 @@ export const cbfFlo: CaseStudy = {
     "In enterprise design, context is everything. The goal is giving the user as much context as they need to act, without overwhelming them, which was the tension running through every decision here.\n\nAnd finally actionable data should always take precedence over informational data, this reduces the chances of choice fatigue.",
   takeawaysTitle: "Takeaways",
   isMobile: false,
-  hasPullQuote: true,
+  hasPullQuote: false,
 };

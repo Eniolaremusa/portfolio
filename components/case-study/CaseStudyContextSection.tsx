@@ -1,5 +1,5 @@
 import { CaseStudyBodyParagraphs } from "@/components/case-study/CaseStudyBodyParagraphs";
-import { CaseStudyDivider } from "@/components/case-study/CaseStudyDivider";
+import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageContainer";
 
 interface CaseStudyContextSectionProps {
   productContext: string;
@@ -13,20 +13,21 @@ export function CaseStudyContextSection({
   if (!productContext && !businessProblem) return null;
 
   return (
-    <section className="bg-light-bg px-page py-section">
-      <div className="mx-auto flex max-w-[1312px] flex-col gap-10 min-[768px]:flex-row min-[768px]:items-stretch min-[768px]:gap-16">
-        <div className="flex min-w-0 flex-1 flex-col gap-6">
-          <p className="text-eyebrow text-text-on-light">Product Context</p>
-          <CaseStudyBodyParagraphs text={productContext} />
+    <section className="bg-light-bg px-page-case-study py-section">
+      <CaseStudyPageContainer className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:items-start min-[768px]:justify-center min-[768px]:gap-16">
+        <div className="w-full min-[768px]:w-[30%]">
+          <div className="flex flex-col gap-section-heading">
+            <p className="text-eyebrow text-text-on-light">Product Context</p>
+            <CaseStudyBodyParagraphs text={productContext} />
+          </div>
         </div>
-
-        <CaseStudyDivider className="hidden min-[768px]:block" />
-
-        <div className="flex min-w-0 flex-1 flex-col gap-6">
-          <p className="text-eyebrow text-text-on-light">Business Problem</p>
-          <CaseStudyBodyParagraphs text={businessProblem} />
+        <div className="w-full min-[768px]:w-[30%]">
+          <div className="flex flex-col gap-section-heading">
+            <p className="text-eyebrow text-text-on-light">Business Problem</p>
+            <CaseStudyBodyParagraphs text={businessProblem} />
+          </div>
         </div>
-      </div>
+      </CaseStudyPageContainer>
     </section>
   );
 }

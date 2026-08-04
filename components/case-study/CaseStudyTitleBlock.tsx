@@ -14,22 +14,15 @@ function MetadataItem({
   value: string;
   variant: "light" | "dark";
 }) {
+  const labelClass =
+    variant === "dark" ? "text-label-sm text-metadata-label" : "text-label-sm text-text-muted";
+  const valueClass =
+    variant === "dark" ? "text-body text-on-dark" : "text-body text-text-on-light";
+
   return (
-    <div className="flex flex-col gap-1">
-      <p
-        className={
-          variant === "dark" ? "text-label-sm text-nav-link" : "text-label-sm text-text-muted"
-        }
-      >
-        {label}
-      </p>
-      <p
-        className={
-          variant === "dark" ? "text-body text-on-dark" : "text-body text-text-on-light"
-        }
-      >
-        {value}
-      </p>
+    <div className="flex min-w-0 flex-col gap-1 min-[768px]:max-[1023px]:flex-1">
+      <p className={labelClass}>{label}</p>
+      <p className={valueClass}>{value}</p>
     </div>
   );
 }
@@ -45,13 +38,14 @@ export function CaseStudyTitleBlock({
   const primaryText = isDark ? "text-on-dark" : "text-text-on-light";
 
   return (
-    <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-case-study-title-gap">
-      <div className="flex max-w-[734px] flex-col gap-3">
+    <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[1024px]:flex-nowrap min-[1024px]:items-start min-[1024px]:gap-case-study-title-gap">
+      <div className="flex w-full min-w-0 flex-col gap-3 min-[768px]:w-[60%] min-[1024px]:shrink-0">
         <p className={`text-eyebrow ${primaryText}`}>{eyebrow}</p>
-        <h1 className={`text-title max-w-[613px] ${primaryText}`}>{headline}</h1>
-        <p className={`text-body max-w-[613px] ${primaryText}`}>{intro}</p>
+        <h1 className={`text-title ${primaryText}`}>{headline}</h1>
+        <p className={`text-body ${primaryText}`}>{intro}</p>
       </div>
-      <div className="flex w-full max-w-[506px] flex-col gap-6 lg:shrink-0">
+
+      <div className="flex w-full flex-col gap-6 max-[767px]:gap-6 min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-8 min-[1024px]:w-[40%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6">
         <MetadataItem label="Role" value={study.role} variant={variant} />
         <MetadataItem label="Team" value={study.team} variant={variant} />
         <MetadataItem label="Timeline" value={study.timeline} variant={variant} />

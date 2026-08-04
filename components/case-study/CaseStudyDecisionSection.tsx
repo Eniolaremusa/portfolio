@@ -1,6 +1,7 @@
 import type { DecisionContent } from "@/data/types";
 import { CaseStudyDecisionImage } from "@/components/case-study/CaseStudyDecisionImage";
 import { CaseStudyDivider } from "@/components/case-study/CaseStudyDivider";
+import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageContainer";
 
 interface CaseStudyDecisionSectionProps {
   decision: DecisionContent;
@@ -35,17 +36,17 @@ export function CaseStudyDecisionSection({
   const isThreeColumn = decision.layoutVariant === "three-column";
 
   return (
-    <section className="bg-light-bg px-page py-section">
-      <div className="mx-auto max-w-[1312px]">
-        <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:items-start">
+    <section className="bg-light-bg px-page-case-study py-section">
+      <CaseStudyPageContainer>
+        <div className="flex flex-col gap-4 min-[768px]:flex-row min-[768px]:items-start min-[768px]:gap-10">
           <div className="w-full shrink-0 min-[768px]:w-[30%]">
             <p className="text-eyebrow text-text-on-light">{decision.eyebrow}</p>
-            <h2 className="text-callout mt-8 text-text-on-light">{decision.title}</h2>
+            <h2 className="text-callout mt-4 text-text-on-light">{decision.title}</h2>
           </div>
 
           <div className="w-full min-[768px]:w-[70%]">
             {isThreeColumn ? (
-              <div className="flex flex-col gap-8 min-[768px]:flex-row min-[768px]:items-stretch min-[768px]:gap-decision-col-gap">
+              <div className="flex flex-col gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-decision-col-gap">
                 <div className="flex min-w-0 flex-1 flex-col gap-2">
                   {decision.explored ? (
                     <DecisionBeat text={formatBeat("Explored", decision.explored)!} />
@@ -55,7 +56,8 @@ export function CaseStudyDecisionSection({
                   ) : null}
                 </div>
 
-                <CaseStudyDivider className="hidden min-[768px]:block" />
+                <CaseStudyDivider orientation="horizontal" className="min-[1024px]:hidden" />
+                <CaseStudyDivider className="hidden min-[1024px]:block" />
 
                 <div className="min-w-0 flex-1">
                   <DecisionBeat text={formatBeat("Decided", decision.decided)!} />
@@ -72,7 +74,7 @@ export function CaseStudyDecisionSection({
           isMobile={isMobile}
           className="mt-10 min-[768px]:mt-section"
         />
-      </div>
+      </CaseStudyPageContainer>
     </section>
   );
 }

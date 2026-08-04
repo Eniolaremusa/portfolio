@@ -37,15 +37,18 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <>
-      <Header variant={isComplete ? "dark" : "light"} />
-      <main>
+      <Header
+        variant={isComplete ? "dark" : "light"}
+        paddingClass={isComplete ? "px-page-case-study" : "px-page"}
+      />
+      <main className="overflow-x-clip">
         {isComplete ? (
           <CaseStudyLayout study={caseStudy} />
         ) : (
           <CaseStudyPlaceholder title={caseStudy.title} />
         )}
       </main>
-      <Footer />
+      <Footer paddingClass={isComplete ? "px-page-case-study" : "px-page"} />
     </>
   );
 }

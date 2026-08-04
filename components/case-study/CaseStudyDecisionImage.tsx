@@ -1,3 +1,4 @@
+import { CaseStudyProportionalImage } from "@/components/case-study/CaseStudyProportionalImage";
 import Image from "next/image";
 
 interface CaseStudyDecisionImageProps {
@@ -14,35 +15,28 @@ export function CaseStudyDecisionImage({
   if (isMobile) {
     return (
       <div className={`grid grid-cols-1 gap-4 min-[491px]:grid-cols-2 ${className}`}>
-        {[0, 1].map((index) => (
-          <div
-            key={index}
-            className="relative aspect-[9/19] w-full overflow-hidden bg-case-study-hero-image-bg"
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        ))}
+        {[0, 1].map((index) => {
+          const isSvg = src.toLowerCase().endsWith(".svg");
+          return (
+            <div
+              key={index}
+              className="w-full overflow-hidden bg-case-study-hero-image-bg"
+            >
+              <Image
+                src={src}
+                alt=""
+                width={0}
+                height={0}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                unoptimized={isSvg}
+                className="mx-auto h-auto w-full object-contain object-center"
+              />
+            </div>
+          );
+        })}
       </div>
     );
   }
 
-  return (
-    <div
-      className={`relative h-[280px] w-full overflow-hidden bg-case-study-hero-bg min-[768px]:h-case-study-image ${className}`}
-    >
-      <Image
-        src={src}
-        alt=""
-        fill
-        className="object-cover object-top"
-        sizes="(max-width: 1312px) 100vw, 1312px"
-      />
-    </div>
-  );
+  return <CaseStudyProportionalImage src={src} className={className} padded />;
 }

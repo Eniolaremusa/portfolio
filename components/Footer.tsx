@@ -1,5 +1,9 @@
 import { SiteNav } from "@/components/SiteNav";
 
-export function Footer() {
-  return <SiteNav as="footer" />;
+interface FooterProps {
+  paddingClass?: "px-page" | "px-page-case-study";
+}
+
+export function Footer({ paddingClass = "px-page" }: FooterProps) {
+  return <SiteNav as="footer" paddingClass={paddingClass} />;
 }

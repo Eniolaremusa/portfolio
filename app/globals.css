@@ -25,6 +25,11 @@
   --spacing-container-tablet: 74px;
   --spacing-container-desktop: 100px;
   --spacing-container-large: 200px;
+  --spacing-container-below-desktop-offset: 20px;
+  --spacing-section-heading-gap: 24px;
+  --spacing-section-heading-gap-mobile: 20px;
+  --spacing-section-heading-mt: 16px;
+  --spacing-section-heading-mt-mobile: 14px;
   --spacing-section-mobile: 24px;
   --spacing-section-tablet: 40px;
   --spacing-section-desktop: 72px;
@@ -49,6 +54,8 @@
   --spacing-decision-col-gap: 64px;
   --height-case-study-hero: 656px;
   --height-case-study-image: 504px;
+  --width-page-max: 1312px;
+  --width-page-max-large: 1200px;
 
   /* Typography — desktop reference values */
   --text-title-size: 48px;
@@ -159,6 +166,16 @@
     padding-block: var(--spacing-section-mobile);
   }
 
+  .max-w-page {
+    max-width: var(--width-page-max);
+  }
+
+  @media (min-width: 1440px) {
+    .max-w-page {
+      max-width: var(--width-page-max-large);
+    }
+  }
+
   @media (min-width: 768px) {
     .px-page {
       padding-inline: var(--spacing-container-tablet);
@@ -185,6 +202,49 @@
     }
   }
 
+  /* Case study page horizontal padding — matches px-page (24 / 74 / 100 / 200) */
+  .px-page-case-study {
+    padding-inline: var(--spacing-container-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .px-page-case-study {
+      padding-inline: var(--spacing-container-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .px-page-case-study {
+      padding-inline: var(--spacing-container-desktop);
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .px-page-case-study {
+      padding-inline: var(--spacing-container-large);
+    }
+  }
+
+  .gap-section-heading {
+    gap: var(--spacing-section-heading-gap-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .gap-section-heading {
+      gap: var(--spacing-section-heading-gap);
+    }
+  }
+
+  .mt-section-heading {
+    margin-top: var(--spacing-section-heading-mt-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .mt-section-heading {
+      margin-top: var(--spacing-section-heading-mt);
+    }
+  }
+
   .text-nav-link {
     color: var(--color-nav-link);
     transition: color 150ms ease;
@@ -201,6 +261,10 @@
 
   .text-nav-link-on-dark:hover {
     color: var(--color-text-on-dark);
+  }
+
+  .text-metadata-label {
+    color: var(--color-nav-link);
   }
 
   .bg-case-study-hero-bg {
