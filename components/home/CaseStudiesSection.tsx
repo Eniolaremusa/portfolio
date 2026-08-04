@@ -7,11 +7,13 @@ import { homeCaseStudyCardImages, homeCaseStudyOrder } from "@/data/home";
 import type { CaseStudy } from "@/data/types";
 
 const PADDED_IMAGE_SLUGS = new Set(["cbf-flo", "applatch", "vendor-connect"]);
+const BOTTOM_ANCHOR_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
   const isSvg = cardImage?.endsWith(".svg");
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
+  const bottomAnchor = BOTTOM_ANCHOR_SLUGS.has(study.slug);
 
   return (
     <Link
@@ -22,12 +24,18 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
         <div
           className={
             hasImagePadding
-              ? "absolute inset-0 px-case-card-image-x pt-case-card-image-top"
+              ? bottomAnchor
+                ? "absolute inset-0 px-case-card-image-x pt-case-card-image-top max-[790px]:flex max-[790px]:items-end max-[790px]:pt-0"
+                : "absolute inset-0 px-case-card-image-x pt-case-card-image-top"
               : "absolute inset-0"
           }
         >
           {cardImage ? (
-            <div className="relative h-full w-full">
+            <div
+              className={
+                bottomAnchor ? "relative h-full w-full max-[790px]:h-[115%]" : "relative h-full w-full"
+              }
+            >
               <Image
                 src={cardImage}
                 alt={`${study.title} product preview`}
@@ -35,7 +43,9 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
                 unoptimized={isSvg}
                 className={
                   hasImagePadding
-                    ? "object-contain object-top"
+                    ? bottomAnchor
+                      ? "object-contain object-top min-[791px]:object-contain min-[791px]:object-top max-[790px]:object-cover max-[790px]:object-bottom"
+                      : "object-contain object-top"
                     : "object-cover object-top nav-hover:scale-[1.01] transition-transform duration-300"
                 }
                 sizes="(max-width: 768px) 100vw, 380px"

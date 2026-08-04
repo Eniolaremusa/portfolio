@@ -16,7 +16,7 @@ export function SiteNav({ as = "header" }: SiteNavProps) {
           {siteConfig.name}
         </Link>
         <DesktopNavLinks />
-        <MobileNavMenu />
+        <MobileNavMenu placement={as} />
       </div>
     </Tag>
   );

@@ -24,8 +24,8 @@ function HeroPortrait({
 export function HeroSection() {
   return (
     <section className="bg-light-bg px-page pb-section pt-16 md:pt-hero-pt">
-      <div className="mx-auto flex max-w-[1312px] flex-col gap-12 lg:flex-row lg:items-center lg:gap-hero-gap">
-        <div className="flex max-w-[734px] flex-col gap-6">
+      <div className="mx-auto flex max-w-[1312px] flex-col gap-12 lg:flex-row lg:items-start lg:gap-hero-gap">
+        <div className="flex w-full max-w-[734px] flex-col gap-6">
           <div className="flex max-w-[613px] flex-col gap-3">
             <h1 className="text-title text-text-on-light">{heroContent.headline}</h1>
             <p className="text-body text-text-on-light">{heroContent.bio}</p>
@@ -36,9 +36,9 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Figma 61:19464 — single relative container, second image absolute inside */}
-        <div className="mx-auto flex shrink-0 justify-center lg:mx-0 lg:ml-auto">
-          <div className="relative h-[354px] w-[495px] max-w-full origin-top scale-[0.72] sm:scale-[0.86] md:scale-95 lg:scale-100">
+        {/* Hidden at 490px and below; left-aligned from 491px up */}
+        <div className="hidden shrink-0 min-[491px]:block lg:ml-auto">
+          <div className="relative h-[354px] w-[495px] max-w-full origin-top-left scale-[0.72] sm:scale-[0.86] md:scale-95 lg:scale-100">
             <HeroPortrait
               src={heroContent.portraits[0].src}
               alt="Eniola Aigbokhaode in a cafe"

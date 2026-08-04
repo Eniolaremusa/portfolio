@@ -12,8 +12,16 @@ export interface DecisionContent {
 
 export interface CaseStudy {
   slug: string;
+  /** Short name used on home cards and wayfinding */
   title: string;
+  /** One-line description for home cards */
   description: string;
+  /** Page eyebrow, e.g. "CBF FLO CASE STUDY" */
+  eyebrow?: string;
+  /** Page headline (falls back to title) */
+  headline?: string;
+  /** Page intro paragraph below headline (falls back to description) */
+  intro?: string;
   homeCardImage?: string;
   role: string;
   team: string;

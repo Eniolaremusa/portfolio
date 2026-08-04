@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { caseStudySlugs, getCaseStudy } from "@/data";
@@ -11,6 +12,19 @@ export function generateStaticParams() {
   return caseStudySlugs.map((slug) => ({ slug }));
 }
 
+function CaseStudyPlaceholder({ title }: { title: string }) {
+  return (
+    <section className="bg-light-bg px-page py-section pt-16 md:pt-hero-pt">
+      <div className="mx-auto max-w-[1312px]">
+        <h1 className="text-title text-text-on-light">{title}</h1>
+        <p className="text-body mt-6 text-text-on-light">
+          Case study content is coming soon.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
   const caseStudy = getCaseStudy(slug);
@@ -19,16 +33,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
+  const isComplete = Boolean(caseStudy.productContext);
+
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-3xl px-6 py-24">
-        <p className="text-eyebrow mb-4 uppercase">Case study placeholder</p>
-        <h1 className="text-title mb-6 text-text-on-light">{caseStudy.title}</h1>
-        <p className="text-body text-text-on-light">
-          Template route is wired up. Content for this project will be built in a
-          later step.
-        </p>
+      <main>
+        {isComplete ? (
+          <CaseStudyLayout study={caseStudy} />
+        ) : (
+          <CaseStudyPlaceholder title={caseStudy.title} />
+        )}
       </main>
       <Footer />
     </>

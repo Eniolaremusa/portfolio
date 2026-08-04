@@ -42,6 +42,11 @@
   --height-case-card-image: 320px;
   --width-constraints-column: 426px;
   --spacing-constraints-gap: 164px;
+  --spacing-case-study-title-gap: 72px;
+  --spacing-context-gap: 128px;
+  --spacing-decision-col-gap: 64px;
+  --height-case-study-hero: 656px;
+  --height-case-study-image: 504px;
 
   /* Typography — desktop reference values */
   --text-title-size: 48px;
