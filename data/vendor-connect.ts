@@ -3,7 +3,8 @@ import type { CaseStudy } from "./types";
 export const vendorConnect: CaseStudy = {
   slug: "vendor-connect",
   title: "Vendor Connect",
-  description: "Placeholder description — content to be added.",
+  description:
+    "A B2B event operations platform helping organizers manage vendor relationships while enabling businesses to discover, apply for, and manage booth opportunities.",
   role: "TBD",
   team: "TBD",
   timeline: "TBD",

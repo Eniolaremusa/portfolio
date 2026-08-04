@@ -3,7 +3,8 @@ import type { CaseStudy } from "./types";
 export const applatch: CaseStudy = {
   slug: "applatch",
   title: "Applatch",
-  description: "Placeholder description — content to be added.",
+  description:
+    "Educational app that turns learning into earned screen time by combining quizzes, rewards, and parental controls to help children build consistent learning habits.",
   role: "TBD",
   team: "TBD",
   timeline: "TBD",

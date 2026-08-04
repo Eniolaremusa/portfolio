@@ -4,21 +4,46 @@
   /* Color tokens */
   --color-light-bg: #fffefb;
   --color-text-on-light: #5b5855;
+  --color-text-muted: #99938e;
+  --color-nav-link: #94908b;
+  --color-nav-link-hover: #5b5855;
   --color-light-image-bg: #f7f4ed;
   --color-case-study-hero-bg: #22221d;
   --color-case-study-hero-image-bg: #2d2b29;
+  --color-photo-border: #fcfcfc;
+  --color-photo-shadow: rgba(91, 88, 85, 0.16);
 
   /* Font families */
   --font-crimson: var(--font-crimson-text);
   --font-geist: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
 
-  /* Layout constants */
-  --spacing-container: 100px;
+  /* Layout constants — responsive values set in utilities below */
+  --spacing-container-mobile: 24px;
+  --spacing-container-tablet: 74px;
+  --spacing-container-desktop: 100px;
+  --spacing-container-large: 200px;
+  --spacing-section-mobile: 24px;
+  --spacing-section-tablet: 40px;
+  --spacing-section-desktop: 72px;
+  --spacing-hero-pt: 100px;
+  --spacing-hero-gap: 72px;
+  --spacing-header-height: 69px;
+  --spacing-nav-gap: 24px;
+  --spacing-card-gap: 24px;
+  --spacing-case-card-image-x: 50px;
+  --spacing-case-card-image-top: 40px;
+  --spacing-grid-gap-x: 32px;
+  --spacing-grid-gap-y: 40px;
+  --spacing-exploration-row-gap: 32px;
+  --spacing-hobbies-gap: 24px;
+  --width-section-label: 426px;
+  --width-case-card: 380px;
+  --height-case-card-image: 320px;
   --width-constraints-column: 426px;
   --spacing-constraints-gap: 164px;
 
-  /* Typography — desktop reference values; scale down at breakpoints */
+  /* Typography — desktop reference values */
   --text-title-size: 48px;
   --text-title-leading: 48px;
   --text-callout-size: 24px;
@@ -26,7 +51,34 @@
   --text-body-size: 15px;
   --text-body-leading: 21px;
   --text-eyebrow-size: 15px;
+  --text-wordmark-size: 16px;
+  --text-nav-size: 14px;
+  --text-label-sm-size: 13px;
   --tracking-tight: -0.02em;
+  --tracking-wordmark: -0.32px;
+  --tracking-nav: -0.28px;
+  --tracking-body: -0.3px;
+  --tracking-label-sm: -0.26px;
+
+  --shadow-photo: 0px 0px 8.929px 2.976px rgba(91, 88, 85, 0.16);
+
+  /* Nav/menu breakpoint: 496px (use min-[496px] / max-[495px] in classes) */
+}
+
+@custom-variant nav-hover {
+  @media (min-width: 496px) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
+@custom-variant nav-group-hover {
+  @media (min-width: 496px) {
+    &:is(:where(.group):hover *) {
+      @slot;
+    }
+  }
 }
 
 @layer utilities {
@@ -48,13 +100,88 @@
     font-family: var(--font-geist);
     font-size: var(--text-body-size);
     line-height: var(--text-body-leading);
-    letter-spacing: var(--tracking-tight);
+    letter-spacing: var(--tracking-body);
   }
 
   .text-eyebrow {
     font-family: var(--font-geist-mono);
     font-size: var(--text-eyebrow-size);
     letter-spacing: var(--tracking-tight);
+  }
+
+  .text-section-label {
+    font-family: var(--font-geist-mono);
+    font-size: var(--text-eyebrow-size);
+    letter-spacing: var(--tracking-body);
+  }
+
+  .text-wordmark {
+    font-family: var(--font-crimson);
+    font-size: var(--text-wordmark-size);
+    letter-spacing: var(--tracking-wordmark);
+  }
+
+  .text-nav {
+    font-family: var(--font-geist);
+    font-size: var(--text-nav-size);
+    letter-spacing: var(--tracking-nav);
+  }
+
+  .text-label-sm {
+    font-family: var(--font-geist-mono);
+    font-size: var(--text-label-sm-size);
+    letter-spacing: var(--tracking-label-sm);
+  }
+
+  .text-link-medium {
+    font-family: var(--font-geist);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    letter-spacing: var(--tracking-body);
+    font-weight: 500;
+  }
+
+  .px-page {
+    padding-inline: var(--spacing-container-mobile);
+  }
+
+  .py-section {
+    padding-block: var(--spacing-section-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .px-page {
+      padding-inline: var(--spacing-container-tablet);
+    }
+
+    .py-section {
+      padding-block: var(--spacing-section-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .px-page {
+      padding-inline: var(--spacing-container-desktop);
+    }
+
+    .py-section {
+      padding-block: var(--spacing-section-desktop);
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .px-page {
+      padding-inline: var(--spacing-container-large);
+    }
+  }
+
+  .text-nav-link {
+    color: var(--color-nav-link);
+    transition: color 150ms ease;
+  }
+
+  .text-nav-link:hover {
+    color: var(--color-nav-link-hover);
   }
 
   @media (max-width: 768px) {

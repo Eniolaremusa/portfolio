@@ -3,7 +3,8 @@ import type { CaseStudy } from "./types";
 export const propheski: CaseStudy = {
   slug: "propheski",
   title: "Propheski",
-  description: "Placeholder description — content to be added.",
+  description:
+    "A fantasy skiing app where fans draft skiers, track live race results, compete on leaderboards and follow World Cup & Olympic skiing.",
   role: "TBD",
   team: "TBD",
   timeline: "TBD",

@@ -14,6 +14,7 @@ export interface CaseStudy {
   slug: string;
   title: string;
   description: string;
+  homeCardImage?: string;
   role: string;
   team: string;
   timeline: string;
