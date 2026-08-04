@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
 
 interface CaseStudyProportionalImageProps {
   src: string;
@@ -13,30 +13,12 @@ export function CaseStudyProportionalImage({
   padded = false,
   priority = false,
 }: CaseStudyProportionalImageProps) {
-  const isSvg = src.toLowerCase().endsWith(".svg");
-
-  const image = (
-    <Image
+  return (
+    <CaseStudyImageCard
       src={src}
-      alt=""
-      width={0}
-      height={0}
-      sizes="100vw"
+      className={className}
+      padded={padded}
       priority={priority}
-      unoptimized={isSvg}
-      className="mx-auto h-auto w-full object-contain object-center"
     />
   );
-
-  if (padded) {
-    return (
-      <div
-        className={`w-full bg-case-study-hero-bg px-case-card-image-x pt-case-card-image-top ${className}`}
-      >
-        {image}
-      </div>
-    );
-  }
-
-  return <div className={`w-full bg-case-study-hero-bg ${className}`}>{image}</div>;
 }

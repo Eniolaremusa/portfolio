@@ -1,24 +1,30 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { EmailLink } from "@/components/EmailLink";
 import { siteConfig } from "@/data/home";
 
-function getNavLinkClass(theme: "light" | "dark", align: "default" | "start") {
-  const base = theme === "dark" ? "text-nav text-nav-link-on-dark" : "text-nav text-nav-link";
-  return align === "start" ? `${base} block w-full text-left` : base;
+function getNavLinkClass(theme: "light" | "dark") {
+  return theme === "dark" ? "text-nav text-nav-link-on-dark" : "text-nav text-nav-link";
+}
+
+function getMobileNavLinkClass(theme: "light" | "dark") {
+  return theme === "dark"
+    ? "text-nav text-on-dark block w-full self-start text-left"
+    : "text-nav text-text-on-light block w-full self-start text-left";
 }
 
 function NavLinks({
   onNavigate,
-  align = "default",
   theme = "light",
+  mobile = false,
 }: {
   onNavigate?: () => void;
-  align?: "default" | "start";
   theme?: "light" | "dark";
+  mobile?: boolean;
 }) {
-  const linkClass = getNavLinkClass(theme, align);
+  const linkClass = mobile ? getMobileNavLinkClass(theme) : getNavLinkClass(theme);
 
   return (
     <>
@@ -49,37 +55,31 @@ function NavLinks({
       >
         {"{github}"}
       </a>
-      <EmailLink
-        email={siteConfig.email}
-        className={getNavLinkClass(theme, align)}
-      />
+      <EmailLink email={siteConfig.email} className={linkClass} />
     </>
   );
 }
 
-function useFooterPanelLayout(
+function useMobilePanelPosition(
   open: boolean,
   buttonRef: React.RefObject<HTMLButtonElement | null>,
+  placement: "header" | "footer",
 ) {
-  const [layout, setLayout] = useState<{
-    bottom: number;
-    paddingClass: "px-page" | "px-page-case-study";
-  } | null>(null);
+  const [position, setPosition] = useState<{ top?: number; bottom?: number } | null>(null);
 
   useEffect(() => {
     if (!open || !buttonRef.current) return;
 
-    const footer = buttonRef.current.closest("footer");
-    if (!footer) return;
+    const anchor = buttonRef.current.closest(placement);
+    if (!anchor) return;
 
     function update() {
-      const footerRect = footer!.getBoundingClientRect();
-      setLayout({
-        bottom: window.innerHeight - footerRect.top + 12,
-        paddingClass: footer!.classList.contains("px-page-case-study")
-          ? "px-page-case-study"
-          : "px-page",
-      });
+      const rect = anchor!.getBoundingClientRect();
+      if (placement === "header") {
+        setPosition({ top: rect.bottom });
+      } else {
+        setPosition({ bottom: window.innerHeight - rect.top });
+      }
     }
 
     update();
@@ -89,9 +89,9 @@ function useFooterPanelLayout(
       window.removeEventListener("resize", update);
       window.removeEventListener("scroll", update);
     };
-  }, [open, buttonRef]);
+  }, [open, buttonRef, placement]);
 
-  return layout;
+  return position;
 }
 
 interface MobileNavMenuProps {
@@ -101,23 +101,32 @@ interface MobileNavMenuProps {
 
 export function MobileNavMenu({ placement = "header", theme = "light" }: MobileNavMenuProps) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const footerPanelLayout = useFooterPanelLayout(open, buttonRef);
-  const isFooter = placement === "footer";
-  const menuButtonClass =
-    theme === "dark" ? "text-nav text-nav-link-on-dark cursor-pointer" : "text-nav text-nav-link cursor-pointer";
+  const panelPosition = useMobilePanelPosition(open, buttonRef, placement);
+  const isDark = theme === "dark";
+  const menuButtonClass = isDark
+    ? "text-nav text-nav-link-on-dark cursor-pointer"
+    : "text-nav text-nav-link cursor-pointer";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
 
     function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
       if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        containerRef.current?.contains(target) ||
+        panelRef.current?.contains(target)
       ) {
-        setOpen(false);
+        return;
       }
+      setOpen(false);
     }
 
     function handleEscape(event: KeyboardEvent) {
@@ -132,11 +141,25 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
     };
   }, [open]);
 
-  const panelContent = (
-    <nav className={`text-nav flex w-full flex-col gap-4 ${isFooter ? "items-start" : "items-end"}`}>
-      <NavLinks onNavigate={() => setOpen(false)} align={isFooter ? "start" : "default"} theme={theme} />
-    </nav>
-  );
+  const panelBg = isDark ? "bg-case-study-hero-bg" : "bg-light-bg";
+
+  const panel =
+    open && panelPosition && mounted ? (
+      <div
+        ref={panelRef}
+        role="menu"
+        className={`fixed left-0 z-50 w-screen max-w-none rounded-none ${panelBg}`}
+        style={
+          placement === "header"
+            ? { top: panelPosition.top }
+            : { bottom: panelPosition.bottom }
+        }
+      >
+        <nav className="text-nav flex w-full flex-col items-stretch gap-4 px-6 py-4">
+          <NavLinks onNavigate={() => setOpen(false)} theme={theme} mobile />
+        </nav>
+      </div>
+    ) : null;
 
   return (
     <div ref={containerRef} className="relative min-[496px]:hidden">
@@ -150,25 +173,7 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
       >
         {"{menu}"}
       </button>
-      {open && isFooter && footerPanelLayout ? (
-        <div
-          role="menu"
-          className={`fixed inset-x-0 z-50 ${footerPanelLayout.paddingClass}`}
-          style={{ bottom: footerPanelLayout.bottom }}
-        >
-          <div className="w-full rounded-lg border border-light-image-bg bg-light-bg p-4 shadow-photo">
-            {panelContent}
-          </div>
-        </div>
-      ) : null}
-      {open && !isFooter ? (
-        <div
-          role="menu"
-          className="absolute right-0 top-full z-50 mt-3 min-w-[160px] rounded-lg border border-light-image-bg bg-light-bg p-4 shadow-photo"
-        >
-          {panelContent}
-        </div>
-      ) : null}
+      {panel && createPortal(panel, document.body)}
     </div>
   );
 }

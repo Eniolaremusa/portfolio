@@ -38,10 +38,14 @@ export function CaseStudyTitleBlock({
   const primaryText = isDark ? "text-on-dark" : "text-text-on-light";
 
   return (
-    <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[1024px]:flex-nowrap min-[1024px]:items-start min-[1024px]:gap-case-study-title-gap">
-      <div className="flex w-full min-w-0 flex-col gap-3 min-[768px]:w-[60%] min-[1024px]:shrink-0">
+    <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:flex-nowrap min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
+      <div className="flex w-full min-w-0 flex-col gap-3 min-[1024px]:w-[60%] min-[1024px]:shrink-0">
         <p className={`text-eyebrow ${primaryText}`}>{eyebrow}</p>
-        <h1 className={`text-title ${primaryText}`}>{headline}</h1>
+        <h1
+          className={`text-title ${primaryText} min-[768px]:max-[1023px]:line-clamp-2`}
+        >
+          {headline}
+        </h1>
         <p className={`text-body ${primaryText}`}>{intro}</p>
       </div>
 

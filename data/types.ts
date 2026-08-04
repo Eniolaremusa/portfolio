@@ -8,6 +8,12 @@ export interface DecisionContent {
   decided: string;
   layoutVariant: DecisionLayoutVariant;
   image: string;
+  /** Second phone mockup for mobile-product dual layout (Applatch, Propheski) */
+  imageSecondary?: string;
+  /** Optional mobile-specific asset; shown below 768px when set */
+  mobileImage?: string;
+  /** Scales image within desktop frame (768px+); e.g. 0.85 for 15% inset */
+  desktopImageScale?: number;
 }
 
 export interface CaseStudy {

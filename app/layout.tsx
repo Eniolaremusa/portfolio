@@ -24,7 +24,9 @@ export default function RootLayout({
       lang="en"
       className={`${crimsonText.variable} ${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="font-geist antialiased">{children}</body>
+      <body className="font-geist antialiased">
+        <div className="mx-auto w-full max-w-viewport">{children}</div>
+      </body>
     </html>
   );
 }

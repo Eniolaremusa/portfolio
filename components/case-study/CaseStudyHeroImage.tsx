@@ -1,5 +1,5 @@
-import { CaseStudyProportionalImage } from "@/components/case-study/CaseStudyProportionalImage";
-import Image from "next/image";
+import { CaseStudyDualPhoneImage } from "@/components/case-study/CaseStudyDualPhoneImage";
+import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
 
 interface CaseStudyHeroImageProps {
   images: string[];
@@ -13,30 +13,29 @@ export function CaseStudyHeroImage({
   className = "",
 }: CaseStudyHeroImageProps) {
   if (isMobile) {
+    if (images.length >= 2) {
+      return (
+        <CaseStudyDualPhoneImage
+          images={[images[0], images[1]]}
+          variant="hero"
+          className={className}
+          priority
+        />
+      );
+    }
+
+    const src = images[0];
+    if (!src) return null;
+
     return (
-      <div
-        className={`grid grid-cols-1 gap-4 min-[491px]:grid-cols-2 ${className}`}
-      >
-        {images.map((src) => {
-          const isSvg = src.toLowerCase().endsWith(".svg");
-          return (
-            <div
-              key={src}
-              className="w-full overflow-hidden bg-case-study-hero-image-bg"
-            >
-              <Image
-                src={src}
-                alt=""
-                width={0}
-                height={0}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                unoptimized={isSvg}
-                className="mx-auto h-auto w-full object-contain object-center"
-              />
-            </div>
-          );
-        })}
-      </div>
+      <CaseStudyImageCard
+        src={src}
+        aspect="hero-mobile"
+        background="secondary"
+        imageFit="contain"
+        className={className}
+        priority
+      />
     );
   }
 
@@ -44,6 +43,12 @@ export function CaseStudyHeroImage({
   if (!src) return null;
 
   return (
-    <CaseStudyProportionalImage src={src} className={className} priority />
+    <CaseStudyImageCard
+      src={src}
+      className={className}
+      imageFit="cover"
+      objectPosition="top"
+      priority
+    />
   );
 }

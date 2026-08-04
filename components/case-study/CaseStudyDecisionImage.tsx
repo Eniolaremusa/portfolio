@@ -1,42 +1,53 @@
-import { CaseStudyProportionalImage } from "@/components/case-study/CaseStudyProportionalImage";
-import Image from "next/image";
+import { CaseStudyDualPhoneImage } from "@/components/case-study/CaseStudyDualPhoneImage";
+import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
 
 interface CaseStudyDecisionImageProps {
   src: string;
+  imageSecondary?: string;
+  mobileImage?: string;
+  desktopImageScale?: number;
   isMobile: boolean;
   className?: string;
 }
 
 export function CaseStudyDecisionImage({
   src,
+  imageSecondary,
+  mobileImage,
+  desktopImageScale,
   isMobile,
   className = "",
 }: CaseStudyDecisionImageProps) {
   if (isMobile) {
+    const secondary = imageSecondary ?? src;
     return (
-      <div className={`grid grid-cols-1 gap-4 min-[491px]:grid-cols-2 ${className}`}>
-        {[0, 1].map((index) => {
-          const isSvg = src.toLowerCase().endsWith(".svg");
-          return (
-            <div
-              key={index}
-              className="w-full overflow-hidden bg-case-study-hero-image-bg"
-            >
-              <Image
-                src={src}
-                alt=""
-                width={0}
-                height={0}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                unoptimized={isSvg}
-                className="mx-auto h-auto w-full object-contain object-center"
-              />
-            </div>
-          );
-        })}
-      </div>
+      <CaseStudyDualPhoneImage
+        images={[src, secondary]}
+        variant="decision"
+        className={className}
+      />
     );
   }
 
-  return <CaseStudyProportionalImage src={src} className={className} padded />;
+  if (mobileImage) {
+    return (
+      <>
+        <CaseStudyImageCard
+          src={mobileImage}
+          aspect="square"
+          className={`max-[767px]:block min-[768px]:hidden ${className}`}
+          padded
+          background="secondary"
+        />
+        <CaseStudyImageCard
+          src={src}
+          className={`hidden min-[768px]:block ${className}`}
+          padded
+          desktopImageScale={desktopImageScale}
+        />
+      </>
+    );
+  }
+
+  return <CaseStudyImageCard src={src} className={className} padded />;
 }

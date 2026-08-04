@@ -49,13 +49,13 @@
   --height-case-card-image: 320px;
   --width-constraints-column: 426px;
   --spacing-constraints-gap: 164px;
-  --spacing-case-study-title-gap: 72px;
+  --spacing-case-study-title-gap: 100px;
   --spacing-context-gap: 128px;
   --spacing-decision-col-gap: 64px;
   --height-case-study-hero: 656px;
   --height-case-study-image: 504px;
   --width-page-max: 1312px;
-  --width-page-max-large: 1200px;
+  --width-viewport-max: 1920px;
 
   /* Typography — desktop reference values */
   --text-title-size: 48px;
@@ -170,10 +170,106 @@
     max-width: var(--width-page-max);
   }
 
-  @media (min-width: 1440px) {
-    .max-w-page {
-      max-width: var(--width-page-max-large);
+  .max-w-viewport {
+    max-width: var(--width-viewport-max);
+  }
+
+  /* 504px height at 1312px reference width; scales with container width */
+  .case-study-image-card {
+    aspect-ratio: 1312 / 504;
+    width: 100%;
+  }
+
+  /* Mobile decision frames — square (width = height) */
+  .case-study-image-card-square {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
+
+  /* Applatch / Propheski hero frame — Figma 56:11296: 1312×656, #2D2B29 */
+  .case-study-image-card-hero-mobile {
+    aspect-ratio: 1312 / 656;
+    width: 100%;
+  }
+
+  /* Individual phone mockup slot */
+  .case-study-image-card-phone {
+    aspect-ratio: 315 / 600;
+    width: 100%;
+  }
+
+  /* Dual-phone hero frame */
+  .case-study-dual-phone-frame-hero {
+    aspect-ratio: 1312 / 656;
+    width: 100%;
+  }
+
+  /* Decision columns — Figma 56:11791: 636×690 each, 40px gap at 1312 reference */
+  .case-study-decision-phone-column {
+    flex: 1 1 0;
+    min-width: 0;
+    aspect-ratio: 636 / 690;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-light-image-bg);
+  }
+
+  .case-study-decision-phone-image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+  }
+
+  /* Mobile carousel — Figma 94:38859: 345×345 slides, phone max 300px tall */
+  .case-study-phone-carousel-slide {
+    width: 345px;
+    height: 345px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: var(--color-light-image-bg);
+  }
+
+  .case-study-phone-carousel-slide-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .case-study-phone-carousel-image {
+    display: block;
+    max-height: 300px;
+    max-width: calc(100% - 48px);
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .case-study-phone-carousel-track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .case-study-phone-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-dual-phone-frame-hero .case-study-image-card-phone {
+      height: 100%;
+      max-height: 100%;
+      width: auto;
     }
+  }
+
+  .bg-light-image-bg {
+    background-color: var(--color-light-image-bg);
   }
 
   @media (min-width: 768px) {
