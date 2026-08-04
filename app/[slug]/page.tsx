@@ -37,7 +37,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   return (
     <>
-      <Header />
+      <Header variant={isComplete ? "dark" : "light"} />
       <main>
         {isComplete ? (
           <CaseStudyLayout study={caseStudy} />

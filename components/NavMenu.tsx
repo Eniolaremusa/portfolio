@@ -4,17 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import { EmailLink } from "@/components/EmailLink";
 import { siteConfig } from "@/data/home";
 
-const navLinkClassName = "text-nav text-nav-link";
+function getNavLinkClass(theme: "light" | "dark", align: "default" | "start") {
+  const base = theme === "dark" ? "text-nav text-nav-link-on-dark" : "text-nav text-nav-link";
+  return align === "start" ? `${base} block w-full text-left` : base;
+}
 
 function NavLinks({
   onNavigate,
   align = "default",
+  theme = "light",
 }: {
   onNavigate?: () => void;
   align?: "default" | "start";
+  theme?: "light" | "dark";
 }) {
-  const linkClass =
-    align === "start" ? `${navLinkClassName} block w-full text-left` : navLinkClassName;
+  const linkClass = getNavLinkClass(theme, align);
 
   return (
     <>
@@ -47,7 +51,7 @@ function NavLinks({
       </a>
       <EmailLink
         email={siteConfig.email}
-        className={align === "start" ? `${navLinkClassName} block w-full text-left` : navLinkClassName}
+        className={getNavLinkClass(theme, align)}
       />
     </>
   );
@@ -93,14 +97,17 @@ function useFooterPanelPosition(
 
 interface MobileNavMenuProps {
   placement?: "header" | "footer";
+  theme?: "light" | "dark";
 }
 
-export function MobileNavMenu({ placement = "header" }: MobileNavMenuProps) {
+export function MobileNavMenu({ placement = "header", theme = "light" }: MobileNavMenuProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const footerPosition = useFooterPanelPosition(open, buttonRef);
   const isFooter = placement === "footer";
+  const menuButtonClass =
+    theme === "dark" ? "text-nav text-nav-link-on-dark cursor-pointer" : "text-nav text-nav-link cursor-pointer";
 
   useEffect(() => {
     if (!open) return;
@@ -130,7 +137,7 @@ export function MobileNavMenu({ placement = "header" }: MobileNavMenuProps) {
     <nav
       className={`text-nav flex flex-col gap-4 ${isFooter ? "items-start" : ""}`}
     >
-      <NavLinks onNavigate={() => setOpen(false)} align={isFooter ? "start" : "default"} />
+      <NavLinks onNavigate={() => setOpen(false)} align={isFooter ? "start" : "default"} theme={theme} />
     </nav>
   );
 
@@ -142,7 +149,7 @@ export function MobileNavMenu({ placement = "header" }: MobileNavMenuProps) {
         aria-expanded={open}
         aria-haspopup="true"
         onClick={() => setOpen((prev) => !prev)}
-        className={`${navLinkClassName} cursor-pointer`}
+        className={menuButtonClass}
       >
         {"{menu}"}
       </button>
@@ -172,10 +179,10 @@ export function MobileNavMenu({ placement = "header" }: MobileNavMenuProps) {
   );
 }
 
-export function DesktopNavLinks() {
+export function DesktopNavLinks({ theme = "light" }: { theme?: "light" | "dark" }) {
   return (
     <nav className="text-nav max-[495px]:hidden min-[496px]:flex min-[496px]:flex-wrap min-[496px]:items-center min-[496px]:justify-end min-[496px]:gap-nav-gap">
-      <NavLinks />
+      <NavLinks theme={theme} />
     </nav>
   );
 }

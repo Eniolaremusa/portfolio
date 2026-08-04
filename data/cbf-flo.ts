@@ -14,14 +14,14 @@ export const cbfFlo: CaseStudy = {
   timeline: "7 months",
   images: {
     hero: ["/images/cbf-flo/hero.png"],
-    pullQuote: "/images/cbf-flo/pull-quote.png",
+    pullQuote: "/images/cbf-flo/pull-quote-map.png",
   },
   productContext:
     "When I joined CBF Flo, there wasn't a product to redesign, there wasn't a product yet.\n\nThe founder had deep domain expertise but no product documentation, or existing workflows. My role wasn't to only design interfaces, but to help define what the product should become, identify which operational problems mattered most, and turn those into a cohesive platform.\n\nOver seven months, we designed an operations platform spanning scheduling, CRM, hiring, payroll, and mobile experiences for field workers that serves 3 main users; back office staff, clients and cleaners.",
   businessProblem:
     "Cleaning businesses don't struggle because they lack scheduling software. They struggle because assigning a cleaner isn't a scheduling decision, it's an operational one.\n\nA scheduler weighs roughly eight factors, availability, drive time, capacity, efficiency, grade, level, revenue, and payroll, quickly, many times a day. All of that data already existed in the system. It just wasn't decidable.\n\nThe goal became to help managers understand the consequences of assignments.",
   pullQuote:
-    "This case study focuses on scheduling, the hardest and most central problem in the product.",
+    "This case study focuses on scheduling,\nthe hardest and most central problem in the product.",
   decisions: [
     {
       eyebrow: "DESIGN DECISION 01",
@@ -62,8 +62,10 @@ export const cbfFlo: CaseStudy = {
   ],
   constraints:
     "The product was built on Bubble, a no-code platform, which couldn't render the map interactions we needed. Rather than ship a degraded version, we scoped the requirement properly and brought in a developer to build a custom map plugin.\n\nDesign direction wasn't always my call alone. I wanted more colour differentiation across the analytics views; the founder held to the brand's pink palette. We compromised on tonal variation within pink rather than introducing new hues, a reminder that not every disagreement is worth winning outright.",
+  constraintsTitle: "Designing Within Constraints",
   takeaways:
     "In enterprise design, context is everything. The goal is giving the user as much context as they need to act, without overwhelming them, which was the tension running through every decision here.\n\nAnd finally actionable data should always take precedence over informational data, this reduces the chances of choice fatigue.",
+  takeawaysTitle: "Takeaways",
   isMobile: false,
   hasPullQuote: true,
 };

@@ -36,7 +36,9 @@ export interface CaseStudy {
   pullQuote?: string;
   decisions: DecisionContent[];
   constraints: string;
+  constraintsTitle?: string;
   takeaways: string;
+  takeawaysTitle?: string;
   isMobile: boolean;
   hasPullQuote: boolean;
 }

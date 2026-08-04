@@ -33,7 +33,7 @@ export function CaseStudyHeroImage({
 
   return (
     <div
-      className={`relative h-[320px] w-full overflow-hidden bg-case-study-hero-bg min-[768px]:h-case-study-hero ${className}`}
+      className={`relative h-[320px] w-full overflow-hidden min-[768px]:h-case-study-hero ${className}`}
     >
       <Image
         src={src}

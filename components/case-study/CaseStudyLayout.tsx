@@ -13,9 +13,9 @@ interface CaseStudyLayoutProps {
 export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
   return (
     <>
-      <section className="bg-light-bg px-page pb-10 pt-16 md:pb-section md:pt-hero-pt">
+      <section className="bg-case-study-hero-bg px-page pb-section pt-8">
         <div className="mx-auto max-w-[1312px]">
-          <CaseStudyTitleBlock study={study} />
+          <CaseStudyTitleBlock study={study} variant="dark" />
           <CaseStudyHeroImage
             images={study.images.hero}
             isMobile={study.isMobile}
@@ -47,7 +47,9 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
       )}
 
       <CaseStudyConstraintsTakeaways
+        constraintsTitle={study.constraintsTitle ?? "Designing Within Constraints"}
         constraints={study.constraints}
+        takeawaysTitle={study.takeawaysTitle ?? "Takeaways"}
         takeaways={study.takeaways}
       />
     </>

@@ -8,8 +8,10 @@
   --color-nav-link: #94908b;
   --color-nav-link-hover: #5b5855;
   --color-light-image-bg: #f7f4ed;
-  --color-case-study-hero-bg: #22221d;
+  --color-case-study-divider: #f9f3ed;
+  --color-case-study-hero-bg: #22201d;
   --color-case-study-hero-image-bg: #2d2b29;
+  --color-text-on-dark: #fffefb;
   --color-photo-border: #fcfcfc;
   --color-photo-shadow: rgba(91, 88, 85, 0.16);
 
@@ -112,12 +114,14 @@
     font-family: var(--font-geist-mono);
     font-size: var(--text-eyebrow-size);
     letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
   }
 
   .text-section-label {
     font-family: var(--font-geist-mono);
     font-size: var(--text-eyebrow-size);
     letter-spacing: var(--tracking-body);
+    text-transform: uppercase;
   }
 
   .text-wordmark {
@@ -136,6 +140,7 @@
     font-family: var(--font-geist-mono);
     font-size: var(--text-label-sm-size);
     letter-spacing: var(--tracking-label-sm);
+    text-transform: uppercase;
   }
 
   .text-link-medium {
@@ -187,6 +192,23 @@
 
   .text-nav-link:hover {
     color: var(--color-nav-link-hover);
+  }
+
+  .text-nav-link-on-dark {
+    color: var(--color-nav-link);
+    transition: color 150ms ease;
+  }
+
+  .text-nav-link-on-dark:hover {
+    color: var(--color-text-on-dark);
+  }
+
+  .bg-case-study-hero-bg {
+    background-color: var(--color-case-study-hero-bg);
+  }
+
+  .text-on-dark {
+    color: var(--color-text-on-dark);
   }
 
   @media (max-width: 768px) {
