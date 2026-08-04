@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens */
+  --color-light-bg: #fffefb;
+  --color-text-on-light: #5b5855;
+  --color-light-image-bg: #f7f4ed;
+  --color-case-study-hero-bg: #22221d;
+  --color-case-study-hero-image-bg: #2d2b29;
+
+  /* Font families */
+  --font-crimson: var(--font-crimson-text);
+  --font-geist: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+
+  /* Layout constants */
+  --spacing-container: 100px;
+  --width-constraints-column: 426px;
+  --spacing-constraints-gap: 164px;
+
+  /* Typography — desktop reference values; scale down at breakpoints */
+  --text-title-size: 48px;
+  --text-title-leading: 48px;
+  --text-callout-size: 24px;
+  --text-callout-leading: 24px;
+  --text-body-size: 15px;
+  --text-body-leading: 21px;
+  --text-eyebrow-size: 15px;
+  --tracking-tight: -0.02em;
+}
+
+@layer utilities {
+  .text-title {
+    font-family: var(--font-crimson);
+    font-size: var(--text-title-size);
+    line-height: var(--text-title-leading);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .text-callout {
+    font-family: var(--font-crimson);
+    font-size: var(--text-callout-size);
+    line-height: var(--text-callout-leading);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .text-body {
+    font-family: var(--font-geist);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .text-eyebrow {
+    font-family: var(--font-geist-mono);
+    font-size: var(--text-eyebrow-size);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  @media (max-width: 768px) {
+    .text-title {
+      font-size: 32px;
+      line-height: 36px;
+    }
+
+    .text-callout {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}
+
+body {
+  background-color: var(--color-light-bg);
+  color: var(--color-text-on-light);
+}
