@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 
 interface CaseStudyImageCardProps {
   src: string;
@@ -19,8 +20,13 @@ interface CaseStudyImageCardProps {
   objectPosition?: "top" | "center";
 }
 
+function isSvgSrc(src: string) {
+  return src.split("?")[0]?.toLowerCase().endsWith(".svg") ?? false;
+}
+
 /**
- * Fixed-aspect shell; image scales inside via object-contain and never drives card size.
+ * Fixed-aspect shell; image scales inside via object-contain/cover.
+ * Uses next/image (SVGs pass through unoptimized — Next does not recompress SVG).
  */
 export function CaseStudyImageCard({
   src,
@@ -41,16 +47,22 @@ export function CaseStudyImageCard({
         ? "bg-light-image-bg"
         : "bg-case-study-hero-bg";
 
+  const unoptimized = isSvgSrc(src);
+
   if (aspect === "intrinsic") {
     return (
       <div className={`w-full shrink-0 overflow-hidden ${bgClass} ${className}`}>
         <div className={padded ? "case-study-frame-inset" : undefined}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={src}
             alt=""
+            width={1312}
+            height={800}
+            sizes="(max-width: 1312px) 100vw, 1312px"
+            unoptimized={unoptimized}
+            priority={priority}
             fetchPriority={priority ? "high" : undefined}
-            className="block h-auto w-full"
+            className="h-auto w-full"
           />
         </div>
       </div>
@@ -65,11 +77,7 @@ export function CaseStudyImageCard({
     phone: "case-study-image-card-phone",
   }[aspect];
 
-  const imgFitClass =
-    imageFit === "cover"
-      ? "object-cover"
-      : "object-contain";
-
+  const imgFitClass = imageFit === "cover" ? "object-cover" : "object-contain";
   const imgPositionClass =
     objectPosition === "top" ? "object-top" : "object-center";
 
@@ -98,18 +106,21 @@ export function CaseStudyImageCard({
 
   return (
     <div
-      className={`${aspectClass} w-full shrink-0 overflow-hidden ${bgClass} ${className}`}
+      className={`${aspectClass} relative w-full shrink-0 overflow-hidden ${bgClass} ${className}`}
       style={style}
     >
       <div
-        className={`flex h-full min-h-0 w-full items-center justify-center ${padded ? "case-study-frame-inset" : ""}`}
+        className={`relative flex h-full min-h-0 w-full items-center justify-center ${padded ? "case-study-frame-inset" : ""}`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={src}
           alt=""
+          fill
+          sizes="(max-width: 1312px) 100vw, 1312px"
+          unoptimized={unoptimized}
+          priority={priority}
           fetchPriority={priority ? "high" : undefined}
-          className={`block h-full w-full min-h-0 min-w-0 ${imgPositionClass} ${imgFitClass} ${imgScaleClass}`}
+          className={`min-h-0 min-w-0 ${imgPositionClass} ${imgFitClass} ${imgScaleClass}`}
         />
       </div>
     </div>

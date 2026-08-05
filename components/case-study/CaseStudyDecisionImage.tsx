@@ -1,5 +1,11 @@
+"use client";
+
 import { CaseStudyDualPhoneImage } from "@/components/case-study/CaseStudyDualPhoneImage";
 import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
+import {
+  useHasMounted,
+  useIsMobileViewport,
+} from "@/hooks/useMediaQuery";
 
 interface CaseStudyDecisionImageProps {
   src: string;
@@ -11,6 +17,11 @@ interface CaseStudyDecisionImageProps {
   className?: string;
 }
 
+/**
+ * Decision product frame. Only the active viewport asset is mounted — hidden
+ * CSS twins are not used, so inactive breakpoint files are never requested.
+ * Below-fold: no priority (next/image defaults to lazy).
+ */
 export function CaseStudyDecisionImage({
   src,
   imageSecondary,
@@ -20,6 +31,9 @@ export function CaseStudyDecisionImage({
   isMobile,
   className = "",
 }: CaseStudyDecisionImageProps) {
+  const mounted = useHasMounted();
+  const isMobileViewport = useIsMobileViewport();
+
   if (isMobile) {
     const secondary = imageSecondary ?? src;
     return (
@@ -33,22 +47,34 @@ export function CaseStudyDecisionImage({
   }
 
   if (mobileImage) {
-    return (
-      <>
+    if (!mounted) {
+      return (
+        <div
+          className={`case-study-image-card-square w-full shrink-0 bg-case-study-hero-image-bg ${className}`}
+          aria-hidden
+        />
+      );
+    }
+
+    if (isMobileViewport) {
+      return (
         <CaseStudyImageCard
           src={mobileImage}
           aspect="square"
-          className={`max-[767px]:block min-[768px]:hidden ${className}`}
+          className={className}
           padded
           background="secondary"
         />
-        <CaseStudyImageCard
-          src={src}
-          className={`hidden min-[768px]:block ${className}`}
-          padded
-          desktopImageScale={desktopImageScale}
-        />
-      </>
+      );
+    }
+
+    return (
+      <CaseStudyImageCard
+        src={src}
+        className={className}
+        padded
+        desktopImageScale={desktopImageScale}
+      />
     );
   }
 

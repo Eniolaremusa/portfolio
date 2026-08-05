@@ -1,5 +1,11 @@
+"use client";
+
 import { CaseStudyDualPhoneImage } from "@/components/case-study/CaseStudyDualPhoneImage";
 import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
+import {
+  useHasMounted,
+  useIsMobileViewport,
+} from "@/hooks/useMediaQuery";
 
 interface CaseStudyHeroImageProps {
   images: string[];
@@ -20,6 +26,9 @@ export function CaseStudyHeroImage({
   heroPadded = true,
   className = "",
 }: CaseStudyHeroImageProps) {
+  const mounted = useHasMounted();
+  const isMobileViewport = useIsMobileViewport();
+
   if (isMobile && images.length >= 2) {
     return (
       <CaseStudyDualPhoneImage
@@ -38,25 +47,25 @@ export function CaseStudyHeroImage({
 
   if (heroIntrinsicAspect) {
     if (heroMobile) {
+      if (!mounted) {
+        return (
+          <div
+            className={`w-full shrink-0 overflow-hidden ${heroBackground === "secondary" ? "bg-case-study-hero-image-bg" : "bg-case-study-hero-bg"} ${className}`}
+            style={{ aspectRatio: "16 / 10" }}
+            aria-hidden
+          />
+        );
+      }
+
       return (
-        <>
-          <CaseStudyImageCard
-            src={heroMobile}
-            aspect="intrinsic"
-            background={heroBackground}
-            padded={heroPadded}
-            className={`min-[768px]:hidden ${className}`}
-            priority
-          />
-          <CaseStudyImageCard
-            src={src}
-            aspect="intrinsic"
-            background={heroBackground}
-            padded={heroPadded}
-            className={`hidden min-[768px]:block ${className}`}
-            priority
-          />
-        </>
+        <CaseStudyImageCard
+          src={isMobileViewport ? heroMobile : src}
+          aspect="intrinsic"
+          background={heroBackground}
+          padded={heroPadded}
+          className={className}
+          priority
+        />
       );
     }
 
@@ -74,27 +83,39 @@ export function CaseStudyHeroImage({
 
   const desktopAspect = isMobile ? "hero-mobile" : "wide";
 
-  return (
-    <>
+  if (!mounted) {
+    return (
+      <div
+        className={`case-study-image-card-square w-full shrink-0 ${heroBackground === "secondary" ? "bg-case-study-hero-image-bg" : "bg-case-study-hero-bg"} ${className}`}
+        aria-hidden
+      />
+    );
+  }
+
+  if (isMobileViewport) {
+    return (
       <CaseStudyImageCard
         src={src}
         aspect="square"
         background={heroBackground}
         imageFit="contain"
         padded
-        className={`min-[768px]:hidden ${className}`}
+        className={className}
         priority
       />
-      <CaseStudyImageCard
-        src={src}
-        aspect={desktopAspect}
-        background={heroBackground}
-        imageFit={isMobile ? "contain" : "cover"}
-        objectPosition={isMobile ? "center" : "top"}
-        padded={isMobile}
-        className={`hidden min-[768px]:block ${className}`}
-        priority
-      />
-    </>
+    );
+  }
+
+  return (
+    <CaseStudyImageCard
+      src={src}
+      aspect={desktopAspect}
+      background={heroBackground}
+      imageFit={isMobile ? "contain" : "cover"}
+      objectPosition={isMobile ? "center" : "top"}
+      padded={isMobile}
+      className={className}
+      priority
+    />
   );
 }

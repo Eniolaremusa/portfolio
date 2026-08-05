@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
 
 const GAP_PX = 12;
@@ -15,12 +16,13 @@ interface CaseStudyPhoneCarouselProps {
   alts?: readonly string[];
 }
 
+function isSvgSrc(src: string) {
+  return src.split("?")[0]?.toLowerCase().endsWith(".svg") ?? false;
+}
+
 /**
  * Mobile carousel — 345×345 cards, 12px gap, infinite swipe loop.
  * Figma ref: node 94:38859 (decisions), reused for hobbies.
- *
- * Loop correction runs on scrollend only (not scroll) so it does not fight
- * scroll-snap or momentum scrolling.
  */
 export function CaseStudyPhoneCarousel({
   images,
@@ -90,13 +92,12 @@ export function CaseStudyPhoneCarousel({
   const imageClass = isCover
     ? "case-study-phone-carousel-image-cover"
     : "case-study-phone-carousel-image";
-  // Cover (hobbies): edge-to-edge photos, no fill behind the image
   const slideClass = isCover
     ? "case-study-phone-carousel-slide case-study-phone-carousel-slide--flush shrink-0 snap-start"
     : "case-study-phone-carousel-slide shrink-0 snap-start";
   const innerClass = isCover
-    ? "case-study-phone-carousel-slide-inner case-study-phone-carousel-slide-inner--flush"
-    : "case-study-phone-carousel-slide-inner";
+    ? "case-study-phone-carousel-slide-inner case-study-phone-carousel-slide-inner--flush relative"
+    : "case-study-phone-carousel-slide-inner relative";
 
   return (
     <div className={`w-full overflow-hidden ${className}`}>
@@ -108,12 +109,26 @@ export function CaseStudyPhoneCarousel({
         {slides.map((src, index) => (
           <div key={`${src}-${index}`} className={slideClass}>
             <div className={innerClass}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={alts?.[index % images.length] ?? ""}
-                className={imageClass}
-              />
+              {isCover ? (
+                <Image
+                  src={src}
+                  alt={alts?.[index % images.length] ?? ""}
+                  fill
+                  sizes="345px"
+                  unoptimized={isSvgSrc(src)}
+                  className={imageClass}
+                />
+              ) : (
+                <Image
+                  src={src}
+                  alt={alts?.[index % images.length] ?? ""}
+                  width={SLIDE_PX}
+                  height={SLIDE_PX}
+                  sizes="345px"
+                  unoptimized={isSvgSrc(src)}
+                  className={imageClass}
+                />
+              )}
             </div>
           </div>
         ))}
