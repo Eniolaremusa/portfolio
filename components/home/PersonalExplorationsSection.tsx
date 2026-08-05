@@ -26,7 +26,7 @@ export function PersonalExplorationsSection() {
               <source src={encodeURI(exploration.video)} type="video/mp4" />
             </video>
           </div>
-          <div className="flex w-full flex-col gap-1 min-[768px]:flex-1">
+          <div className="home-mobile-text flex w-full flex-col gap-1 min-[768px]:flex-1">
             <Link
               href={exploration.prototypeUrl}
               target="_blank"

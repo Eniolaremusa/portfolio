@@ -86,10 +86,17 @@ export function CaseStudyPhoneCarousel({
     return () => track.removeEventListener("scrollend", onScrollEnd);
   }, [correctLoopPosition]);
 
-  const imageClass =
-    imageFit === "cover"
-      ? "case-study-phone-carousel-image-cover"
-      : "case-study-phone-carousel-image";
+  const isCover = imageFit === "cover";
+  const imageClass = isCover
+    ? "case-study-phone-carousel-image-cover"
+    : "case-study-phone-carousel-image";
+  // Cover (hobbies): edge-to-edge photos, no fill behind the image
+  const slideClass = isCover
+    ? "case-study-phone-carousel-slide case-study-phone-carousel-slide--flush shrink-0 snap-start"
+    : "case-study-phone-carousel-slide shrink-0 snap-start";
+  const innerClass = isCover
+    ? "case-study-phone-carousel-slide-inner case-study-phone-carousel-slide-inner--flush"
+    : "case-study-phone-carousel-slide-inner";
 
   return (
     <div className={`w-full overflow-hidden ${className}`}>
@@ -99,11 +106,8 @@ export function CaseStudyPhoneCarousel({
         style={{ gap: GAP_PX }}
       >
         {slides.map((src, index) => (
-          <div
-            key={`${src}-${index}`}
-            className="case-study-phone-carousel-slide shrink-0 snap-start"
-          >
-            <div className="case-study-phone-carousel-slide-inner">
+          <div key={`${src}-${index}`} className={slideClass}>
+            <div className={innerClass}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}

@@ -16,7 +16,6 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
   const mobileCardImage = homeCaseStudyCardImagesMobile[study.slug];
   const isSvg = cardImage?.endsWith(".svg");
-  const isMobileSvg = mobileCardImage?.endsWith(".svg");
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
   const imageFitClass = hasImagePadding
     ? "object-contain object-top"
@@ -35,24 +34,28 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
               : "absolute inset-0"
           }
         >
-          {cardImage ? (
+          {cardImage && mobileCardImage ? (
+            <picture className="relative block h-full w-full">
+              <source
+                media="(max-width: 767px)"
+                srcSet={encodeURI(mobileCardImage)}
+              />
+              {/* Desktop (and fallback): original desktop asset only */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={encodeURI(cardImage)}
+                alt={`${study.title} product preview`}
+                className={`absolute inset-0 h-full w-full ${imageFitClass}`}
+              />
+            </picture>
+          ) : cardImage ? (
             <div className="relative h-full w-full">
-              {mobileCardImage ? (
-                <Image
-                  src={mobileCardImage}
-                  alt={`${study.title} product preview`}
-                  fill
-                  unoptimized={isMobileSvg}
-                  className={`min-[768px]:hidden ${imageFitClass}`}
-                  sizes="100vw"
-                />
-              ) : null}
               <Image
                 src={cardImage}
                 alt={`${study.title} product preview`}
                 fill
                 unoptimized={isSvg}
-                className={`${mobileCardImage ? "hidden min-[768px]:block" : ""} ${imageFitClass}`}
+                className={imageFitClass}
                 sizes="(max-width: 768px) 100vw, 380px"
               />
             </div>
@@ -60,7 +63,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-1">
+        <div className="home-mobile-text flex flex-col gap-1">
           <h3 className="text-link-medium text-text-on-light">{study.title}</h3>
           <p className="text-body text-text-on-light">{study.description}</p>
         </div>

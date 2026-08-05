@@ -14,6 +14,7 @@ export const cbfFlo: CaseStudy = {
   timeline: "7 months",
   images: {
     hero: ["/case study/CBF FLO/Hero.svg"],
+    heroMobile: "/case study/CBF FLO/cb hero m.svg",
     pullQuote: "/images/cbf-flo/pull-quote-map.png",
   },
   productContext:
@@ -34,7 +35,7 @@ export const cbfFlo: CaseStudy = {
         "Each card shows current state next to projected state: assign this job, and efficiency moves from 96.7% to 97%, drive time from 30 to 38 minutes, revenue from $289 to $391. A day timeline highlights exactly where the new job lands in that cleaner's route. The manager sees the consequence before committing, not after.",
       layoutVariant: "three-column",
       image: "/case study/CBF FLO/Ds1.svg",
-      mobileImage: "/case study/CBF FLO/cb ds 1 m.svg",
+      mobileImage: "/case study/CBF FLO/cb ds1 m.svg",
       desktopImageScale: 0.85,
     },
     {
@@ -48,7 +49,7 @@ export const cbfFlo: CaseStudy = {
         "Three coordinated views. Then, as a supporting beat within \"map,\" mention the colour shift specifically, assigned/unassigned to live status, as the reasoning behind that view once you'd decided it needed to exist.",
       layoutVariant: "three-column",
       image: "/case study/CBF FLO/ds2.svg",
-      mobileImage: "/case study/CBF FLO/cb ds 2 m.svg",
+      mobileImage: "/case study/CBF FLO/cb ds2 m.svg",
     },
     {
       eyebrow: "DESIGN DECISION 03",
@@ -61,7 +62,7 @@ export const cbfFlo: CaseStudy = {
         "Cleaners get their full day mapped, home to each appointment and back, with complete client context embedded at every stop, the same details the back office sees. For sales, a Zillow integration auto-fills property details, bedrooms, bathrooms, square footage, from an address, so onboarding a new client no longer means manual lookup mid-conversation.",
       layoutVariant: "three-column",
       image: "/case study/CBF FLO/ds3.svg",
-      mobileImage: "/case study/CBF FLO/cb ds 3 m.svg",
+      mobileImage: "/case study/CBF FLO/cb ds3 m.svg",
       desktopImageScale: 0.85,
     },
   ],

@@ -3,15 +3,21 @@ import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
 
 interface CaseStudyHeroImageProps {
   images: string[];
+  /** Optional mobile-only hero asset (<768px) */
+  heroMobile?: string;
   isMobile: boolean;
   heroIntrinsicAspect?: boolean;
+  /** Frame inset on intrinsic heroes; defaults to true */
+  heroPadded?: boolean;
   className?: string;
 }
 
 export function CaseStudyHeroImage({
   images,
+  heroMobile,
   isMobile,
   heroIntrinsicAspect = false,
+  heroPadded = true,
   className = "",
 }: CaseStudyHeroImageProps) {
   if (isMobile && images.length >= 2) {
@@ -31,12 +37,35 @@ export function CaseStudyHeroImage({
   const heroBackground = isMobile ? "secondary" : "primary";
 
   if (heroIntrinsicAspect) {
+    if (heroMobile) {
+      return (
+        <>
+          <CaseStudyImageCard
+            src={heroMobile}
+            aspect="intrinsic"
+            background={heroBackground}
+            padded={heroPadded}
+            className={`min-[768px]:hidden ${className}`}
+            priority
+          />
+          <CaseStudyImageCard
+            src={src}
+            aspect="intrinsic"
+            background={heroBackground}
+            padded={heroPadded}
+            className={`hidden min-[768px]:block ${className}`}
+            priority
+          />
+        </>
+      );
+    }
+
     return (
       <CaseStudyImageCard
         src={src}
         aspect="intrinsic"
         background={heroBackground}
-        padded
+        padded={heroPadded}
         className={className}
         priority
       />

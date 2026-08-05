@@ -90,6 +90,6 @@ export const homeCaseStudyCardImages: Record<string, string> = {
 
 /** Mobile-only homepage card thumbnails (<768px) */
 export const homeCaseStudyCardImagesMobile: Partial<Record<string, string>> = {
-  "cbf-flo": "/case study/cs cb.svg",
-  "vendor-connect": "/case study/cs vc.svg",
+  "cbf-flo": "/case study/CBF FLO/cb home m.svg",
+  "vendor-connect": "/case study/Vendor connect/vc home m.svg",
 };

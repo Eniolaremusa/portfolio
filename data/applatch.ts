@@ -45,7 +45,7 @@ export const applatch: CaseStudy = {
       decided:
         "Default system avatars only, no uploads, and names masked to the first letters with the rest replaced by asterisks. Kids still see where they rank. Nobody outside the family can identify who. This came directly from a pre-launch parent testing group flagging the exposure risk before it shipped.",
       layoutVariant: "three-column",
-      image: `${assetBase}/Ap ds2a.svg`,
+      image: `${assetBase}/ap ds1a.svg`,
       imageSecondary: `${assetBase}/Ap ds2b.svg`,
     },
     {

@@ -186,7 +186,7 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
             <CloseIcon />
           </button>
         </div>
-        <nav className="text-nav flex w-full flex-col items-stretch gap-nav-mobile-menu px-6 pb-4">
+        <nav className="home-mobile-nav-menu text-nav flex w-full flex-col items-stretch gap-nav-mobile-menu px-6 pb-4">
           <NavLinks onNavigate={() => setOpen(false)} theme={theme} mobile />
         </nav>
       </div>

@@ -34,6 +34,8 @@ export interface CaseStudy {
   timeline: string;
   images: {
     hero: string[];
+    /** Optional mobile-specific hero; shown below 768px when set */
+    heroMobile?: string;
     pullQuote?: string;
     context?: string[];
   };
@@ -49,6 +51,8 @@ export interface CaseStudy {
   tabletDecisionImageScale?: number;
   /** Hero container wraps image intrinsic height (width fills, no fixed aspect frame) */
   heroIntrinsicAspect?: boolean;
+  /** Frame inset around intrinsic hero; default true. Set false to hug the asset flush. */
+  heroPadded?: boolean;
   isMobile: boolean;
   hasPullQuote: boolean;
 }

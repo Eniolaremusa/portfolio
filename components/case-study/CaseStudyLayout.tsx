@@ -19,8 +19,10 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
           <CaseStudyTitleBlock study={study} variant="dark" />
           <CaseStudyHeroImage
             images={study.images.hero}
+            heroMobile={study.images.heroMobile}
             isMobile={study.isMobile}
             heroIntrinsicAspect={study.heroIntrinsicAspect}
+            heroPadded={study.heroPadded}
             className="mt-10"
           />
         </CaseStudyPageContainer>

@@ -23,7 +23,7 @@ function HeroPortrait({
 
 export function HeroSection() {
   return (
-    <section className="bg-light-bg px-page pb-section pt-16 md:pt-hero-pt">
+    <section className="bg-light-bg px-page pt-[54px] max-[767px]:pb-10 min-[768px]:pt-hero-pt">
       <div className="mx-auto flex max-w-[1312px] flex-col gap-12 lg:flex-row lg:items-start lg:gap-hero-gap">
         <div className="flex w-full max-w-[734px] flex-col gap-6">
           <div className="flex max-w-[613px] flex-col gap-3">

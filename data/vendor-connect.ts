@@ -1,6 +1,6 @@
 import type { CaseStudy } from "./types";
 
-const assetBase = "/case study/vendor-connect";
+const assetBase = "/case study/Vendor connect";
 
 export const vendorConnect: CaseStudy = {
   slug: "vendor-connect",
@@ -15,7 +15,7 @@ export const vendorConnect: CaseStudy = {
   team: "PM & 1 engineer",
   timeline: "3 months",
   images: {
-    hero: [`${assetBase}/hero.svg`],
+    hero: [`${assetBase}/vc hero.svg`],
   },
   productContext:
     "Event organizers traditionally rely on spreadsheets, email threads, PDFs, and manual payment tracking to manage vendor applications. Vendors, meanwhile, search across multiple event websites with little visibility into application status or organizer credibility.\n\nVendor Connect brings both sides into a shared platform where event discovery, applications, payments, booth allocation, and reputation are managed through one connected workflow.",
@@ -30,8 +30,8 @@ export const vendorConnect: CaseStudy = {
       decided:
         "Designed detailed event pages that combined venue information, organizer profiles, booth pricing, requirements, attendance estimates, media galleries, and booth options into a single decision-making experience.",
       layoutVariant: "three-column",
-      image: `${assetBase}/ds1.svg`,
-      mobileImage: `${assetBase}/ds1-m.svg`,
+      image: `${assetBase}/vc ds1.svg`,
+      mobileImage: `${assetBase}/vc ds1 m.svg`,
       desktopImageScale: 0.85,
     },
     {
@@ -42,8 +42,8 @@ export const vendorConnect: CaseStudy = {
       decided:
         "After. Designed a connected workflow covering application review, approvals, payment requests, booth assignment, invoices, and application tracking from submission through event completion.",
       layoutVariant: "three-column",
-      image: `${assetBase}/ds2.svg`,
-      mobileImage: `${assetBase}/ds2-m.svg`,
+      image: `${assetBase}/vc ds2.svg`,
+      mobileImage: `${assetBase}/vc ds2 m.svg`,
       desktopImageScale: 0.85,
     },
     {
@@ -54,8 +54,8 @@ export const vendorConnect: CaseStudy = {
       decided:
         "After. Since payments happened outside the platform, trust had to be built elsewhere. I designed a reputation system that combined identity verification, business documentation, platform ratings, and admin moderation to create accountability across both sides of the marketplace. This allowed organizers to keep their existing payment workflows while giving vendors greater confidence throughout the process.",
       layoutVariant: "three-column",
-      image: `${assetBase}/ds3.svg`,
-      mobileImage: `${assetBase}/ds3-m.svg`,
+      image: `${assetBase}/vc ds3.svg`,
+      mobileImage: `${assetBase}/vc ds3.svg`,
       desktopImageScale: 0.85,
     },
   ],
@@ -67,5 +67,6 @@ export const vendorConnect: CaseStudy = {
   takeawaysTitle: "Takeaways",
   isMobile: false,
   heroIntrinsicAspect: true,
+  heroPadded: false,
   hasPullQuote: false,
 };

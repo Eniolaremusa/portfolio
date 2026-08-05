@@ -304,6 +304,11 @@
     background-color: var(--color-light-image-bg);
   }
 
+  /* Hobbies / photo covers — no fill, image only */
+  .case-study-phone-carousel-slide--flush {
+    background-color: transparent;
+  }
+
   .case-study-phone-carousel-slide-inner {
     display: flex;
     height: 100%;
@@ -313,6 +318,10 @@
     box-sizing: border-box;
     padding-inline: var(--spacing-case-study-frame-inset-x-mobile);
     padding-block: var(--spacing-case-study-frame-inset-y-mobile);
+  }
+
+  .case-study-phone-carousel-slide-inner--flush {
+    padding: 0;
   }
 
   .case-study-phone-carousel-image {
@@ -497,6 +506,14 @@
     /* Decision eyebrows / section labels — 13px on mobile */
     .case-study-page .text-eyebrow {
       font-size: var(--text-case-study-eyebrow-size-mobile);
+    }
+
+    /* Homepage mobile: case study cards + explorations + mobile nav links */
+    .home-mobile-text .text-body,
+    .home-mobile-text .text-link-medium,
+    .home-mobile-nav-menu .text-nav {
+      font-size: var(--text-case-study-body-size-mobile);
+      line-height: var(--text-case-study-body-leading-mobile);
     }
   }
 }

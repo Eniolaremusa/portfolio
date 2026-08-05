@@ -7,7 +7,7 @@ const HOBBY_LABELS = ["Coding", "Reading", "Painting", "Baking"] as const;
 export function HobbiesSection() {
   return (
     <section className="bg-light-bg px-page py-section">
-      <div className="mx-auto flex max-w-[1312px] flex-col gap-10">
+      <div className="mx-auto flex max-w-[1312px] flex-col gap-[34px] min-[768px]:gap-10">
         <h2 className="text-section-label w-full max-w-section-label text-text-on-light">
           HOBBYING OUTSIDE OF WORK
         </h2>
