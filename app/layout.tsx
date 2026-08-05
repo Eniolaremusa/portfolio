@@ -12,6 +12,20 @@ const crimsonText = Crimson_Text({
 export const metadata: Metadata = {
   title: "Eniola Aigbokhaode — Product Designer",
   description: "Personal portfolio site for Eniola Aigbokhaode, product designer.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-light.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-dark.svg",
+        type: "image/svg+xml",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
