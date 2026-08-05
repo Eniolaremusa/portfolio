@@ -3,51 +3,56 @@ import Link from "next/link";
 import { ExternalLinkArrow } from "@/components/ExternalLinkArrow";
 import { StickySection } from "@/components/home/StickySection";
 import { caseStudies } from "@/data";
-import { homeCaseStudyCardImages, homeCaseStudyOrder } from "@/data/home";
+import {
+  homeCaseStudyCardImages,
+  homeCaseStudyCardImagesMobile,
+  homeCaseStudyOrder,
+} from "@/data/home";
 import type { CaseStudy } from "@/data/types";
 
 const PADDED_IMAGE_SLUGS = new Set(["cbf-flo", "applatch", "vendor-connect"]);
-const BOTTOM_ANCHOR_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
+  const mobileCardImage = homeCaseStudyCardImagesMobile[study.slug];
   const isSvg = cardImage?.endsWith(".svg");
+  const isMobileSvg = mobileCardImage?.endsWith(".svg");
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
-  const bottomAnchor = BOTTOM_ANCHOR_SLUGS.has(study.slug);
+  const imageFitClass = hasImagePadding
+    ? "object-contain object-top"
+    : "object-cover object-top nav-hover:scale-[1.01] transition-transform duration-300";
 
   return (
     <Link
       href={`/${study.slug}`}
       className="group flex w-full max-w-none flex-col gap-card-gap min-[768px]:max-w-case-card"
     >
-      <div className="relative h-case-card-image w-full overflow-hidden bg-case-study-hero-bg">
+      <div className="relative aspect-square w-full overflow-hidden bg-case-study-hero-bg min-[768px]:aspect-auto min-[768px]:h-case-card-image">
         <div
           className={
             hasImagePadding
-              ? bottomAnchor
-                ? "absolute inset-0 px-case-card-image-x pt-case-card-image-top max-[790px]:flex max-[790px]:items-end max-[790px]:pt-0"
-                : "absolute inset-0 px-case-card-image-x pt-case-card-image-top"
+              ? "absolute inset-0 case-study-frame-inset"
               : "absolute inset-0"
           }
         >
           {cardImage ? (
-            <div
-              className={
-                bottomAnchor ? "relative h-full w-full max-[790px]:h-[115%]" : "relative h-full w-full"
-              }
-            >
+            <div className="relative h-full w-full">
+              {mobileCardImage ? (
+                <Image
+                  src={mobileCardImage}
+                  alt={`${study.title} product preview`}
+                  fill
+                  unoptimized={isMobileSvg}
+                  className={`min-[768px]:hidden ${imageFitClass}`}
+                  sizes="100vw"
+                />
+              ) : null}
               <Image
                 src={cardImage}
                 alt={`${study.title} product preview`}
                 fill
                 unoptimized={isSvg}
-                className={
-                  hasImagePadding
-                    ? bottomAnchor
-                      ? "object-contain object-top min-[791px]:object-contain min-[791px]:object-top max-[790px]:object-cover max-[790px]:object-bottom"
-                      : "object-contain object-top"
-                    : "object-cover object-top nav-hover:scale-[1.01] transition-transform duration-300"
-                }
+                className={`${mobileCardImage ? "hidden min-[768px]:block" : ""} ${imageFitClass}`}
                 sizes="(max-width: 768px) 100vw, 380px"
               />
             </div>

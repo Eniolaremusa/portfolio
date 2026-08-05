@@ -12,9 +12,9 @@ export function PersonalExplorationsSection() {
       {personalExplorations.map((exploration) => (
         <div
           key={exploration.slug}
-          className="flex w-full flex-col gap-6 min-[768px]:flex-row min-[768px]:items-end min-[768px]:gap-10"
+          className="flex w-full max-w-none flex-col gap-6 min-[768px]:max-w-[884px] min-[768px]:flex-row min-[768px]:items-end min-[768px]:gap-10"
         >
-          <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-light-image-bg min-[768px]:w-[400px]">
+          <div className="relative aspect-video w-full max-w-none shrink-0 overflow-hidden bg-light-image-bg min-[768px]:aspect-auto min-[768px]:h-[200px] min-[768px]:w-[400px]">
             <video
               autoPlay
               muted

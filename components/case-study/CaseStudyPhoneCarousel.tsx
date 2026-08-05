@@ -6,13 +6,18 @@ const GAP_PX = 12;
 const SLIDE_PX = 345;
 
 interface CaseStudyPhoneCarouselProps {
-  images: [string, string];
+  /** Two or more slides; duplicated internally for infinite loop */
+  images: readonly string[];
   className?: string;
+  /** contain: phone mockups. cover: photo fills slide (hobbies) */
+  imageFit?: "contain" | "cover";
+  /** Alt text per unique slide (same length as images) */
+  alts?: readonly string[];
 }
 
 /**
- * Mobile decision carousel — 345×345 cards, 12px gap, infinite swipe loop.
- * Figma ref: node 94:38859
+ * Mobile carousel — 345×345 cards, 12px gap, infinite swipe loop.
+ * Figma ref: node 94:38859 (decisions), reused for hobbies.
  *
  * Loop correction runs on scrollend only (not scroll) so it does not fight
  * scroll-snap or momentum scrolling.
@@ -20,20 +25,20 @@ interface CaseStudyPhoneCarouselProps {
 export function CaseStudyPhoneCarousel({
   images,
   className = "",
+  imageFit = "contain",
+  alts,
 }: CaseStudyPhoneCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const isJumping = useRef(false);
 
-  // [first, second, clone-first, clone-second] — clones appended for forward loop
-  const slides = [images[0], images[1], images[0], images[1]] as const;
+  const slides = [...images, ...images] as const;
 
-  const getMetrics = useCallback(
-    () => ({
-      step: SLIDE_PX + GAP_PX,
-      pairWidth: SLIDE_PX * 2 + GAP_PX,
-    }),
-    [],
-  );
+  const getMetrics = useCallback(() => {
+    const count = images.length;
+    return {
+      pairWidth: count * SLIDE_PX + (count - 1) * GAP_PX,
+    };
+  }, [images.length]);
 
   const jumpWithoutAnimation = useCallback((scrollLeft: number) => {
     const track = trackRef.current;
@@ -59,13 +64,11 @@ export function CaseStudyPhoneCarousel({
     const { scrollLeft } = track;
     const maxScroll = track.scrollWidth - track.clientWidth;
 
-    // Scrolled into trailing clones — rewind one pair
     if (scrollLeft >= pairWidth - 1) {
       jumpWithoutAnimation(scrollLeft - pairWidth);
       return;
     }
 
-    // Scrolled before start — advance one pair (backward swipe)
     if (scrollLeft <= 1 && maxScroll > 0) {
       jumpWithoutAnimation(scrollLeft + pairWidth);
     }
@@ -83,6 +86,11 @@ export function CaseStudyPhoneCarousel({
     return () => track.removeEventListener("scrollend", onScrollEnd);
   }, [correctLoopPosition]);
 
+  const imageClass =
+    imageFit === "cover"
+      ? "case-study-phone-carousel-image-cover"
+      : "case-study-phone-carousel-image";
+
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <div
@@ -97,7 +105,11 @@ export function CaseStudyPhoneCarousel({
           >
             <div className="case-study-phone-carousel-slide-inner">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="" className="case-study-phone-carousel-image" />
+              <img
+                src={src}
+                alt={alts?.[index % images.length] ?? ""}
+                className={imageClass}
+              />
             </div>
           </div>
         ))}

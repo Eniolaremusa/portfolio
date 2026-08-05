@@ -6,6 +6,7 @@ interface CaseStudyDecisionImageProps {
   imageSecondary?: string;
   mobileImage?: string;
   desktopImageScale?: number;
+  tabletDecisionImageScale?: number;
   isMobile: boolean;
   className?: string;
 }
@@ -15,6 +16,7 @@ export function CaseStudyDecisionImage({
   imageSecondary,
   mobileImage,
   desktopImageScale,
+  tabletDecisionImageScale,
   isMobile,
   className = "",
 }: CaseStudyDecisionImageProps) {
@@ -24,6 +26,7 @@ export function CaseStudyDecisionImage({
       <CaseStudyDualPhoneImage
         images={[src, secondary]}
         variant="decision"
+        tabletImageScale={tabletDecisionImageScale}
         className={className}
       />
     );

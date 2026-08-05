@@ -6,6 +6,7 @@ import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageCon
 interface CaseStudyDecisionSectionProps {
   decision: DecisionContent;
   isMobile: boolean;
+  tabletDecisionImageScale?: number;
 }
 
 function formatBeat(prefix: string, value?: string) {
@@ -32,22 +33,25 @@ function DecisionBeat({ text }: { text: string }) {
 export function CaseStudyDecisionSection({
   decision,
   isMobile,
+  tabletDecisionImageScale,
 }: CaseStudyDecisionSectionProps) {
   const isThreeColumn = decision.layoutVariant === "three-column";
 
   return (
-    <section className="bg-light-bg px-page-case-study py-section">
+    <section className="bg-light-bg px-page-case-study py-case-study-section">
       <CaseStudyPageContainer>
-        <div className="flex flex-col gap-4 min-[768px]:flex-row min-[768px]:items-start min-[768px]:gap-10">
+        <div className="flex flex-col gap-case-study-decision-stack min-[768px]:flex-row min-[768px]:items-start min-[768px]:gap-10">
           <div className="w-full shrink-0 min-[768px]:w-[30%]">
             <p className="text-eyebrow text-text-on-light">{decision.eyebrow}</p>
-            <h2 className="text-callout mt-4 text-text-on-light">{decision.title}</h2>
+            <h2 className="text-callout mt-case-study-decision-eyebrow text-text-on-light">
+              {decision.title}
+            </h2>
           </div>
 
           <div className="w-full min-[768px]:w-[70%]">
             {isThreeColumn ? (
-              <div className="flex flex-col gap-8 min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-decision-col-gap">
-                <div className="flex min-w-0 flex-1 flex-col gap-2">
+              <div className="flex flex-col gap-case-study-decision-beats min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-decision-col-gap">
+                <div className="flex min-w-0 flex-1 flex-col gap-case-study-decision-beats">
                   {decision.explored ? (
                     <DecisionBeat text={formatBeat("Explored", decision.explored)!} />
                   ) : null}
@@ -75,6 +79,7 @@ export function CaseStudyDecisionSection({
           mobileImage={decision.mobileImage}
           desktopImageScale={decision.desktopImageScale}
           isMobile={isMobile}
+          tabletDecisionImageScale={tabletDecisionImageScale}
           className="mt-10 min-[768px]:mt-section"
         />
       </CaseStudyPageContainer>

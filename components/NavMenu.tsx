@@ -9,6 +9,27 @@ function getNavLinkClass(theme: "light" | "dark") {
   return theme === "dark" ? "text-nav text-nav-link-on-dark" : "text-nav text-nav-link";
 }
 
+function CloseIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`shrink-0 ${className}`}
+      aria-hidden
+    >
+      <path
+        d="M3.5 3.5L11.5 11.5M11.5 3.5L3.5 11.5"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 function getMobileNavLinkClass(theme: "light" | "dark") {
   return theme === "dark"
     ? "text-nav text-on-dark block w-full self-start text-left"
@@ -155,7 +176,17 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
             : { bottom: panelPosition.bottom }
         }
       >
-        <nav className="text-nav flex w-full flex-col items-stretch gap-4 px-6 py-4">
+        <div className="flex justify-end px-6 pt-4">
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className={`${menuButtonClass} inline-flex items-center justify-center`}
+          >
+            <CloseIcon />
+          </button>
+        </div>
+        <nav className="text-nav flex w-full flex-col items-stretch gap-nav-mobile-menu px-6 pb-4">
           <NavLinks onNavigate={() => setOpen(false)} theme={theme} mobile />
         </nav>
       </div>

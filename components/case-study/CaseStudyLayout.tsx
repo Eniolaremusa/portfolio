@@ -4,6 +4,7 @@ import { CaseStudyContextSection } from "@/components/case-study/CaseStudyContex
 import { CaseStudyDecisionSection } from "@/components/case-study/CaseStudyDecisionSection";
 import { CaseStudyHeroImage } from "@/components/case-study/CaseStudyHeroImage";
 import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageContainer";
+import { CaseStudyPullQuote } from "@/components/case-study/CaseStudyPullQuote";
 import { CaseStudyTitleBlock } from "@/components/case-study/CaseStudyTitleBlock";
 
 interface CaseStudyLayoutProps {
@@ -12,13 +13,14 @@ interface CaseStudyLayoutProps {
 
 export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
   return (
-    <>
-      <section className="bg-case-study-hero-bg px-page-case-study pb-section pt-8">
+    <div className="case-study-page">
+      <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-section pt-8">
         <CaseStudyPageContainer>
           <CaseStudyTitleBlock study={study} variant="dark" />
           <CaseStudyHeroImage
             images={study.images.hero}
             isMobile={study.isMobile}
+            heroIntrinsicAspect={study.heroIntrinsicAspect}
             className="mt-10"
           />
         </CaseStudyPageContainer>
@@ -29,14 +31,12 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
         businessProblem={study.businessProblem}
       />
 
-      {/* Callout hidden — revisit separately
       {study.hasPullQuote && study.pullQuote && study.images.pullQuote ? (
         <CaseStudyPullQuote
           image={study.images.pullQuote}
           quote={study.pullQuote}
         />
       ) : null}
-      */}
 
       {study.decisions.map((decision) =>
         decision.title && decision.title !== "Placeholder" ? (
@@ -44,6 +44,7 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
             key={decision.eyebrow}
             decision={decision}
             isMobile={study.isMobile}
+            tabletDecisionImageScale={study.tabletDecisionImageScale}
           />
         ) : null,
       )}
@@ -54,6 +55,6 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
         takeawaysTitle={study.takeawaysTitle ?? "Takeaways"}
         takeaways={study.takeaways}
       />
-    </>
+    </div>
   );
 }

@@ -87,3 +87,9 @@ export const homeCaseStudyCardImages: Record<string, string> = {
   "vendor-connect": "/case study/Vendor.svg",
   propheski: "/case study/image copy.png",
 };
+
+/** Mobile-only homepage card thumbnails (<768px) */
+export const homeCaseStudyCardImagesMobile: Partial<Record<string, string>> = {
+  "cbf-flo": "/case study/cs cb.svg",
+  "vendor-connect": "/case study/cs vc.svg",
+};

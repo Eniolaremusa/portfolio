@@ -68,6 +68,7 @@ export const applatch: CaseStudy = {
   takeaways:
     "Redesigned onboarding lifted sign-up completion by 40%.\n\nReached 3,000+ signups in the first three weeks.\n\nBTA Awards UK finalist, 2025.\n\nWinner, Education and Training category, UK Startup Awards.",
   takeawaysTitle: "Outcomes",
+  tabletDecisionImageScale: 0.85,
   isMobile: true,
   hasPullQuote: false,
 };

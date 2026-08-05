@@ -72,5 +72,6 @@ export const cbfFlo: CaseStudy = {
     "In enterprise design, context is everything. The goal is giving the user as much context as they need to act, without overwhelming them, which was the tension running through every decision here.\n\nAnd finally actionable data should always take precedence over informational data, this reduces the chances of choice fatigue.",
   takeawaysTitle: "Takeaways",
   isMobile: false,
+  heroIntrinsicAspect: true,
   hasPullQuote: false,
 };

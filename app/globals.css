@@ -2,7 +2,7 @@
 
 @theme {
   /* Color tokens */
-  --color-light-bg: #fffefb;
+  --color-light-bg: #fcfaf4;
   --color-text-on-light: #5b5855;
   --color-text-muted: #99938e;
   --color-nav-link: #94908b;
@@ -11,7 +11,7 @@
   --color-case-study-divider: #f9f3ed;
   --color-case-study-hero-bg: #22201d;
   --color-case-study-hero-image-bg: #2d2b29;
-  --color-text-on-dark: #fffefb;
+  --color-text-on-dark: #fcfaf4;
   --color-photo-border: #fcfcfc;
   --color-photo-shadow: rgba(91, 88, 85, 0.16);
 
@@ -33,13 +33,29 @@
   --spacing-section-mobile: 24px;
   --spacing-section-tablet: 40px;
   --spacing-section-desktop: 72px;
+  /* Case study mobile (Figma 86:24360) — shared by CBF Flo / Applatch / Propheski */
+  --spacing-case-study-section-mobile: 32px;
+  --spacing-case-study-decision-eyebrow-gap: 12px;
+  --spacing-case-study-decision-beat-gap: 16px;
+  --spacing-case-study-decision-stack-gap: 24px;
+  --text-case-study-body-size-mobile: 13px;
+  --text-case-study-body-leading-mobile: 19px;
   --spacing-hero-pt: 100px;
   --spacing-hero-gap: 72px;
   --spacing-header-height: 69px;
   --spacing-nav-gap: 24px;
+  --spacing-nav-mobile-menu: 19px;
   --spacing-card-gap: 24px;
   --spacing-case-card-image-x: 50px;
   --spacing-case-card-image-top: 40px;
+  /* Case study product frames — inset so mockups don’t touch frame edges */
+  --spacing-case-study-frame-inset-x-mobile: 24px;
+  --spacing-case-study-frame-inset-y-mobile: 24px;
+  --spacing-case-study-frame-inset-x: 40px;
+  --spacing-case-study-frame-inset-y: 40px;
+  --text-case-study-callout-size-mobile: 17px;
+  --text-case-study-callout-leading-mobile: 22px;
+  --text-case-study-eyebrow-size-mobile: 13px;
   --spacing-grid-gap-x: 32px;
   --spacing-grid-gap-y: 40px;
   --spacing-exploration-row-gap: 32px;
@@ -166,6 +182,45 @@
     padding-block: var(--spacing-section-mobile);
   }
 
+  /* Case study sections — 32px vertical on mobile, then same as py-section */
+  .py-case-study-section {
+    padding-block: var(--spacing-case-study-section-mobile);
+  }
+
+  .pb-case-study-section {
+    padding-bottom: var(--spacing-case-study-section-mobile);
+  }
+
+  .gap-case-study-decision-eyebrow {
+    gap: var(--spacing-case-study-decision-eyebrow-gap);
+  }
+
+  .mt-case-study-decision-eyebrow {
+    margin-top: var(--spacing-case-study-decision-eyebrow-gap);
+  }
+
+  .gap-case-study-decision-beats {
+    gap: var(--spacing-case-study-decision-beat-gap);
+  }
+
+  .gap-case-study-decision-stack {
+    gap: var(--spacing-case-study-decision-stack-gap);
+  }
+
+  /* Inset product/mockup assets inside colored frames (all breakpoints) */
+  .case-study-frame-inset {
+    box-sizing: border-box;
+    padding-inline: var(--spacing-case-study-frame-inset-x-mobile);
+    padding-block: var(--spacing-case-study-frame-inset-y-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .case-study-frame-inset {
+      padding-inline: var(--spacing-case-study-frame-inset-x);
+      padding-block: var(--spacing-case-study-frame-inset-y);
+    }
+  }
+
   .max-w-page {
     max-width: var(--width-page-max);
   }
@@ -192,6 +247,12 @@
     width: 100%;
   }
 
+  /* Shorter mobile hero frame — ~20% less letterboxing for wide desktop assets */
+  .case-study-image-card-hero-short {
+    aspect-ratio: 342 / 300;
+    width: 100%;
+  }
+
   /* Individual phone mockup slot */
   .case-study-image-card-phone {
     aspect-ratio: 315 / 600;
@@ -214,17 +275,27 @@
     justify-content: center;
     overflow: hidden;
     background-color: var(--color-light-image-bg);
+    box-sizing: border-box;
+    padding-inline: var(--spacing-case-study-frame-inset-x-mobile);
+    padding-block: var(--spacing-case-study-frame-inset-y-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .case-study-decision-phone-column {
+      padding-inline: var(--spacing-case-study-frame-inset-x);
+      padding-block: var(--spacing-case-study-frame-inset-y);
+    }
   }
 
   .case-study-decision-phone-image {
     display: block;
     width: auto;
     max-width: 100%;
-    max-height: 600px;
+    max-height: 100%;
     object-fit: contain;
   }
 
-  /* Mobile carousel — Figma 94:38859: 345×345 slides, phone max 300px tall */
+  /* Mobile carousel — Figma 94:38859: 345×345 slides */
   .case-study-phone-carousel-slide {
     width: 345px;
     height: 345px;
@@ -239,16 +310,34 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    padding-inline: var(--spacing-case-study-frame-inset-x-mobile);
+    padding-block: var(--spacing-case-study-frame-inset-y-mobile);
   }
 
   .case-study-phone-carousel-image {
     display: block;
-    max-height: 300px;
-    max-width: calc(100% - 48px);
+    max-height: 100%;
+    max-width: 100%;
     height: auto;
     width: auto;
     object-fit: contain;
     object-position: center center;
+  }
+
+  .case-study-phone-carousel-image-cover {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .case-study-decision-phone-image--tablet-scaled {
+      max-height: calc(100% * var(--tablet-image-scale, 1));
+      max-width: calc(100% * var(--tablet-image-scale, 1));
+    }
   }
 
   .case-study-phone-carousel-track {
@@ -280,6 +369,14 @@
     .py-section {
       padding-block: var(--spacing-section-tablet);
     }
+
+    .py-case-study-section {
+      padding-block: var(--spacing-section-tablet);
+    }
+
+    .pb-case-study-section {
+      padding-bottom: var(--spacing-section-tablet);
+    }
   }
 
   @media (min-width: 1024px) {
@@ -289,6 +386,14 @@
 
     .py-section {
       padding-block: var(--spacing-section-desktop);
+    }
+
+    .py-case-study-section {
+      padding-block: var(--spacing-section-desktop);
+    }
+
+    .pb-case-study-section {
+      padding-bottom: var(--spacing-section-desktop);
     }
   }
 
@@ -371,15 +476,27 @@
     color: var(--color-text-on-dark);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .text-title {
       font-size: 32px;
       line-height: 36px;
     }
 
+    /* Section titles (decision titles, pull quotes, etc.) — 17px on mobile */
     .text-callout {
-      font-size: 20px;
-      line-height: 24px;
+      font-size: var(--text-case-study-callout-size-mobile);
+      line-height: var(--text-case-study-callout-leading-mobile);
+    }
+
+    /* Case study body — keep established 13/19 mobile scale */
+    .case-study-page .text-body {
+      font-size: var(--text-case-study-body-size-mobile);
+      line-height: var(--text-case-study-body-leading-mobile);
+    }
+
+    /* Decision eyebrows / section labels — 13px on mobile */
+    .case-study-page .text-eyebrow {
+      font-size: var(--text-case-study-eyebrow-size-mobile);
     }
   }
 }

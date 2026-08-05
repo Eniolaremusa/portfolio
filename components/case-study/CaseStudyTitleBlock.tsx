@@ -49,7 +49,7 @@ export function CaseStudyTitleBlock({
         <p className={`text-body ${primaryText}`}>{intro}</p>
       </div>
 
-      <div className="flex w-full flex-col gap-6 max-[767px]:gap-6 min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-8 min-[1024px]:w-[40%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6">
+      <div className="hidden w-full flex-col gap-6 min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-8 min-[1024px]:w-[40%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6 min-[768px]:flex">
         <MetadataItem label="Role" value={study.role} variant={variant} />
         <MetadataItem label="Team" value={study.team} variant={variant} />
         <MetadataItem label="Timeline" value={study.timeline} variant={variant} />

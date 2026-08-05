@@ -45,6 +45,10 @@ export interface CaseStudy {
   constraintsTitle?: string;
   takeaways: string;
   takeawaysTitle?: string;
+  /** Scales decision phone assets at tablet (768–1023px); e.g. 0.85 */
+  tabletDecisionImageScale?: number;
+  /** Hero container wraps image intrinsic height (width fills, no fixed aspect frame) */
+  heroIntrinsicAspect?: boolean;
   isMobile: boolean;
   hasPullQuote: boolean;
 }

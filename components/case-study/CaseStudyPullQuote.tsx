@@ -31,7 +31,7 @@ function QuoteLines({ quote }: { quote: string }) {
 
 export function CaseStudyPullQuote({ image, quote }: CaseStudyPullQuoteProps) {
   return (
-    <section className="bg-case-study-hero-bg px-page py-section">
+    <section className="bg-case-study-hero-bg px-page-case-study py-case-study-section">
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:items-center min-[768px]:gap-16">
           <p className="text-callout max-w-[411px] shrink-0 text-on-dark">
