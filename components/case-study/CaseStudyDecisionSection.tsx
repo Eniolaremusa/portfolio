@@ -11,21 +11,23 @@ interface CaseStudyDecisionSectionProps {
 
 function formatBeat(prefix: string, value?: string) {
   if (!value) return null;
-  const normalized = value.match(/^(Explored|Rejected|Decided)\.\s/i)
+  const normalized = value.match(/^(Explored|Rejected|Decided|Before|After)\.\s/i)
     ? value
     : `${prefix}. ${value}`;
   return normalized;
 }
 
 function DecisionBeat({ text }: { text: string }) {
-  const match = text.match(/^(Explored|Rejected|Decided)\.\s*(.*)$/);
+  const match = text.match(/^(Explored|Rejected|Decided|Before|After)\.\s*(.*)$/i);
   if (!match) {
     return <p className="text-body text-text-on-light">{text}</p>;
   }
 
+  const label = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+
   return (
     <p className="text-body text-text-on-light">
-      <span className="font-medium">{match[1]}.</span> {match[2]}
+      <span className="font-medium">{label}.</span> {match[2]}
     </p>
   );
 }

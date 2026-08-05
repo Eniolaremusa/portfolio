@@ -1,0 +1,5 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="#2d2b29"/>
+  <rect x="40" y="40" width="1120" height="620" rx="8" fill="#3a3835"/>
+  <text x="600.0" y="350.0" text-anchor="middle" dominant-baseline="middle" fill="#fcfaf4" font-family="system-ui,sans-serif" font-size="24">Decision 01 (placeholder)</text>
+</svg>
