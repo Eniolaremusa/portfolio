@@ -11,12 +11,15 @@ import {
 import type { CaseStudy } from "@/data/types";
 
 const PADDED_IMAGE_SLUGS = new Set(["cbf-flo", "applatch", "vendor-connect"]);
+/** CBF Flo / Vendor Connect: flush to card bottom on tablet+ (Figma home cards) */
+const FLUSH_BOTTOM_IMAGE_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
   const mobileCardImage = homeCaseStudyCardImagesMobile[study.slug];
   const isSvg = cardImage?.endsWith(".svg");
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
+  const flushBottom = FLUSH_BOTTOM_IMAGE_SLUGS.has(study.slug);
   const imageFitClass = hasImagePadding
     ? "object-contain object-top"
     : "object-cover object-top nav-hover:scale-[1.01] transition-transform duration-300";
@@ -30,7 +33,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
         <div
           className={
             hasImagePadding
-              ? "absolute inset-0 case-study-frame-inset"
+              ? `absolute inset-0 case-study-frame-inset${flushBottom ? " home-case-card-inset--flush-bottom" : ""}`
               : "absolute inset-0"
           }
         >

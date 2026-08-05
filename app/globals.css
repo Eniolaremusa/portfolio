@@ -219,6 +219,11 @@
       padding-inline: var(--spacing-case-study-frame-inset-x);
       padding-block: var(--spacing-case-study-frame-inset-y);
     }
+
+    /* Homepage CBF Flo / Vendor Connect — asset flush to card bottom */
+    .home-case-card-inset--flush-bottom {
+      padding-bottom: 0;
+    }
   }
 
   .max-w-page {
