@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Crimson_Text } from "next/font/google";
 import { GeistMono, GeistSans } from "geist/font";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const crimsonText = Crimson_Text({
@@ -40,6 +41,7 @@ export default function RootLayout({
     >
       <body className="font-geist antialiased">
         <div className="mx-auto w-full max-w-viewport">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
