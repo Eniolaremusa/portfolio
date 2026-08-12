@@ -76,6 +76,8 @@ export interface CaseStudy {
   heroIntrinsicAspect?: boolean;
   /** Frame inset around intrinsic hero; default true. Set false to hug the asset flush. */
   heroPadded?: boolean;
+  /** Optional live prototype URL — shows "View Prototype" CTAs when set */
+  prototypeUrl?: string;
   isMobile: boolean;
   hasPullQuote: boolean;
 }

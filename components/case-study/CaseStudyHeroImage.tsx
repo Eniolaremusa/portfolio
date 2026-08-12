@@ -2,6 +2,7 @@
 
 import { CaseStudyDualPhoneImage } from "@/components/case-study/CaseStudyDualPhoneImage";
 import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
+import { ExpandableDecisionAsset } from "@/components/case-study/ExpandableDecisionAsset";
 import {
   useHasMounted,
   useIsMobileViewport,
@@ -67,27 +68,39 @@ export function CaseStudyHeroImage({
         );
       }
 
+      const activeSrc = isMobileViewport ? heroMobile : src;
+
       return (
-        <CaseStudyImageCard
-          src={isMobileViewport ? heroMobile : src}
-          aspect="intrinsic"
-          background={heroBackground}
-          padded={heroPadded}
-          className={className}
-          priority
-        />
+        <ExpandableDecisionAsset
+          src={activeSrc}
+          className={className ? `block ${className}` : "block"}
+        >
+          <CaseStudyImageCard
+            src={activeSrc}
+            aspect="intrinsic"
+            background={heroBackground}
+            padded={heroPadded}
+            hoverRounded
+            priority
+          />
+        </ExpandableDecisionAsset>
       );
     }
 
     return (
-      <CaseStudyImageCard
+      <ExpandableDecisionAsset
         src={src}
-        aspect="intrinsic"
-        background={heroBackground}
-        padded={heroPadded}
-        className={className}
-        priority
-      />
+        className={className ? `block ${className}` : "block"}
+      >
+        <CaseStudyImageCard
+          src={src}
+          aspect="intrinsic"
+          background={heroBackground}
+          padded={heroPadded}
+          hoverRounded
+          priority
+        />
+      </ExpandableDecisionAsset>
     );
   }
 
@@ -104,28 +117,38 @@ export function CaseStudyHeroImage({
 
   if (isMobileViewport) {
     return (
-      <CaseStudyImageCard
+      <ExpandableDecisionAsset
         src={src}
-        aspect="square"
-        background={heroBackground}
-        imageFit="contain"
-        padded
-        className={className}
-        priority
-      />
+        className={className ? `block ${className}` : "block"}
+      >
+        <CaseStudyImageCard
+          src={src}
+          aspect="square"
+          background={heroBackground}
+          imageFit="contain"
+          padded
+          hoverRounded
+          priority
+        />
+      </ExpandableDecisionAsset>
     );
   }
 
   return (
-    <CaseStudyImageCard
+    <ExpandableDecisionAsset
       src={src}
-      aspect={desktopAspect}
-      background={heroBackground}
-      imageFit={isMobile || heroPadded ? "contain" : "cover"}
-      objectPosition={isMobile || heroPadded ? "center" : "top"}
-      padded={isMobile || heroPadded}
-      className={className}
-      priority
-    />
+      className={className ? `block ${className}` : "block"}
+    >
+      <CaseStudyImageCard
+        src={src}
+        aspect={desktopAspect}
+        background={heroBackground}
+        imageFit={isMobile || heroPadded ? "contain" : "cover"}
+        objectPosition={isMobile || heroPadded ? "center" : "top"}
+        padded={isMobile || heroPadded}
+        hoverRounded
+        priority
+      />
+    </ExpandableDecisionAsset>
   );
 }

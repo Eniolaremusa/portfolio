@@ -47,14 +47,19 @@ export function CaseStudyDualPhoneImage({
       >
         <div className="flex h-full min-h-0 w-full items-center justify-center gap-10 case-study-frame-inset min-[768px]:grid min-[768px]:h-full min-[768px]:grid-cols-2 min-[768px]:items-center min-[768px]:gap-10">
           {images.map((src, index) => (
-            <CaseStudyImageCard
+            <ExpandableDecisionAsset
               key={src}
               src={src}
-              aspect="phone"
-              background="secondary"
-              className="mx-auto max-w-[328px]"
-              priority={priority && index === 0}
-            />
+              className="mx-auto block max-w-[328px]"
+            >
+              <CaseStudyImageCard
+                src={src}
+                aspect="phone"
+                background="secondary"
+                hoverRounded
+                priority={priority && index === 0}
+              />
+            </ExpandableDecisionAsset>
           ))}
         </div>
       </div>

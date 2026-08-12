@@ -1,3 +1,4 @@
+import { ExternalLinkArrow } from "@/components/ExternalLinkArrow";
 import type { CaseStudy } from "@/data/types";
 
 interface CaseStudyTitleBlockProps {
@@ -47,6 +48,19 @@ export function CaseStudyTitleBlock({
           {headline}
         </h1>
         <p className={`text-body ${primaryText}`}>{intro}</p>
+        {study.prototypeUrl ? (
+          <a
+            href={study.prototypeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`group text-body mt-1 inline-flex w-fit items-center gap-1.5 ${primaryText}`}
+          >
+            <span className="underline decoration-from-font underline-offset-2">
+              View Prototype
+            </span>
+            <ExternalLinkArrow className="max-[495px]:hidden opacity-0 scale-90 transition-all duration-200 ease-out nav-group-hover:opacity-100 nav-group-hover:scale-100" />
+          </a>
+        ) : null}
       </div>
 
       <div className="hidden w-full flex-col gap-6 min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-8 min-[1024px]:w-[40%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6 min-[768px]:flex">

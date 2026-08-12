@@ -2,6 +2,7 @@ import type { CaseStudy } from "@/data/types";
 import { CaseStudyConstraintsTakeaways } from "@/components/case-study/CaseStudyConstraintsTakeaways";
 import { CaseStudyContextSection } from "@/components/case-study/CaseStudyContextSection";
 import { CaseStudyDecisionSection } from "@/components/case-study/CaseStudyDecisionSection";
+import { CaseStudyGalleryProvider } from "@/components/case-study/CaseStudyGalleryProvider";
 import { CaseStudyHeroImage } from "@/components/case-study/CaseStudyHeroImage";
 import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageContainer";
 import { CaseStudyPullQuote } from "@/components/case-study/CaseStudyPullQuote";
@@ -13,50 +14,52 @@ interface CaseStudyLayoutProps {
 
 export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
   return (
-    <div className="case-study-page">
-      <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-section pt-8">
-        <CaseStudyPageContainer>
-          <CaseStudyTitleBlock study={study} variant="dark" />
-          <CaseStudyHeroImage
-            images={study.images.hero}
-            heroMobile={study.images.heroMobile}
-            isMobile={study.isMobile}
-            heroIntrinsicAspect={study.heroIntrinsicAspect}
-            heroPadded={study.heroPadded}
-            className="mt-10"
-          />
-        </CaseStudyPageContainer>
-      </section>
+    <CaseStudyGalleryProvider study={study}>
+      <div className="case-study-page">
+        <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-section pt-8">
+          <CaseStudyPageContainer>
+            <CaseStudyTitleBlock study={study} variant="dark" />
+            <CaseStudyHeroImage
+              images={study.images.hero}
+              heroMobile={study.images.heroMobile}
+              isMobile={study.isMobile}
+              heroIntrinsicAspect={study.heroIntrinsicAspect}
+              heroPadded={study.heroPadded}
+              className="mt-10"
+            />
+          </CaseStudyPageContainer>
+        </section>
 
-      <CaseStudyContextSection
-        productContext={study.productContext}
-        businessProblem={study.businessProblem}
-      />
-
-      {study.hasPullQuote && study.pullQuote && study.images.pullQuote ? (
-        <CaseStudyPullQuote
-          image={study.images.pullQuote}
-          quote={study.pullQuote}
+        <CaseStudyContextSection
+          productContext={study.productContext}
+          businessProblem={study.businessProblem}
         />
-      ) : null}
 
-      {study.decisions.map((decision) =>
-        decision.title && decision.title !== "Placeholder" ? (
-          <CaseStudyDecisionSection
-            key={decision.eyebrow}
-            decision={decision}
-            isMobile={study.isMobile}
-            tabletDecisionImageScale={study.tabletDecisionImageScale}
+        {study.hasPullQuote && study.pullQuote && study.images.pullQuote ? (
+          <CaseStudyPullQuote
+            image={study.images.pullQuote}
+            quote={study.pullQuote}
           />
-        ) : null,
-      )}
+        ) : null}
 
-      <CaseStudyConstraintsTakeaways
-        constraintsTitle={study.constraintsTitle ?? "Designing Within Constraints"}
-        constraints={study.constraints}
-        takeawaysTitle={study.takeawaysTitle ?? "Takeaways"}
-        takeaways={study.takeaways}
-      />
-    </div>
+        {study.decisions.map((decision) =>
+          decision.title && decision.title !== "Placeholder" ? (
+            <CaseStudyDecisionSection
+              key={decision.eyebrow}
+              decision={decision}
+              isMobile={study.isMobile}
+              tabletDecisionImageScale={study.tabletDecisionImageScale}
+            />
+          ) : null,
+        )}
+
+        <CaseStudyConstraintsTakeaways
+          constraintsTitle={study.constraintsTitle ?? "Designing Within Constraints"}
+          constraints={study.constraints}
+          takeawaysTitle={study.takeawaysTitle ?? "Takeaways"}
+          takeaways={study.takeaways}
+        />
+      </div>
+    </CaseStudyGalleryProvider>
   );
 }

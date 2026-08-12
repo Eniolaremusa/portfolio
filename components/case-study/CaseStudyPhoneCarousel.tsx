@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { CaseStudyImageLightbox } from "@/components/case-study/CaseStudyImageLightbox";
+import { useCallback, useEffect, useRef } from "react";
+import { useOptionalCaseStudyGallery } from "@/components/case-study/CaseStudyGalleryProvider";
 
 const GAP_PX = 12;
 const SLIDE_PX = 345;
@@ -39,7 +39,7 @@ export function CaseStudyPhoneCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const isJumping = useRef(false);
   const pointerStart = useRef<{ x: number; y: number } | null>(null);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const gallery = useOptionalCaseStudyGallery();
 
   const slides = [...images, ...images] as const;
 
@@ -107,6 +107,8 @@ export function CaseStudyPhoneCarousel({
     ? "case-study-phone-carousel-slide-inner case-study-phone-carousel-slide-inner--flush relative"
     : "case-study-phone-carousel-slide-inner relative";
 
+  const canExpand = expandable && Boolean(gallery);
+
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <div
@@ -117,9 +119,9 @@ export function CaseStudyPhoneCarousel({
         {slides.map((src, index) => (
           <div
             key={`${src}-${index}`}
-            className={`${slideClass}${expandable ? " cursor-zoom-in" : ""}`}
+            className={`${slideClass}${canExpand ? " cursor-zoom-in" : ""}`}
             onPointerDown={
-              expandable
+              canExpand
                 ? (event) => {
                     pointerStart.current = {
                       x: event.clientX,
@@ -129,35 +131,35 @@ export function CaseStudyPhoneCarousel({
                 : undefined
             }
             onPointerUp={
-              expandable
+              canExpand
                 ? (event) => {
                     const start = pointerStart.current;
                     pointerStart.current = null;
-                    if (!start) return;
+                    if (!start || !gallery) return;
                     const dx = Math.abs(event.clientX - start.x);
                     const dy = Math.abs(event.clientY - start.y);
                     if (dx <= TAP_MOVE_THRESHOLD_PX && dy <= TAP_MOVE_THRESHOLD_PX) {
-                      setLightboxSrc(src);
+                      gallery.openSrc(src);
                     }
                   }
                 : undefined
             }
             onPointerCancel={
-              expandable
+              canExpand
                 ? () => {
                     pointerStart.current = null;
                   }
                 : undefined
             }
-            role={expandable ? "button" : undefined}
-            tabIndex={expandable ? 0 : undefined}
-            aria-label={expandable ? "View design fullscreen" : undefined}
+            role={canExpand ? "button" : undefined}
+            tabIndex={canExpand ? 0 : undefined}
+            aria-label={canExpand ? "View design fullscreen" : undefined}
             onKeyDown={
-              expandable
+              canExpand
                 ? (event) => {
                     if (event.key === "Enter" || event.key === " ") {
                       event.preventDefault();
-                      setLightboxSrc(src);
+                      gallery?.openSrc(src);
                     }
                   }
                 : undefined
@@ -190,14 +192,6 @@ export function CaseStudyPhoneCarousel({
           </div>
         ))}
       </div>
-
-      {expandable && lightboxSrc ? (
-        <CaseStudyImageLightbox
-          src={lightboxSrc}
-          open
-          onClose={() => setLightboxSrc(null)}
-        />
-      ) : null}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export const propheski: CaseStudy = {
   team: "Founder, PM & 1 engineer",
   timeline: "2 months",
   images: {
-    hero: [`${assetBase}/P hero.svg`],
+    hero: [`${assetBase}/Propheski hero.svg`],
     // Add pull-quote image to public/case study/propheski/ then set this path
     // pullQuote: `${assetBase}/pull-quote.png`,
   },
@@ -68,8 +68,8 @@ export const propheski: CaseStudy = {
   tabletDecisionImageScale: 0.85,
   /** Hero SVG is 1077×794 — wrap intrinsic height to avoid letterboxing in a fixed 1312/656 frame */
   heroIntrinsicAspect: true,
-  /** Flush edge-to-edge — no case-study-frame-inset on hero */
-  heroPadded: false,
+  /** Shared case-study-frame-inset on all sides (24px mobile / 40px tablet+) */
+  heroPadded: true,
   isMobile: true,
   hasPullQuote: true,
 };

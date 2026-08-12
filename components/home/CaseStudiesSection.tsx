@@ -18,6 +18,49 @@ const PADDED_IMAGE_SLUGS = new Set([
 ]);
 /** CBF Flo / Vendor Connect: flush to card bottom on tablet+ (Figma home cards) */
 const FLUSH_BOTTOM_IMAGE_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
+/** Light frame behind assets that read better on #F7F4ED than dark */
+const LIGHT_CARD_BG_SLUGS = new Set(["homeward", "applatch"]);
+
+function CaseStudyCta({
+  href,
+  label,
+  external = false,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  const className =
+    "group text-body inline-flex w-fit items-center gap-1.5 text-text-on-light";
+
+  const content = (
+    <>
+      <span className="underline decoration-from-font underline-offset-2">
+        {label}
+      </span>
+      <ExternalLinkArrow className="max-[495px]:hidden opacity-0 scale-90 transition-all duration-200 ease-out nav-group-hover:opacity-100 nav-group-hover:scale-100" />
+    </>
+  );
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {content}
+    </Link>
+  );
+}
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
@@ -25,64 +68,78 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
   const isSvg = cardImage?.endsWith(".svg");
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
   const flushBottom = FLUSH_BOTTOM_IMAGE_SLUGS.has(study.slug);
+  const lightCardBg = LIGHT_CARD_BG_SLUGS.has(study.slug);
   const imageFitClass = hasImagePadding
     ? "object-contain object-top"
-    : "object-cover object-top nav-hover:scale-[1.01] transition-transform duration-300";
+    : "object-cover object-top";
+  const href = `/${study.slug}`;
 
   return (
-    <Link
-      href={`/${study.slug}`}
-      className="group flex w-full max-w-none flex-col gap-card-gap min-[768px]:max-w-case-card"
-    >
-      <div className="relative aspect-square w-full overflow-hidden bg-case-study-hero-bg min-[768px]:aspect-auto min-[768px]:h-case-card-image">
+    <div className="flex w-full max-w-none flex-col gap-card-gap min-[768px]:max-w-case-card">
+      <Link
+        href={href}
+        className="group block w-full"
+        aria-label={`${study.title} case study`}
+      >
         <div
-          className={
-            hasImagePadding
-              ? `absolute inset-0 case-study-frame-inset${flushBottom ? " home-case-card-inset--flush-bottom" : ""}`
-              : "absolute inset-0"
-          }
+          className={`card-hover-press relative aspect-square w-full overflow-hidden min-[768px]:aspect-auto min-[768px]:h-case-card-image ${
+            lightCardBg ? "bg-light-image-bg" : "bg-case-study-hero-bg"
+          }`}
         >
-          {cardImage && mobileCardImage ? (
-            <picture className="relative block h-full w-full">
-              <source
-                media="(max-width: 767px)"
-                srcSet={encodeURI(mobileCardImage)}
-              />
-              {/* Desktop (and fallback): original desktop asset only */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={encodeURI(cardImage)}
-                alt={`${study.title} product preview`}
-                className={`absolute inset-0 h-full w-full ${imageFitClass}`}
-              />
-            </picture>
-          ) : cardImage ? (
-            <div className="relative h-full w-full">
-              <Image
-                src={cardImage}
-                alt={`${study.title} product preview`}
-                fill
-                unoptimized={isSvg}
-                className={imageFitClass}
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-            </div>
+          <div
+            className={
+              hasImagePadding
+                ? `absolute inset-0 case-study-frame-inset${flushBottom ? " home-case-card-inset--flush-bottom" : ""}`
+                : "absolute inset-0"
+            }
+          >
+            {cardImage && mobileCardImage ? (
+              <picture className="relative block h-full w-full">
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={encodeURI(mobileCardImage)}
+                />
+                {/* Desktop (and fallback): original desktop asset only */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={encodeURI(cardImage)}
+                  alt=""
+                  className={`card-hover-press-media absolute inset-0 h-full w-full ${imageFitClass}`}
+                />
+              </picture>
+            ) : cardImage ? (
+              <div className="relative h-full w-full">
+                <Image
+                  src={cardImage}
+                  alt=""
+                  fill
+                  unoptimized={isSvg}
+                  className={`card-hover-press-media ${imageFitClass}`}
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </Link>
+
+      <div className="flex flex-col gap-2">
+        <Link href={href} className="home-mobile-text flex flex-col gap-1">
+          <h3 className="text-link-medium text-text-on-light">{study.title}</h3>
+          <p className="text-body text-text-on-light">{study.description}</p>
+        </Link>
+        <div className="flex flex-col gap-1.5 min-[496px]:flex-row min-[496px]:flex-wrap min-[496px]:gap-x-5 min-[496px]:gap-y-1">
+          <CaseStudyCta href={href} label="Read case study" />
+          {study.prototypeUrl ? (
+            <CaseStudyCta
+              href={study.prototypeUrl}
+              label="View Prototype"
+              external
+            />
           ) : null}
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="home-mobile-text flex flex-col gap-1">
-          <h3 className="text-link-medium text-text-on-light">{study.title}</h3>
-          <p className="text-body text-text-on-light">{study.description}</p>
-        </div>
-        <span className="text-body inline-flex items-center gap-1.5 text-text-on-light">
-          <span className="underline decoration-from-font underline-offset-2">
-            Read case study
-          </span>
-          <ExternalLinkArrow className="max-[495px]:hidden opacity-0 scale-90 transition-all duration-200 ease-out nav-group-hover:opacity-100 nav-group-hover:scale-100" />
-        </span>
-      </div>
-    </Link>
+    </div>
   );
 }
 

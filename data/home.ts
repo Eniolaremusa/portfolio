@@ -12,18 +12,6 @@ export const heroContent = {
   bio: "I design complex B2B SaaS and operational platforms, partnering with founders and product teams from product strategy through shipped interfaces. Currently a Senior Product Designer at L&S Creative Agency, designing digital products for Series B companies including DoorLoop and Daloopa, while increasingly bringing ideas to life with AI-assisted code.",
   toolsLabel: "TOOLS I USE",
   tools: "Figma,  Cursor,  Framer, Claude",
-  portraits: [
-    {
-      src: "/images/home/hero-portrait-1-source.png",
-      rotation: "-8.02deg",
-      className: "relative z-10",
-    },
-    {
-      src: "/images/home/hero-portrait-2-source.png",
-      rotation: "6.76deg",
-      className: "absolute right-0 top-0 z-20 lg:right-[-8%] lg:top-[-4px]",
-    },
-  ],
 } as const;
 
 export interface PersonalExploration {
@@ -77,9 +65,9 @@ export const hobbyImages = [
 export const homeCaseStudyOrder = [
   "cbf-flo",
   "applatch",
+  "homeward",
   "vendor-connect",
   "propheski",
-  "homeward",
 ] as const;
 
 export const homeCaseStudyCardImages: Record<string, string> = {

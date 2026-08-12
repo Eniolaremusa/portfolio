@@ -79,5 +79,6 @@ export const homeward: CaseStudy = {
   heroIntrinsicAspect: true,
   /** Flush edge-to-edge like Vendor Connect — no case-study-frame-inset on hero */
   heroPadded: false,
+  prototypeUrl: "https://homeward-healthcare.vercel.app",
   hasPullQuote: false,
 };
