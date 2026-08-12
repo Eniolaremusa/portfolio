@@ -75,10 +75,10 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
   const href = `/${study.slug}`;
 
   return (
-    <div className="flex w-full max-w-none flex-col gap-card-gap min-[768px]:max-w-case-card">
+    <div className="flex w-full min-w-0 flex-col gap-card-gap">
       <Link
         href={href}
-        className="group block w-full"
+        className="group block w-full min-w-0"
         aria-label={`${study.title} case study`}
       >
         <div
@@ -151,7 +151,7 @@ export function CaseStudiesSection() {
   return (
     <StickySection
       label="CASE STUDIES"
-      contentClassName="grid w-full max-w-none grid-cols-1 gap-y-grid-gap-y min-[768px]:max-w-[792px] min-[768px]:grid-cols-2 min-[768px]:gap-x-grid-gap-x xl:justify-self-end"
+      contentClassName="grid w-full min-w-0 grid-cols-1 gap-y-grid-gap-y min-[768px]:grid-cols-2 min-[768px]:gap-x-grid-gap-x"
     >
       {studies.map((study) => (
         <CaseStudyCard key={study.slug} study={study} />
