@@ -6,7 +6,7 @@ export const homeward: CaseStudy = {
   slug: "homeward",
   title: "Homeward Healthcare",
   description:
-    "A coordination platform for clinical home care, helping agencies manage patient intake, staff assignment, and medication monitoring without spreadsheets and group texts.",
+    "A clinical home platform helping agencies manage patient intake, staff assignment, and medication monitoring without spreadsheets & group texts.",
   eyebrow: "HOMEWARD HEALTHCARE CASE STUDY",
   headline: "Coordination platform for clinical home\u00A0care.",
   intro:
