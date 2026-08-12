@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { CaseStudyImageCard } from "@/components/case-study/CaseStudyImageCard";
 import { CaseStudyPhoneCarousel } from "@/components/case-study/CaseStudyPhoneCarousel";
+import { ExpandableDecisionAsset } from "@/components/case-study/ExpandableDecisionAsset";
 import {
   useHasMounted,
   useIsMobileViewport,
@@ -70,13 +71,23 @@ export function CaseStudyDualPhoneImage({
   }
 
   if (isMobile) {
-    return <CaseStudyPhoneCarousel images={images} className={className} />;
+    return (
+      <CaseStudyPhoneCarousel
+        images={images}
+        className={className}
+        expandable
+      />
+    );
   }
 
   return (
     <div className={`flex w-full items-start gap-10 ${className}`}>
       {images.map((src, index) => (
-        <div key={src} className="case-study-decision-phone-column relative">
+        <ExpandableDecisionAsset
+          key={src}
+          src={src}
+          className="case-study-decision-phone-column card-hover-press relative min-w-0 flex-1"
+        >
           <Image
             src={src}
             alt=""
@@ -87,8 +98,8 @@ export function CaseStudyDualPhoneImage({
             priority={priority && index === 0}
             className={
               tabletImageScale !== undefined
-                ? "case-study-decision-phone-image case-study-decision-phone-image--tablet-scaled"
-                : "case-study-decision-phone-image"
+                ? "case-study-decision-phone-image case-study-decision-phone-image--tablet-scaled card-hover-press-media"
+                : "case-study-decision-phone-image card-hover-press-media"
             }
             style={
               tabletImageScale !== undefined
@@ -96,7 +107,7 @@ export function CaseStudyDualPhoneImage({
                 : undefined
             }
           />
-        </div>
+        </ExpandableDecisionAsset>
       ))}
     </div>
   );

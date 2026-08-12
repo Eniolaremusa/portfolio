@@ -8,8 +8,8 @@ interface CaseStudyImageCardProps {
   padded?: boolean;
   priority?: boolean;
   background?: "primary" | "secondary" | "light";
-  /** wide: 1312/504. square: 1/1. hero-mobile: 1312/656. intrinsic: height from asset. phone: 315/600 */
-  aspect?: "wide" | "square" | "hero-mobile" | "hero-short" | "intrinsic" | "phone";
+  /** wide: 1312/504. square: 1/1. hero-mobile: 1312/656. intrinsic: height from asset. phone: 315/600. pair: 636/690 */
+  aspect?: "wide" | "square" | "hero-mobile" | "hero-short" | "intrinsic" | "phone" | "pair";
   /** contain: centered in frame (decisions). cover: fills frame width/height (hero). */
   imageFit?: "contain" | "cover";
   /** Scales image content within frame at 768px+; frame size unchanged */
@@ -17,7 +17,9 @@ interface CaseStudyImageCardProps {
   /** Scales image content within frame below 768px; frame size unchanged */
   belowDesktopImageScale?: number;
   /** Pin crop when using object-cover (hero) */
-  objectPosition?: "top" | "center";
+  objectPosition?: "top" | "center" | "bottom";
+  /** Shared card hover: corner radius + media press-in (decision frames) */
+  hoverRounded?: boolean;
 }
 
 function isSvgSrc(src: string) {
@@ -39,6 +41,7 @@ export function CaseStudyImageCard({
   desktopImageScale,
   belowDesktopImageScale,
   objectPosition = "center",
+  hoverRounded = false,
 }: CaseStudyImageCardProps) {
   const bgClass =
     background === "secondary"
@@ -48,10 +51,24 @@ export function CaseStudyImageCard({
         : "bg-case-study-hero-bg";
 
   const unoptimized = isSvgSrc(src);
+  const hasSrc = Boolean(src);
+  const hoverCardClass = hoverRounded ? "card-hover-press" : "";
+  const hoverMediaClass = hoverRounded ? "card-hover-press-media" : "";
 
   if (aspect === "intrinsic") {
+    if (!hasSrc) {
+      return (
+        <div
+          className={`case-study-image-card w-full shrink-0 overflow-hidden ${bgClass} ${hoverCardClass} ${className}`}
+          aria-hidden
+        />
+      );
+    }
+
     return (
-      <div className={`w-full shrink-0 overflow-hidden ${bgClass} ${className}`}>
+      <div
+        className={`w-full shrink-0 overflow-hidden ${bgClass} ${hoverCardClass} ${className}`}
+      >
         <div className={padded ? "case-study-frame-inset" : undefined}>
           <Image
             src={src}
@@ -62,7 +79,7 @@ export function CaseStudyImageCard({
             unoptimized={unoptimized}
             priority={priority}
             fetchPriority={priority ? "high" : undefined}
-            className="h-auto w-full"
+            className={`h-auto w-full ${hoverMediaClass}`}
           />
         </div>
       </div>
@@ -75,11 +92,16 @@ export function CaseStudyImageCard({
     "hero-mobile": "case-study-image-card-hero-mobile",
     "hero-short": "case-study-image-card-hero-short",
     phone: "case-study-image-card-phone",
+    pair: "case-study-image-card-pair",
   }[aspect];
 
   const imgFitClass = imageFit === "cover" ? "object-cover" : "object-contain";
   const imgPositionClass =
-    objectPosition === "top" ? "object-top" : "object-center";
+    objectPosition === "top"
+      ? "object-top"
+      : objectPosition === "bottom"
+        ? "object-bottom"
+        : "object-center";
 
   const imgScaleClass = [
     desktopImageScale !== undefined
@@ -106,22 +128,37 @@ export function CaseStudyImageCard({
 
   return (
     <div
-      className={`${aspectClass} relative w-full shrink-0 overflow-hidden ${bgClass} ${className}`}
+      className={`${aspectClass} relative w-full shrink-0 overflow-hidden ${bgClass} ${hoverCardClass} ${className}`}
       style={style}
     >
+      {/*
+        Padding must wrap an inner relative box. next/image `fill` is position:absolute
+        and resolves against the padding edge — so padding on the same element as
+        `relative` does not inset the image. The inner box is the content area only.
+      */}
       <div
-        className={`relative flex h-full min-h-0 w-full items-center justify-center ${padded ? "case-study-frame-inset" : ""}`}
+        className={`flex h-full min-h-0 w-full items-center justify-center ${padded ? "case-study-frame-inset" : ""}`}
       >
-        <Image
-          src={src}
-          alt=""
-          fill
-          sizes="(max-width: 1312px) 100vw, 1312px"
-          unoptimized={unoptimized}
-          priority={priority}
-          fetchPriority={priority ? "high" : undefined}
-          className={`min-h-0 min-w-0 ${imgPositionClass} ${imgFitClass} ${imgScaleClass}`}
-        />
+        <div className="relative h-full min-h-0 w-full min-w-0">
+          {/*
+            Hover press-in scales this wrapper so it composes with any
+            desktopImageScale transform on the image itself.
+          */}
+          <div className={`absolute inset-0 ${hoverMediaClass}`}>
+            {hasSrc ? (
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width: 1312px) 100vw, 1312px"
+                unoptimized={unoptimized}
+                priority={priority}
+                fetchPriority={priority ? "high" : undefined}
+                className={`min-h-0 min-w-0 ${imgPositionClass} ${imgFitClass} ${imgScaleClass}`}
+              />
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   );

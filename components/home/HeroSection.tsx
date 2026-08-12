@@ -41,13 +41,13 @@ export function HeroSection() {
           <div className="relative h-[354px] w-[495px] max-w-full origin-top-left scale-[0.72] sm:scale-[0.86] md:scale-95 lg:scale-100">
             <HeroPortrait
               src={heroContent.portraits[0].src}
-              alt="Eniola Aigbokhaode in a cafe"
+              alt="Eniola Glory in a cafe"
               rotation="-8.02deg"
               className="absolute left-0 top-0 z-10"
             />
             <HeroPortrait
               src={heroContent.portraits[1].src}
-              alt="Eniola Aigbokhaode in a bookstore"
+              alt="Eniola Glory in a bookstore"
               rotation="6.76deg"
               className="absolute left-[228px] top-[28px] z-20"
             />

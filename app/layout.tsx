@@ -11,8 +11,8 @@ const crimsonText = Crimson_Text({
 });
 
 export const metadata: Metadata = {
-  title: "Eniola Aigbokhaode — Product Designer",
-  description: "Personal portfolio site for Eniola Aigbokhaode, product designer.",
+  title: "Eniola Glory — Product Designer",
+  description: "Personal portfolio site for Eniola Glory, product designer.",
   icons: {
     icon: [
       {

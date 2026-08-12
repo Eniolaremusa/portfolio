@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CaseStudyImageLightbox } from "@/components/case-study/CaseStudyImageLightbox";
 
 const GAP_PX = 12;
 const SLIDE_PX = 345;
+/** Ignore expand if the pointer moved more than this during a press (scroll gesture). */
+const TAP_MOVE_THRESHOLD_PX = 10;
 
 interface CaseStudyPhoneCarouselProps {
   /** Two or more slides; duplicated internally for infinite loop */
@@ -14,6 +17,8 @@ interface CaseStudyPhoneCarouselProps {
   imageFit?: "contain" | "cover";
   /** Alt text per unique slide (same length as images) */
   alts?: readonly string[];
+  /** Open decision assets in the shared fullscreen lightbox on tap */
+  expandable?: boolean;
 }
 
 function isSvgSrc(src: string) {
@@ -29,9 +34,12 @@ export function CaseStudyPhoneCarousel({
   className = "",
   imageFit = "contain",
   alts,
+  expandable = false,
 }: CaseStudyPhoneCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const isJumping = useRef(false);
+  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const slides = [...images, ...images] as const;
 
@@ -91,10 +99,10 @@ export function CaseStudyPhoneCarousel({
   const isCover = imageFit === "cover";
   const imageClass = isCover
     ? "case-study-phone-carousel-image-cover"
-    : "case-study-phone-carousel-image";
+    : "case-study-phone-carousel-image card-hover-press-media";
   const slideClass = isCover
     ? "case-study-phone-carousel-slide case-study-phone-carousel-slide--flush shrink-0 snap-start"
-    : "case-study-phone-carousel-slide shrink-0 snap-start";
+    : "case-study-phone-carousel-slide card-hover-press shrink-0 snap-start";
   const innerClass = isCover
     ? "case-study-phone-carousel-slide-inner case-study-phone-carousel-slide-inner--flush relative"
     : "case-study-phone-carousel-slide-inner relative";
@@ -107,7 +115,54 @@ export function CaseStudyPhoneCarousel({
         style={{ gap: GAP_PX }}
       >
         {slides.map((src, index) => (
-          <div key={`${src}-${index}`} className={slideClass}>
+          <div
+            key={`${src}-${index}`}
+            className={`${slideClass}${expandable ? " cursor-zoom-in" : ""}`}
+            onPointerDown={
+              expandable
+                ? (event) => {
+                    pointerStart.current = {
+                      x: event.clientX,
+                      y: event.clientY,
+                    };
+                  }
+                : undefined
+            }
+            onPointerUp={
+              expandable
+                ? (event) => {
+                    const start = pointerStart.current;
+                    pointerStart.current = null;
+                    if (!start) return;
+                    const dx = Math.abs(event.clientX - start.x);
+                    const dy = Math.abs(event.clientY - start.y);
+                    if (dx <= TAP_MOVE_THRESHOLD_PX && dy <= TAP_MOVE_THRESHOLD_PX) {
+                      setLightboxSrc(src);
+                    }
+                  }
+                : undefined
+            }
+            onPointerCancel={
+              expandable
+                ? () => {
+                    pointerStart.current = null;
+                  }
+                : undefined
+            }
+            role={expandable ? "button" : undefined}
+            tabIndex={expandable ? 0 : undefined}
+            aria-label={expandable ? "View design fullscreen" : undefined}
+            onKeyDown={
+              expandable
+                ? (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setLightboxSrc(src);
+                    }
+                  }
+                : undefined
+            }
+          >
             <div className={innerClass}>
               {isCover ? (
                 <Image
@@ -117,6 +172,7 @@ export function CaseStudyPhoneCarousel({
                   sizes="345px"
                   unoptimized={isSvgSrc(src)}
                   className={imageClass}
+                  draggable={false}
                 />
               ) : (
                 <Image
@@ -127,12 +183,21 @@ export function CaseStudyPhoneCarousel({
                   sizes="345px"
                   unoptimized={isSvgSrc(src)}
                   className={imageClass}
+                  draggable={false}
                 />
               )}
             </div>
           </div>
         ))}
       </div>
+
+      {expandable && lightboxSrc ? (
+        <CaseStudyImageLightbox
+          src={lightboxSrc}
+          open
+          onClose={() => setLightboxSrc(null)}
+        />
+      ) : null}
     </div>
   );
 }

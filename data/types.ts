@@ -1,5 +1,13 @@
 export type DecisionLayoutVariant = "three-column" | "two-column";
 
+/**
+ * How decision product frames are arranged (desktop-style case studies).
+ * - single: one full-width CBF Flo frame
+ * - pair: two side-by-side frames (Applatch paired sizing, stack on mobile)
+ * - single-then-pair: full-width frame, then a two-up row underneath
+ */
+export type DecisionImageArrangement = "single" | "pair" | "single-then-pair";
+
 export interface DecisionContent {
   eyebrow: string;
   title: string;
@@ -10,10 +18,25 @@ export interface DecisionContent {
   image: string;
   /** Second phone mockup for mobile-product dual layout (Applatch, Propheski) */
   imageSecondary?: string;
+  /** Third frame for single-then-pair arrangements (e.g. Homeward Decision 1) */
+  imageTertiary?: string;
+  /**
+   * Desktop-style multi-frame layout. Defaults to "single".
+   * When "pair", uses image + imageSecondary.
+   * When "single-then-pair", uses image (full), then imageSecondary + imageTertiary.
+   */
+  imageArrangement?: DecisionImageArrangement;
   /** Optional mobile-specific asset; shown below 768px when set */
   mobileImage?: string;
   /** Scales image within desktop frame (768px+); e.g. 0.85 for 15% inset */
   desktopImageScale?: number;
+  /**
+   * Per-decision frame overrides (desktop-style CaseStudyImageCard path).
+   * Defaults: padded true, contain, center — match CBF Flo decision treatment.
+   */
+  imagePadded?: boolean;
+  imageFit?: "contain" | "cover";
+  imageObjectPosition?: "top" | "center" | "bottom";
 }
 
 export interface CaseStudy {

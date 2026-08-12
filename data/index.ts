@@ -1,5 +1,6 @@
 import { applatch } from "./applatch";
 import { cbfFlo } from "./cbf-flo";
+import { homeward } from "./homeward";
 import { propheski } from "./propheski";
 import type { CaseStudy } from "./types";
 import { vendorConnect } from "./vendor-connect";
@@ -9,6 +10,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   applatch,
   propheski,
   "vendor-connect": vendorConnect,
+  homeward,
 };
 
 export const caseStudySlugs = Object.keys(caseStudies);

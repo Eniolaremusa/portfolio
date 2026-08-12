@@ -74,5 +74,7 @@ export const cbfFlo: CaseStudy = {
   takeawaysTitle: "Takeaways",
   isMobile: false,
   heroIntrinsicAspect: true,
+  /** Flush edge-to-edge — no case-study-frame-inset on hero */
+  heroPadded: false,
   hasPullQuote: false,
 };

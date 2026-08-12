@@ -41,9 +41,19 @@ export function CaseStudyHeroImage({
   }
 
   const src = images[0];
-  if (!src) return null;
-
   const heroBackground = isMobile ? "secondary" : "primary";
+
+  if (!src) {
+    return (
+      <CaseStudyImageCard
+        src=""
+        aspect={heroIntrinsicAspect ? "intrinsic" : isMobile ? "hero-mobile" : "wide"}
+        background={heroBackground}
+        padded={heroPadded}
+        className={className}
+      />
+    );
+  }
 
   if (heroIntrinsicAspect) {
     if (heroMobile) {
@@ -111,9 +121,9 @@ export function CaseStudyHeroImage({
       src={src}
       aspect={desktopAspect}
       background={heroBackground}
-      imageFit={isMobile ? "contain" : "cover"}
-      objectPosition={isMobile ? "center" : "top"}
-      padded={isMobile}
+      imageFit={isMobile || heroPadded ? "contain" : "cover"}
+      objectPosition={isMobile || heroPadded ? "center" : "top"}
+      padded={isMobile || heroPadded}
       className={className}
       priority
     />

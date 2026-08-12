@@ -112,6 +112,31 @@
 }
 
 @layer utilities {
+  /*
+   * Shared card hover (hobbies + decision frames):
+   * corner radius 0 → 10px; media child press-in scale 1 → 0.95 (−5%).
+   * Scale the media child (not the card) so click targets stay stable.
+   */
+  .card-hover-press {
+    border-radius: 0;
+    transition: border-radius 480ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-hover-press-media {
+    transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: center;
+  }
+
+  @media (min-width: 496px) {
+    .card-hover-press:hover {
+      border-radius: 10px;
+    }
+
+    .card-hover-press:hover .card-hover-press-media {
+      transform: scale(0.95);
+    }
+  }
+
   .text-title {
     font-family: var(--font-crimson);
     font-size: var(--text-title-size);
@@ -261,6 +286,12 @@
   /* Individual phone mockup slot */
   .case-study-image-card-phone {
     aspect-ratio: 315 / 600;
+    width: 100%;
+  }
+
+  /* Paired desktop frames — same 636×690 column sizing as Applatch decision columns */
+  .case-study-image-card-pair {
+    aspect-ratio: 636 / 690;
     width: 100%;
   }
 

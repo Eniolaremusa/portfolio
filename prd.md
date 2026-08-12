@@ -1,7 +1,7 @@
 Portfolio Site — Product Requirements Document
 1. Overview
 
-A personal portfolio site for Eniola Aigbokhaode, product designer. Replaces the current Framer-hosted site. Built in code (Next.js) to remove the recurring subscription cost and to demonstrate the "builds what she designs" positioning directly through the site itself.
+A personal portfolio site for Eniola Glory, product designer. Replaces the current Framer-hosted site. Built in code (Next.js) to remove the recurring subscription cost and to demonstrate the "builds what she designs" positioning directly through the site itself.
 
 Two page types:
 

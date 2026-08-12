@@ -78,8 +78,13 @@ export function CaseStudyDecisionSection({
         <CaseStudyDecisionImage
           src={decision.image}
           imageSecondary={decision.imageSecondary}
+          imageTertiary={decision.imageTertiary}
+          imageArrangement={decision.imageArrangement}
           mobileImage={decision.mobileImage}
           desktopImageScale={decision.desktopImageScale}
+          padded={decision.imagePadded}
+          imageFit={decision.imageFit}
+          objectPosition={decision.imageObjectPosition}
           isMobile={isMobile}
           tabletDecisionImageScale={tabletDecisionImageScale}
           className="mt-10 min-[768px]:mt-section"

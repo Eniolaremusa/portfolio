@@ -68,6 +68,8 @@ export const propheski: CaseStudy = {
   tabletDecisionImageScale: 0.85,
   /** Hero SVG is 1077×794 — wrap intrinsic height to avoid letterboxing in a fixed 1312/656 frame */
   heroIntrinsicAspect: true,
+  /** Flush edge-to-edge — no case-study-frame-inset on hero */
+  heroPadded: false,
   isMobile: true,
   hasPullQuote: true,
 };

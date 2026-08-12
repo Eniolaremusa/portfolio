@@ -10,7 +10,12 @@ import {
 } from "@/data/home";
 import type { CaseStudy } from "@/data/types";
 
-const PADDED_IMAGE_SLUGS = new Set(["cbf-flo", "applatch", "vendor-connect"]);
+const PADDED_IMAGE_SLUGS = new Set([
+  "cbf-flo",
+  "applatch",
+  "vendor-connect",
+  "homeward",
+]);
 /** CBF Flo / Vendor Connect: flush to card bottom on tablet+ (Figma home cards) */
 const FLUSH_BOTTOM_IMAGE_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
 
@@ -82,7 +87,9 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
 }
 
 export function CaseStudiesSection() {
-  const studies = homeCaseStudyOrder.map((slug) => caseStudies[slug]);
+  const studies = homeCaseStudyOrder
+    .map((slug) => caseStudies[slug])
+    .filter((study): study is CaseStudy => Boolean(study));
 
   return (
     <StickySection

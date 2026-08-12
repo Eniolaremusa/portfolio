@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Eniola Aigbokhaode",
+  name: "Eniola Glory",
   email: "aigbokhaode0@gmail.com",
   resumeUrl: "/resume/Eniola's resume q4.pdf",
   linkedinUrl: "https://www.linkedin.com/in/eniola-aigbokhaode/",
@@ -79,6 +79,7 @@ export const homeCaseStudyOrder = [
   "applatch",
   "vendor-connect",
   "propheski",
+  "homeward",
 ] as const;
 
 export const homeCaseStudyCardImages: Record<string, string> = {
@@ -86,6 +87,7 @@ export const homeCaseStudyCardImages: Record<string, string> = {
   applatch: "/case study/Applatch.svg",
   "vendor-connect": "/case study/Vendor.svg",
   propheski: "/case study/image copy.png",
+  homeward: "/images/home/case-studies/Homeward case study.svg",
 };
 
 /** Mobile-only homepage card thumbnails (<768px) */
