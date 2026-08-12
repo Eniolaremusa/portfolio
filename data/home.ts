@@ -10,8 +10,11 @@ export const heroContent = {
   headline:
     "Designing products people depend on, from product strategy to shipped experience.",
   bio: "I design complex B2B SaaS and operational platforms, partnering with founders and product teams from product strategy through shipped interfaces. Currently a Senior Product Designer at L&S Creative Agency, designing digital products for Series B companies including DoorLoop and Daloopa, while increasingly bringing ideas to life with AI-assisted code.",
-  toolsLabel: "TOOLS I USE",
-  tools: "Figma,  Cursor,  Framer, Claude",
+  skills:
+    "Product Strategy, 0→1 Product Design, UX Design, Interaction Design, Design Systems, User Research, Cross-Functional Collaboration, AI Engineering, Prompt Prototyping",
+  industries: "B2B SaaS, B2C, Operations, Healthtech, Edtech, Sports, Real Estate",
+  toolsLabel: "Tools I Use",
+  tools: "Figma, Cursor, Framer, Claude",
 } as const;
 
 export interface PersonalExploration {
