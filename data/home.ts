@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Eniola Glory",
   email: "aigbokhaode0@gmail.com",
-  resumeUrl: "/resume/Eniola's resume q4.pdf",
+  resumeUrl: "/resume/Product Design Resume.pdf",
   linkedinUrl: "https://www.linkedin.com/in/eniola-aigbokhaode/",
   githubUrl: "https://github.com/Eniolaremusa",
 } as const;
