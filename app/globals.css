@@ -141,6 +141,26 @@
   }
 }
 
+/*
+ * Page intro — blocking head script adds .page-intro-active before first paint.
+ * Static splash covers the viewport until Framer Motion overlay mounts.
+ */
+#page-intro-splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: var(--color-light-bg);
+}
+
+html.page-intro-active #page-intro-splash {
+  display: block;
+}
+
+html.page-intro-active .page-main {
+  visibility: hidden;
+}
+
 @layer utilities {
   /*
    * Shared card hover (hobbies + decision frames):

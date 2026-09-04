@@ -38,7 +38,9 @@ export function HeroSection() {
       */}
       <div className="mx-auto flex max-w-[1312px] flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:grid min-[1024px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
         <div className="flex w-full min-w-0 flex-col gap-3">
-          <h1 className="text-title text-text-on-light">{heroContent.headline}</h1>
+          <h1 className="text-title text-text-on-light min-[1024px]:text-balance">
+            {heroContent.headline}
+          </h1>
           <p className="text-body text-text-on-light">{heroContent.bio}</p>
         </div>
 
