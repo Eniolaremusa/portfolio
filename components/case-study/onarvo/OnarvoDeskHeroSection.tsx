@@ -17,7 +17,7 @@ function MetadataItem({ label, value }: { label: string; value: string }) {
 
 export function OnarvoDeskHeroSection({ hero }: OnarvoDeskHeroSectionProps) {
   return (
-    <section className="onarvo-section-dark px-page-case-study pb-case-study-v2-section pt-8">
+    <section className="onarvo-section-dark px-page-case-study pb-case-study-v2-section pt-hero-section">
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:flex-nowrap min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
           <div className="flex w-full min-w-0 flex-col gap-3 min-[1024px]:w-[60%] min-[1024px]:shrink-0">

@@ -30,7 +30,7 @@ function HeroInfoItem({
 
 export function HeroSection() {
   return (
-    <section className="bg-light-bg px-page pt-[54px] max-[767px]:pb-10 min-[768px]:pt-hero-pt">
+    <section className="bg-light-bg px-page pt-hero-section max-[767px]:pb-10">
       {/*
         60/40 via 3fr/2fr grid at ≥1024 so the 100px gap is inside the track
         math (flex 60%+40%+gap was overflowing past page padding).

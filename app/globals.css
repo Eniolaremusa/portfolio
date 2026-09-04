@@ -60,6 +60,9 @@
   --text-case-study-body-size-mobile: 13px;
   --text-case-study-body-leading-mobile: 19px;
   --spacing-hero-pt: 100px;
+  --spacing-hero-section-pt-mobile: 32px;
+  --spacing-hero-section-pt-tablet: 40px;
+  --spacing-hero-section-pt-desktop: 48px;
   --spacing-hero-gap: 72px;
   --spacing-header-height: 69px;
   --spacing-nav-gap: 24px;
@@ -290,6 +293,11 @@ html.page-intro-active .page-main {
 
   .py-section {
     padding-block: var(--spacing-section-mobile);
+  }
+
+  /* Homepage + case study hero — 32px mobile, 40px tablet, 48px desktop */
+  .pt-hero-section {
+    padding-top: var(--spacing-hero-section-pt-mobile);
   }
 
   /* Case study sections — 32px vertical on mobile, then same as py-section */
@@ -571,6 +579,10 @@ html.page-intro-active .page-main {
       padding-inline: var(--spacing-case-study-v2-card-x);
       padding-block: var(--spacing-case-study-v2-card-y);
     }
+
+    .pt-hero-section {
+      padding-top: var(--spacing-hero-section-pt-tablet);
+    }
   }
 
   @media (min-width: 1024px) {
@@ -612,6 +624,10 @@ html.page-intro-active .page-main {
 
     .pb-case-study-v2-quick-summary {
       padding-bottom: var(--spacing-case-study-v2-section-y-desktop);
+    }
+
+    .pt-hero-section {
+      padding-top: var(--spacing-hero-section-pt-desktop);
     }
   }
 

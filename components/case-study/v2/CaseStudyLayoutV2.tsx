@@ -23,7 +23,7 @@ export function CaseStudyLayoutV2({ study }: CaseStudyLayoutV2Props) {
   return (
     <CaseStudyV2GalleryProvider study={study}>
       <div className="case-study-page">
-      <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-v2-section pt-8">
+      <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-v2-section pt-hero-section">
         <CaseStudyPageContainer>
           <CaseStudyTitleBlockV2 hero={study.hero} />
           <CaseStudyHeroImageV2 hero={study.hero} className="mt-10" />

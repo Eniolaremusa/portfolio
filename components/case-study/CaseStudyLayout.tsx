@@ -16,7 +16,7 @@ export function CaseStudyLayout({ study }: CaseStudyLayoutProps) {
   return (
     <CaseStudyGalleryProvider study={study}>
       <div className="case-study-page">
-        <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-section pt-8">
+        <section className="bg-case-study-hero-bg px-page-case-study pb-case-study-section pt-hero-section">
           <CaseStudyPageContainer>
             <CaseStudyTitleBlock study={study} variant="dark" />
             <CaseStudyHeroImage
