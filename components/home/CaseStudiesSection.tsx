@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CaseStudyTextCta } from "@/components/CaseStudyTextCta";
 import { StickySection } from "@/components/home/StickySection";
-import { caseStudies } from "@/data";
+import { getHomepageCaseStudy } from "@/data";
 import {
   homeCaseStudyCardImages,
   homeCaseStudyCardImagesMobile,
@@ -104,7 +104,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
 
 export function CaseStudiesSection() {
   const studies = homeCaseStudyOrder
-    .map((slug) => caseStudies[slug])
+    .map((slug) => getHomepageCaseStudy(slug))
     .filter((study): study is CaseStudy => Boolean(study));
 
   return (

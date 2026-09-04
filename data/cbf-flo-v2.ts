@@ -3,7 +3,7 @@ import type { CaseStudyV2 } from "./cbf-flo-v2-types";
 const asset = (filename: string) => `/images/cbf-flo new/${filename}`;
 
 export const cbfFloV2: CaseStudyV2 = {
-  slug: "cbf-flo-v2",
+  slug: "cbf-flo",
   title: "CBF Flo",
   hero: {
     eyebrow: "CBF FLO CASE STUDY",

@@ -11,7 +11,9 @@ interface CaseStudyPageProps {
 }
 
 export function generateStaticParams() {
-  return [...caseStudySlugs, cbfFloV2.slug].map((slug) => ({ slug }));
+  return [...caseStudySlugs, cbfFloV2.slug]
+    .filter((slug, index, slugs) => slugs.indexOf(slug) === index)
+    .map((slug) => ({ slug }));
 }
 
 function CaseStudyPlaceholder({ title }: { title: string }) {

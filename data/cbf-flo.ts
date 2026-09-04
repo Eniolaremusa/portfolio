@@ -1,7 +1,7 @@
 import type { CaseStudy } from "./types";
 
 export const cbfFlo: CaseStudy = {
-  slug: "cbf-flo",
+  slug: "cbf-flo-v1",
   title: "CBF Flo",
   description:
     "An all-in-one platform that helps cleaning companies manage scheduling, staff, customers, payroll, and day-to-day operations from a single system.",
