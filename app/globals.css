@@ -43,12 +43,15 @@
   --spacing-case-study-decision-eyebrow-gap: 12px;
   --spacing-case-study-decision-beat-gap: 16px;
   --spacing-case-study-decision-stack-gap: 24px;
-  --spacing-case-study-v2-section-y-mobile: 12px;
-  --spacing-case-study-v2-section-y-tablet: 16px;
+  --spacing-case-study-v2-section-y-mobile: 20px;
+  --spacing-case-study-v2-section-y-tablet: 24px;
   --spacing-case-study-v2-section-y-desktop: 32px;
   --spacing-case-study-v2-within-mobile: 24px;
   --spacing-case-study-v2-within-tablet: 32px;
   --spacing-case-study-v2-within-desktop: 64px;
+  --spacing-case-study-v2-quick-summary-pt-mobile: calc(var(--spacing-case-study-v2-section-y-mobile) * 1.15);
+  --spacing-case-study-v2-quick-summary-pt-tablet: calc(var(--spacing-case-study-v2-section-y-tablet) * 1.15);
+  --spacing-case-study-v2-quick-summary-pt-desktop: calc(var(--spacing-case-study-v2-section-y-desktop) * 1.15);
   --spacing-case-study-v2-card-inset-mobile: 16px;
   --spacing-case-study-v2-card-x: 24px;
   --spacing-case-study-v2-card-y: 16px;
@@ -290,6 +293,14 @@
     gap: var(--spacing-case-study-v2-within-mobile);
   }
 
+  .pt-case-study-v2-quick-summary {
+    padding-top: var(--spacing-case-study-v2-quick-summary-pt-mobile);
+  }
+
+  .pb-case-study-v2-quick-summary {
+    padding-bottom: var(--spacing-case-study-v2-section-y-mobile);
+  }
+
   .p-case-study-v2-card {
     padding: var(--spacing-case-study-v2-card-inset-mobile);
   }
@@ -513,6 +524,14 @@
       gap: var(--spacing-case-study-v2-within-tablet);
     }
 
+    .pt-case-study-v2-quick-summary {
+      padding-top: var(--spacing-case-study-v2-quick-summary-pt-tablet);
+    }
+
+    .pb-case-study-v2-quick-summary {
+      padding-bottom: var(--spacing-case-study-v2-section-y-tablet);
+    }
+
     .p-case-study-v2-card {
       padding-inline: var(--spacing-case-study-v2-card-x);
       padding-block: var(--spacing-case-study-v2-card-y);
@@ -546,6 +565,14 @@
 
     .gap-case-study-v2-within {
       gap: var(--spacing-case-study-v2-within-desktop);
+    }
+
+    .pt-case-study-v2-quick-summary {
+      padding-top: var(--spacing-case-study-v2-quick-summary-pt-desktop);
+    }
+
+    .pb-case-study-v2-quick-summary {
+      padding-bottom: var(--spacing-case-study-v2-section-y-desktop);
     }
   }
 

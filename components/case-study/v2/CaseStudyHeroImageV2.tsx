@@ -13,7 +13,7 @@ interface CaseStudyHeroImageV2Props {
   className?: string;
 }
 
-/** Matches original CaseStudyHeroImage: square + inset on mobile, intrinsic flush on desktop. */
+/** Matches v1 CBF Flo hero: intrinsic height + flush edges on mobile; intrinsic flush on desktop. */
 export function CaseStudyHeroImageV2({
   hero,
   className = "",
@@ -24,7 +24,8 @@ export function CaseStudyHeroImageV2({
   if (!mounted) {
     return (
       <div
-        className={`case-study-image-card-square w-full shrink-0 bg-case-study-hero-image-bg ${className}`}
+        className={`w-full shrink-0 overflow-hidden bg-case-study-hero-bg ${className}`}
+        style={{ aspectRatio: `${hero.heroWidth} / ${hero.heroHeight}` }}
         aria-hidden
       />
     );
@@ -38,9 +39,9 @@ export function CaseStudyHeroImageV2({
       >
         <CaseStudyImageCard
           src={hero.heroImage}
-          aspect="square"
-          background="secondary"
-          padded
+          aspect="intrinsic"
+          background="primary"
+          padded={false}
           hoverRounded
           priority
         />
