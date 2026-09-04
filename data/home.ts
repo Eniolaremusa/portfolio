@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Eniola Glory",
+  name: "eniola.aigbokhaode",
   email: "aigbokhaode0@gmail.com",
   resumeUrl: "/resume/resume-eniola-aigbokhaode.pdf",
   linkedinUrl: "https://www.linkedin.com/in/eniola-aigbokhaode/",
@@ -7,9 +7,8 @@ export const siteConfig = {
 } as const;
 
 export const heroContent = {
-  headline:
-    "Designing products people depend on, from product strategy to shipped experience.",
-  bio: "I design complex B2B SaaS and operational platforms, partnering with founders and product teams from product strategy through shipped interfaces. Currently a Senior Product Designer at L&S Creative Agency, designing digital products for Series B companies including DoorLoop and Daloopa, while increasingly bringing ideas to life with AI-assisted code.",
+  headline: "Designing the products people depend on",
+  bio: "I design complex B2B and B2C platforms: operations software, scheduling, and multi-role systems where one decision affects everyone downstream. I design them and increasingly I build them too.",
   skills: [
     "Product Strategy",
     "0→1 Product Design",

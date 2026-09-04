@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Crimson_Text } from "next/font/google";
 import { GeistMono, GeistSans } from "geist/font";
 import { Analytics } from "@vercel/analytics/next";
+import { heroContent } from "@/data/home";
 import "./globals.css";
 
 const crimsonText = Crimson_Text({
@@ -12,7 +13,16 @@ const crimsonText = Crimson_Text({
 
 export const metadata: Metadata = {
   title: "Eniola Glory — Product Designer",
-  description: "Personal portfolio site for Eniola Glory, product designer.",
+  description: heroContent.bio,
+  openGraph: {
+    title: "Eniola Glory — Product Designer",
+    description: heroContent.bio,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eniola Glory — Product Designer",
+    description: heroContent.bio,
+  },
   icons: {
     icon: [
       {
