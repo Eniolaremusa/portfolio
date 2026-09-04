@@ -1,0 +1,45 @@
+import { CaseStudyPageContainer } from "@/components/case-study/CaseStudyPageContainer";
+import { CaseStudyHeroImageV2 } from "@/components/case-study/v2/CaseStudyHeroImageV2";
+import type { OnarvoDeskHero } from "@/data/onarvo-desk-types";
+
+interface OnarvoDeskHeroSectionProps {
+  hero: OnarvoDeskHero;
+}
+
+function MetadataItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex min-w-0 flex-col gap-1">
+      <p className="onarvo-text-hero-label">{label}</p>
+      <p className="onarvo-text-hero-meta break-words">{value}</p>
+    </div>
+  );
+}
+
+export function OnarvoDeskHeroSection({ hero }: OnarvoDeskHeroSectionProps) {
+  return (
+    <section className="onarvo-section-dark px-page-case-study pb-case-study-v2-section pt-8">
+      <CaseStudyPageContainer>
+        <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:flex-nowrap min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
+          <div className="flex w-full min-w-0 flex-col gap-3 min-[1024px]:w-[56%] min-[1024px]:shrink-0">
+            <p className="onarvo-text-hero-eyebrow">{hero.eyebrow}</p>
+            <h1 className="onarvo-text-hero-title min-[768px]:max-[1023px]:line-clamp-2">
+              {hero.headline}
+            </h1>
+            <p className="onarvo-text-hero-body">{hero.intro}</p>
+          </div>
+
+          <div className="hidden w-full min-w-0 flex-col min-[768px]:flex min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-6 min-[1024px]:w-[44%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6">
+            <div className="grid w-full grid-cols-2 gap-x-6 gap-y-6">
+              <MetadataItem label="Role" value={hero.role} />
+              <MetadataItem label="Team" value={hero.team} />
+              <MetadataItem label="Timeline" value={hero.timeline} />
+              <MetadataItem label="Industry" value={hero.industry} />
+            </div>
+          </div>
+        </div>
+
+        <CaseStudyHeroImageV2 hero={hero} className="mt-10" />
+      </CaseStudyPageContainer>
+    </section>
+  );
+}

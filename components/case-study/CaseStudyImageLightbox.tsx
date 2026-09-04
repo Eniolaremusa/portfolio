@@ -4,10 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
-
-function isSvgSrc(src: string) {
-  return src.split("?")[0]?.toLowerCase().endsWith(".svg") ?? false;
-}
+import { caseStudyImageUnoptimized } from "@/lib/caseStudyImage";
 
 /** Matches shared card-hover-press easing */
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -235,7 +232,7 @@ export function CaseStudyImageLightbox({
                   alt=""
                   width={1600}
                   height={1200}
-                  unoptimized={isSvgSrc(src)}
+                  unoptimized={caseStudyImageUnoptimized(src)}
                   className="max-h-full max-w-full object-contain"
                   sizes="100vw"
                   priority

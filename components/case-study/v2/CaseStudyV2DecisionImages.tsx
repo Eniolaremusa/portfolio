@@ -29,6 +29,8 @@ export function CaseStudyV2DecisionImages({
       ) : images.length === 1 ? (
         <CaseStudyV2Asset
           src={images[0].src}
+          imageWidth={images[0].width}
+          imageHeight={images[0].height}
           background="primary"
           padded
           responsiveFrame

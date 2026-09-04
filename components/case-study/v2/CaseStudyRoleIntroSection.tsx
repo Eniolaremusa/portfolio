@@ -15,6 +15,8 @@ export function CaseStudyRoleIntroSection({
   title,
   description,
   flowImage,
+  flowWidth,
+  flowHeight,
 }: CaseStudyRoleIntroSectionProps) {
   return (
     <section className="bg-light-bg px-page-case-study py-case-study-v2-section">
@@ -32,6 +34,8 @@ export function CaseStudyRoleIntroSection({
           <div className="hidden w-full min-w-0 min-[768px]:block min-[768px]:flex-1">
             <CaseStudyV2Asset
               src={flowImage}
+              imageWidth={flowWidth}
+              imageHeight={flowHeight}
               background="light"
               padded
               responsiveFrame

@@ -1,0 +1,211 @@
+/* Onarvo Desk — tokens from Figma node 139:31105 */
+
+.onarvo-desk-page {
+  --onarvo-purple-500: #7f51e1;
+  --onarvo-warm-white: #fffefb;
+  --onarvo-tint: #f7f4ed;
+  background-color: var(--onarvo-warm-white);
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-section-warm {
+  background-color: var(--onarvo-warm-white);
+}
+
+.onarvo-desk-page .onarvo-section-tint {
+  background-color: var(--onarvo-tint);
+}
+
+.onarvo-desk-page .onarvo-section-dark {
+  background-color: var(--color-case-study-hero-bg);
+}
+
+.onarvo-desk-page .onarvo-text-hero-eyebrow {
+  font-family: var(--font-geist-mono);
+  font-size: 15px;
+  color: var(--color-case-study-hero-eyebrow);
+}
+
+.onarvo-desk-page .onarvo-text-hero-title {
+  font-family: var(--font-crimson);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-case-study-hero-text);
+}
+
+.onarvo-desk-page .onarvo-text-hero-body {
+  font-family: var(--font-geist);
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.3px;
+  color: var(--color-case-study-hero-text);
+}
+
+.onarvo-desk-page .onarvo-text-hero-label {
+  font-family: var(--font-geist-mono);
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.onarvo-desk-page .onarvo-text-hero-meta {
+  font-family: var(--font-geist);
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.3px;
+  color: var(--color-case-study-hero-text);
+}
+
+@media (min-width: 768px) {
+  .onarvo-desk-page .onarvo-text-hero-title {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .onarvo-desk-page .onarvo-text-hero-title {
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: -0.96px;
+  }
+}
+
+.onarvo-desk-page .onarvo-text-section-title {
+  font-family: var(--font-crimson);
+  font-size: 24px;
+  line-height: normal;
+  font-style: italic;
+  letter-spacing: -0.64px;
+  color: var(--color-text-on-light);
+}
+
+@media (min-width: 768px) {
+  .onarvo-desk-page .onarvo-text-section-title {
+    font-size: 32px;
+  }
+}
+
+.onarvo-desk-page .onarvo-text-decision-title {
+  font-family: var(--font-crimson);
+  font-size: 20px;
+  line-height: normal;
+  font-style: italic;
+  letter-spacing: -0.48px;
+  color: var(--color-text-on-light);
+}
+
+@media (min-width: 768px) {
+  .onarvo-desk-page .onarvo-text-decision-title {
+    font-size: 24px;
+  }
+}
+
+.onarvo-desk-page .onarvo-text-body {
+  font-family: var(--font-geist);
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.3px;
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-text-muted {
+  color: var(--color-text-muted);
+}
+
+.onarvo-desk-page .onarvo-text-card-label {
+  font-family: var(--font-geist-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-text-options-label {
+  font-family: var(--font-geist-mono);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-text-stat {
+  font-family: var(--font-geist-mono);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-text-impact-stat {
+  font-family: var(--font-geist-mono);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-card-impact {
+  background-color: var(--onarvo-tint);
+}
+
+.onarvo-desk-page .onarvo-card-research {
+  background-color: var(--color-case-study-problem-card);
+}
+
+.onarvo-desk-page .onarvo-card-neutral {
+  background-color: var(--color-light-image-bg);
+}
+
+.onarvo-desk-page .onarvo-card-solutions {
+  background-color: var(--color-case-study-problem-card);
+}
+
+.onarvo-desk-page .onarvo-card-results,
+.onarvo-desk-page .onarvo-card-decision {
+  background-color: var(--color-case-study-solution-card);
+}
+
+.onarvo-desk-page .onarvo-card-tradeoff {
+  background-color: var(--color-case-study-problem-card);
+}
+
+.onarvo-desk-page .onarvo-card-before {
+  background-color: var(--onarvo-warm-white);
+  border: 1px dashed var(--color-text-on-light);
+}
+
+.onarvo-desk-page .onarvo-card-after {
+  background-color: var(--color-text-on-light);
+  color: var(--color-text-on-dark);
+}
+
+.onarvo-desk-page .onarvo-card-after .onarvo-text-card-label,
+.onarvo-desk-page .onarvo-card-after .onarvo-text-body {
+  color: var(--color-text-on-dark);
+}
+
+.onarvo-desk-page .onarvo-hero-image-frame {
+  background-color: var(--color-case-study-hero-image-bg);
+}
+
+.onarvo-desk-page .onarvo-decision-image-panel {
+  background-color: var(--color-case-study-hero-bg);
+}
+
+.onarvo-desk-page .onarvo-reflection-panel {
+  background-color: var(--color-case-study-hero-bg);
+}
+
+.onarvo-desk-page .onarvo-reflection-title {
+  color: var(--color-case-study-hero-text);
+}
+
+.onarvo-desk-page .onarvo-reflection-body {
+  color: var(--color-text-muted);
+}
+
+.onarvo-desk-page .onarvo-placeholder-frame {
+  border: 1px dashed var(--color-text-muted);
+  background-color: var(--color-light-image-bg);
+}

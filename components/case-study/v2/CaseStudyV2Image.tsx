@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { caseStudyImageUnoptimized } from "@/lib/caseStudyImage";
 
 interface CaseStudyV2ImageProps {
   src: string;
@@ -10,7 +11,7 @@ interface CaseStudyV2ImageProps {
   sizes?: string;
 }
 
-/** Raster-only image for CBF Flo v2 — no SVG unoptimized path. */
+/** Raster-only image for CBF Flo v2 — skips Next recompression/WebP conversion. */
 export function CaseStudyV2Image({
   src,
   alt,
@@ -28,6 +29,7 @@ export function CaseStudyV2Image({
       height={height}
       sizes={sizes}
       priority={priority}
+      unoptimized={caseStudyImageUnoptimized(src)}
       className={`h-auto w-full ${className}`}
     />
   );

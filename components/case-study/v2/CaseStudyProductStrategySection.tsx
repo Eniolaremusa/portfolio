@@ -48,6 +48,8 @@ export function CaseStudyProductStrategySection({
             ) : (
               <CaseStudyV2Asset
                 src={activeSrc}
+                imageWidth={isMobileViewport ? mobileWidth : desktopWidth}
+                imageHeight={isMobileViewport ? mobileHeight : desktopHeight}
                 background={isMobileViewport ? "primary" : "light"}
                 padded={!isMobileViewport}
                 responsiveFrame

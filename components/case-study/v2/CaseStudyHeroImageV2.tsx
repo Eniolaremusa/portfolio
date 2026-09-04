@@ -40,6 +40,8 @@ export function CaseStudyHeroImageV2({
         <CaseStudyImageCard
           src={hero.heroImage}
           aspect="intrinsic"
+          imageWidth={hero.heroWidth}
+          imageHeight={hero.heroHeight}
           background="primary"
           padded={false}
           hoverRounded
@@ -57,6 +59,8 @@ export function CaseStudyHeroImageV2({
       <CaseStudyImageCard
         src={hero.heroImage}
         aspect="intrinsic"
+        imageWidth={hero.heroWidth}
+        imageHeight={hero.heroHeight}
         background="secondary"
         padded={false}
         hoverRounded

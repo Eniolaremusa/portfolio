@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:bg": "node scripts/dev-server.mjs start",
+    "dev:stop": "node scripts/dev-server.mjs stop",
+    "dev:status": "node scripts/dev-server.mjs status",
     "dev:clean": "node scripts/next-cache-guard.mjs prepare-dev && next dev --turbopack",
     "prebuild": "node scripts/next-cache-guard.mjs prepare-build",
     "build": "next build",

@@ -1,4 +1,5 @@
 import type { CaseStudyV2 } from "@/data/cbf-flo-v2-types";
+import type { OnarvoDesk } from "@/data/onarvo-desk-types";
 import type { CaseStudy, DecisionContent } from "@/data/types";
 
 function isRenderableDecision(decision: DecisionContent) {
@@ -97,6 +98,27 @@ export function getCaseStudyV2GalleryImages(
       for (const image of decision.images) {
         images.push(image.src);
       }
+    }
+  }
+
+  return images;
+}
+
+/** Fullscreen gallery order for Onarvo Desk: hero, V1 screenshot, then decisions. */
+export function getOnarvoDeskGalleryImages(study: OnarvoDesk): string[] {
+  const images: string[] = [];
+
+  if (study.hero.heroImage) {
+    images.push(study.hero.heroImage);
+  }
+
+  if (study.beforeAfter.screenshot.src) {
+    images.push(study.beforeAfter.screenshot.src);
+  }
+
+  for (const decision of study.decisions) {
+    if (decision.image.src) {
+      images.push(decision.image.src);
     }
   }
 

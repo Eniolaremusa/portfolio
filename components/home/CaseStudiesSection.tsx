@@ -9,25 +9,29 @@ import {
   homeCaseStudyOrder,
 } from "@/data/home";
 import type { CaseStudy } from "@/data/types";
+import { caseStudyImageUnoptimized } from "@/lib/caseStudyImage";
 
 const PADDED_IMAGE_SLUGS = new Set([
   "cbf-flo",
   "applatch",
-  "vendor-connect",
   "homeward",
+  "onarvo-desk",
 ]);
-/** CBF Flo / Vendor Connect: flush to card bottom on tablet+ (Figma home cards) */
-const FLUSH_BOTTOM_IMAGE_SLUGS = new Set(["cbf-flo", "vendor-connect"]);
+/** CBF Flo: flush to card bottom on tablet+ (Figma home cards) */
+const FLUSH_BOTTOM_IMAGE_SLUGS = new Set(["cbf-flo"]);
 /** Light frame behind assets that read better on #F7F4ED than dark */
 const LIGHT_CARD_BG_SLUGS = new Set(["homeward", "applatch"]);
+/** Onarvo Desk — dark frame per Figma homepage card (node 152:71789) */
+const ONARVO_DESK_CARD_SLUG = "onarvo-desk";
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const cardImage = homeCaseStudyCardImages[study.slug];
   const mobileCardImage = homeCaseStudyCardImagesMobile[study.slug];
-  const isSvg = cardImage?.endsWith(".svg");
+  const unoptimized = cardImage ? caseStudyImageUnoptimized(cardImage) : false;
   const hasImagePadding = PADDED_IMAGE_SLUGS.has(study.slug);
   const flushBottom = FLUSH_BOTTOM_IMAGE_SLUGS.has(study.slug);
   const lightCardBg = LIGHT_CARD_BG_SLUGS.has(study.slug);
+  const isOnarvoDesk = study.slug === ONARVO_DESK_CARD_SLUG;
   const imageFitClass = hasImagePadding
     ? "object-contain object-top"
     : "object-cover object-top";
@@ -42,14 +46,20 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
       >
         <div
           className={`card-hover-press relative aspect-square w-full overflow-hidden min-[768px]:aspect-auto min-[768px]:h-case-card-image ${
-            lightCardBg ? "bg-light-image-bg" : "bg-case-study-hero-bg"
+            isOnarvoDesk
+              ? "bg-[#22201d]"
+              : lightCardBg
+                ? "bg-light-image-bg"
+                : "bg-case-study-hero-bg"
           }`}
         >
           <div
             className={
-              hasImagePadding
-                ? `absolute inset-0 case-study-frame-inset${flushBottom ? " home-case-card-inset--flush-bottom" : ""}`
-                : "absolute inset-0"
+              isOnarvoDesk
+                ? "absolute inset-0 home-case-card-inset--onarvo"
+                : hasImagePadding
+                  ? `absolute inset-0 case-study-frame-inset${flushBottom ? " home-case-card-inset--flush-bottom" : ""}`
+                  : "absolute inset-0"
             }
           >
             {cardImage && mobileCardImage ? (
@@ -72,7 +82,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
                   src={cardImage}
                   alt=""
                   fill
-                  unoptimized={isSvg}
+                  unoptimized={unoptimized}
                   className={`card-hover-press-media ${imageFitClass}`}
                   sizes="(max-width: 768px) 100vw, 380px"
                 />

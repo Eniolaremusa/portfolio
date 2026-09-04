@@ -1,9 +1,13 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { caseStudyImageUnoptimized } from "@/lib/caseStudyImage";
 
 interface CaseStudyImageCardProps {
   src: string;
   className?: string;
+  /** Intrinsic aspect only — native pixel dimensions of the exported asset */
+  imageWidth?: number;
+  imageHeight?: number;
   /** Inset mockup from frame edges on all sides (responsive shared tokens) */
   padded?: boolean;
   priority?: boolean;
@@ -22,17 +26,15 @@ interface CaseStudyImageCardProps {
   hoverRounded?: boolean;
 }
 
-function isSvgSrc(src: string) {
-  return src.split("?")[0]?.toLowerCase().endsWith(".svg") ?? false;
-}
-
 /**
  * Fixed-aspect shell; image scales inside via object-contain/cover.
- * Uses next/image (SVGs pass through unoptimized — Next does not recompress SVG).
+ * Raster PNG/JPEG assets skip Next optimization (pre-exported 2x); SVGs likewise.
  */
 export function CaseStudyImageCard({
   src,
   className = "",
+  imageWidth = 1312,
+  imageHeight = 800,
   padded = false,
   priority = false,
   background = "primary",
@@ -50,7 +52,7 @@ export function CaseStudyImageCard({
         ? "bg-light-image-bg"
         : "bg-case-study-hero-bg";
 
-  const unoptimized = isSvgSrc(src);
+  const unoptimized = caseStudyImageUnoptimized(src);
   const hasSrc = Boolean(src);
   const hoverCardClass = hoverRounded ? "card-hover-press" : "";
   const hoverMediaClass = hoverRounded ? "card-hover-press-media" : "";
@@ -73,8 +75,8 @@ export function CaseStudyImageCard({
           <Image
             src={src}
             alt=""
-            width={1312}
-            height={800}
+            width={imageWidth}
+            height={imageHeight}
             sizes="(max-width: 1312px) 100vw, 1312px"
             unoptimized={unoptimized}
             priority={priority}

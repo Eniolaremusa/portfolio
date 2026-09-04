@@ -42,3 +42,7 @@ next-env.d.ts
 
 # local verification artifacts
 .verify-screenshots/
+
+# detached dev server (npm run dev:bg)
+.dev-server.pid
+.dev-server.log

@@ -83,9 +83,8 @@ export const hobbyImages = [
 
 export const homeCaseStudyOrder = [
   "cbf-flo",
+  "onarvo-desk",
   "applatch",
-  "homeward",
-  "vendor-connect",
   "propheski",
 ] as const;
 
@@ -94,6 +93,7 @@ export const homeCaseStudyCardImages: Record<string, string> = {
   applatch: "/case study/Applatch.svg",
   "vendor-connect": "/case study/Vendor.svg",
   propheski: "/case study/image copy.png",
+  "onarvo-desk": "/case study/Onarvo homepage.png",
   homeward: "/images/home/case-studies/Homeward case study.svg",
 };
 

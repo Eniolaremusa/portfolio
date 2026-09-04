@@ -57,19 +57,16 @@ function hideStaticSplash(): void {
 }
 
 export function PageLoadIntro() {
-  const [phase, setPhase] = useState<IntroPhase>(() => {
-    if (typeof document === "undefined") return "hidden";
-    if (shouldSkipIntro()) return "hidden";
-    return document.documentElement.classList.contains(PAGE_INTRO_HTML_CLASS)
-      ? "intro"
-      : "hidden";
-  });
+  const [phase, setPhase] = useState<IntroPhase>("hidden");
   const exitHandledRef = useRef(false);
 
   useLayoutEffect(() => {
     if (shouldSkipIntro()) {
       clearPageIntroClass();
-      setPhase("hidden");
+      hideStaticSplash();
+      return;
+    }
+    if (!document.documentElement.classList.contains(PAGE_INTRO_HTML_CLASS)) {
       return;
     }
     setPhase("intro");

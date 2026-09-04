@@ -14,6 +14,8 @@ interface CaseStudyV2AssetProps {
   padded?: boolean;
   priority?: boolean;
   className?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   /** Square frame below 768px, intrinsic at tablet+ — original decision pattern */
   responsiveFrame?: boolean;
 }
@@ -34,6 +36,8 @@ export function CaseStudyV2Asset({
   padded = true,
   priority = false,
   className = "",
+  imageWidth,
+  imageHeight,
   responsiveFrame = false,
 }: CaseStudyV2AssetProps) {
   const mounted = useHasMounted();
@@ -62,6 +66,8 @@ export function CaseStudyV2Asset({
       <CaseStudyImageCard
         src={src}
         aspect={aspect}
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
         background={background}
         padded={padded}
         hoverRounded

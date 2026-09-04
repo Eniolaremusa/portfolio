@@ -43,9 +43,9 @@
   --spacing-case-study-decision-eyebrow-gap: 12px;
   --spacing-case-study-decision-beat-gap: 16px;
   --spacing-case-study-decision-stack-gap: 24px;
-  --spacing-case-study-v2-section-y-mobile: 20px;
-  --spacing-case-study-v2-section-y-tablet: 24px;
-  --spacing-case-study-v2-section-y-desktop: 32px;
+  --spacing-case-study-v2-section-y-mobile: 24px;
+  --spacing-case-study-v2-section-y-tablet: 32px;
+  --spacing-case-study-v2-section-y-desktop: 64px;
   --spacing-case-study-v2-within-mobile: 24px;
   --spacing-case-study-v2-within-tablet: 32px;
   --spacing-case-study-v2-within-desktop: 64px;
@@ -309,6 +309,10 @@ html.page-intro-active .page-main {
     padding-bottom: var(--spacing-case-study-v2-section-y-mobile);
   }
 
+  .pt-case-study-v2-section {
+    padding-top: var(--spacing-case-study-v2-section-y-mobile);
+  }
+
   .gap-case-study-v2-within {
     gap: var(--spacing-case-study-v2-within-mobile);
   }
@@ -346,6 +350,13 @@ html.page-intro-active .page-main {
     box-sizing: border-box;
     padding-inline: var(--spacing-case-study-frame-inset-x-mobile);
     padding-block: var(--spacing-case-study-frame-inset-y-mobile);
+  }
+
+  /* Onarvo Desk homepage card — Figma 152:71790 (~351px asset in 380px frame) */
+  .home-case-card-inset--onarvo {
+    box-sizing: border-box;
+    padding-inline: 14px;
+    padding-block: 26px;
   }
 
   @media (min-width: 768px) {
@@ -540,6 +551,10 @@ html.page-intro-active .page-main {
       padding-bottom: var(--spacing-case-study-v2-section-y-tablet);
     }
 
+    .pt-case-study-v2-section {
+      padding-top: var(--spacing-case-study-v2-section-y-tablet);
+    }
+
     .gap-case-study-v2-within {
       gap: var(--spacing-case-study-v2-within-tablet);
     }
@@ -581,6 +596,10 @@ html.page-intro-active .page-main {
 
     .pb-case-study-v2-section {
       padding-bottom: var(--spacing-case-study-v2-section-y-desktop);
+    }
+
+    .pt-case-study-v2-section {
+      padding-top: var(--spacing-case-study-v2-section-y-desktop);
     }
 
     .gap-case-study-v2-within {

@@ -9,11 +9,13 @@ import {
   type ReactNode,
 } from "react";
 import type { CaseStudyV2 } from "@/data/cbf-flo-v2-types";
+import type { OnarvoDesk } from "@/data/onarvo-desk-types";
 import type { CaseStudy } from "@/data/types";
 import { CaseStudyImageLightbox } from "@/components/case-study/CaseStudyImageLightbox";
 import {
   getCaseStudyGalleryImages,
   getCaseStudyV2GalleryImages,
+  getOnarvoDeskGalleryImages,
 } from "@/lib/caseStudyGallery";
 import { useIsMobileViewport } from "@/hooks/useMediaQuery";
 
@@ -128,6 +130,24 @@ export function CaseStudyV2GalleryProvider({
     () => getCaseStudyV2GalleryImages(study, isMobileViewport),
     [study, isMobileViewport],
   );
+
+  return (
+    <CaseStudyGalleryProviderInner images={images}>
+      {children}
+    </CaseStudyGalleryProviderInner>
+  );
+}
+
+interface OnarvoDeskGalleryProviderProps {
+  study: OnarvoDesk;
+  children: ReactNode;
+}
+
+export function OnarvoDeskGalleryProvider({
+  study,
+  children,
+}: OnarvoDeskGalleryProviderProps) {
+  const images = useMemo(() => getOnarvoDeskGalleryImages(study), [study]);
 
   return (
     <CaseStudyGalleryProviderInner images={images}>
