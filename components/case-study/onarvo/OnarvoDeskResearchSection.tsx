@@ -12,7 +12,7 @@ interface OnarvoDeskResearchSectionProps {
 function FindingCard({ finding }: { finding: OnarvoDeskFinding }) {
   return (
     <div className="onarvo-card-research flex min-w-0 flex-1 flex-col p-case-study-v2-card">
-      <p className="onarvo-text-body">
+      <p className="text-body text-text-on-light">
         <span className="font-bold">{finding.lead}</span> {finding.body}
       </p>
     </div>
@@ -30,12 +30,12 @@ export function OnarvoDeskResearchSection({
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-12">
           <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-center">
-            <h2 className="onarvo-text-section-title w-full shrink-0 min-[1280px]:w-[357px]">
+            <h2 className="text-h2 w-full shrink-0 text-text-on-light min-[1280px]:w-[357px]">
               {title}
             </h2>
 
             <div className="flex w-full min-w-0 flex-col gap-6 min-[768px]:flex-row min-[768px]:items-stretch min-[1280px]:flex-1 min-[1280px]:gap-case-study-v2-within">
-              <p className="onarvo-text-body min-w-0 flex-1">{primaryResearch}</p>
+              <p className="text-body min-w-0 flex-1 text-text-on-light">{primaryResearch}</p>
               <OnarvoDeskDivider
                 orientation="vertical"
                 className="hidden min-[768px]:block"
@@ -44,7 +44,7 @@ export function OnarvoDeskResearchSection({
                 orientation="horizontal"
                 className="min-[768px]:hidden"
               />
-              <p className="onarvo-text-body min-w-0 flex-1">{secondaryResearch}</p>
+              <p className="text-body min-w-0 flex-1 text-text-on-light">{secondaryResearch}</p>
             </div>
           </div>
 

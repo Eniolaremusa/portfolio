@@ -26,7 +26,7 @@ function BulletList({
   className?: string;
 }) {
   return (
-    <ul className={`onarvo-text-body flex list-disc flex-col gap-2 pl-[22.5px] ${className}`}>
+    <ul className={`text-body flex list-disc flex-col gap-2 pl-[22.5px] text-text-on-light ${className}`}>
       {items.map((item) => (
         <li key={item.text}>{item.text}</li>
       ))}
@@ -49,17 +49,17 @@ export function OnarvoDeskBeforeAfterSection({
         <div className="flex flex-col gap-case-study-v2-within">
           <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start">
             <div className="flex w-full min-w-0 flex-col gap-2 min-[1280px]:w-[27%] min-[1280px]:shrink-0">
-              <h2 className="onarvo-text-section-title">{title}</h2>
-              <p className="onarvo-text-body">{subtitle}</p>
+              <h2 className="text-h2 text-text-on-light">{title}</h2>
+              <p className="text-body text-text-on-light">{subtitle}</p>
             </div>
 
             <div className="flex w-full min-w-0 flex-col gap-6 min-[768px]:flex-row min-[1280px]:w-[73%]">
               <div className="onarvo-card-before flex min-w-0 flex-1 flex-col gap-4 p-case-study-v2-card">
-                <p className="onarvo-text-card-label">{beforeLabel}</p>
+                <p className="text-label-sm text-text-on-light">{beforeLabel}</p>
                 <BulletList items={before} />
               </div>
               <div className="onarvo-card-after flex min-w-0 flex-1 flex-col gap-4 p-case-study-v2-card">
-                <p className="onarvo-text-card-label">{afterLabel}</p>
+                <p className="text-label-sm">{afterLabel}</p>
                 <BulletList items={after} />
               </div>
             </div>
@@ -76,7 +76,7 @@ export function OnarvoDeskBeforeAfterSection({
                 className="max-h-full max-w-full"
               />
             </div>
-            <p className="onarvo-text-body text-center">{screenshot.caption}</p>
+            <p className="text-body text-center text-text-on-light">{screenshot.caption}</p>
           </div>
         </div>
       </CaseStudyPageContainer>

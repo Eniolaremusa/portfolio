@@ -7,7 +7,7 @@ export const siteConfig = {
 } as const;
 
 export const heroContent = {
-  headline: "Designing the products people depend on",
+  headline: "Designing the complex products people depend on daily.",
   bio: "I design complex B2B and B2C platforms: operations software, scheduling, and multi-role systems where one decision affects everyone downstream. I design them and increasingly I build them too.",
   skills: [
     "Product Strategy",

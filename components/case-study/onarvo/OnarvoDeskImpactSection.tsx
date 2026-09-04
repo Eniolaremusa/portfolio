@@ -15,7 +15,7 @@ export function OnarvoDeskImpactSection({
     <section className="onarvo-section-warm px-page-case-study py-case-study-v2-section">
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start min-[1280px]:gap-16">
-          <h2 className="onarvo-text-section-title w-full shrink-0 min-[1280px]:w-[357px]">
+          <h2 className="text-h2 w-full shrink-0 text-text-on-light min-[1280px]:w-[357px]">
             {title}
           </h2>
 
@@ -32,8 +32,8 @@ export function OnarvoDeskImpactSection({
                   />
                 ) : null}
                 <div className="onarvo-card-impact flex min-h-[111px] min-w-0 flex-1 flex-col gap-4 px-6 py-4">
-                  <p className="onarvo-text-impact-stat">{stat.value}</p>
-                  <p className="onarvo-text-body">{stat.label}</p>
+                  <p className="text-stat-value text-text-on-light">{stat.value}</p>
+                  <p className="text-body text-text-on-light">{stat.label}</p>
                 </div>
               </div>
             ))}

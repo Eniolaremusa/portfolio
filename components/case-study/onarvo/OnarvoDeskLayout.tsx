@@ -17,7 +17,7 @@ interface OnarvoDeskLayoutProps {
 export function OnarvoDeskLayout({ study }: OnarvoDeskLayoutProps) {
   return (
     <OnarvoDeskGalleryProvider study={study}>
-    <div className="onarvo-desk-page">
+    <div className="onarvo-desk-page case-study-page">
       <OnarvoDeskHeroSection hero={study.hero} />
 
       <OnarvoDeskQuickSummarySection

@@ -24,7 +24,7 @@ export function OnarvoDeskQuickSummarySection({
     <section className="onarvo-section-warm px-page-case-study pb-case-study-v2-quick-summary pt-case-study-v2-quick-summary">
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-6">
-          <h2 className="onarvo-text-section-title">{title}</h2>
+          <h2 className="text-h2 text-text-on-light">{title}</h2>
 
           <div className="flex flex-col gap-6 min-[768px]:flex-row min-[768px]:items-stretch">
             {columns.map((column, index) => (
@@ -41,8 +41,8 @@ export function OnarvoDeskQuickSummarySection({
                 <div
                   className={`flex min-w-0 flex-1 flex-col gap-4 p-case-study-v2-card ${columnClass(column.variant)}`}
                 >
-                  <p className="onarvo-text-card-label">{column.label}</p>
-                  <ol className="onarvo-text-body flex list-decimal flex-col gap-2 pl-[22.5px] marker:text-text-on-light">
+                  <p className="text-label-sm text-text-on-light">{column.label}</p>
+                  <ol className="text-body flex list-decimal flex-col gap-2 pl-[22.5px] text-text-on-light marker:text-text-on-light">
                     {column.items.map((item) => (
                       <li key={item}>{item}</li>
                     ))}

@@ -11,7 +11,7 @@ export function OnarvoDeskPlaceholderFrame({
     <div
       className={`onarvo-placeholder-frame flex aspect-[4/3] w-full items-center justify-center rounded-sm p-6 ${className}`}
     >
-      <p className="onarvo-text-body onarvo-text-muted max-w-md text-center">{label}</p>
+      <p className="text-body max-w-md text-center text-text-muted">{label}</p>
     </div>
   );
 }

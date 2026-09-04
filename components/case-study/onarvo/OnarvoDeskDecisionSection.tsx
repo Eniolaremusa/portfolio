@@ -27,9 +27,9 @@ function OptionCard({ option }: { option: OnarvoDeskDecisionOption }) {
   return (
     <div className={`flex flex-col gap-4 p-case-study-v2-card ${cardClass}`}>
       {option.label ? (
-        <p className="onarvo-text-card-label">{option.label}</p>
+        <p className="text-label-sm text-text-on-light">{option.label}</p>
       ) : null}
-      <p className="onarvo-text-body">
+      <p className="text-body text-text-on-light">
         <CalloutLeadText text={option.text} />
       </p>
     </div>
@@ -51,15 +51,15 @@ export function OnarvoDeskDecisionSection({
         <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-end">
           <div className="flex w-full min-w-0 flex-col gap-6 min-[1280px]:max-w-[480px] min-[1280px]:shrink-0">
             <div className="flex flex-col gap-2">
-              <p className="onarvo-text-card-label">{decision.number}</p>
-              <h3 className="onarvo-text-decision-title">{decision.title}</h3>
-              <p className="onarvo-text-body">{decision.body}</p>
+              <p className="text-label-sm text-text-on-light">{decision.number}</p>
+              <h3 className="text-callout text-text-on-light">{decision.title}</h3>
+              <p className="text-body text-text-on-light">{decision.body}</p>
             </div>
 
             {hasOptions ? (
               <div className="flex flex-col gap-4">
                 {decision.optionsLabel ? (
-                  <p className="onarvo-text-options-label">
+                  <p className="onarvo-options-label text-text-on-light">
                     {decision.optionsLabel}
                   </p>
                 ) : null}
@@ -73,7 +73,7 @@ export function OnarvoDeskDecisionSection({
 
             {decision.tradeoffCallout ? (
               <div className="onarvo-card-tradeoff p-case-study-v2-card">
-                <p className="onarvo-text-body">
+                <p className="text-body text-text-on-light">
                   <CalloutLeadText text={decision.tradeoffCallout} />
                 </p>
               </div>

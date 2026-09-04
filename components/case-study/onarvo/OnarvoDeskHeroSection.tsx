@@ -9,8 +9,8 @@ interface OnarvoDeskHeroSectionProps {
 function MetadataItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex min-w-0 flex-col gap-1">
-      <p className="onarvo-text-hero-label">{label}</p>
-      <p className="onarvo-text-hero-meta break-words">{value}</p>
+      <p className="text-label-sm text-text-muted">{label}</p>
+      <p className="onarvo-hero-meta break-words">{value}</p>
     </div>
   );
 }
@@ -21,11 +21,11 @@ export function OnarvoDeskHeroSection({ hero }: OnarvoDeskHeroSectionProps) {
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:flex-nowrap min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
           <div className="flex w-full min-w-0 flex-col gap-3 min-[1024px]:w-[56%] min-[1024px]:shrink-0">
-            <p className="onarvo-text-hero-eyebrow">{hero.eyebrow}</p>
-            <h1 className="onarvo-text-hero-title min-[768px]:max-[1023px]:line-clamp-2">
+            <p className="onarvo-hero-eyebrow">{hero.eyebrow}</p>
+            <h1 className="text-title text-case-study-hero-text min-[768px]:max-[1023px]:line-clamp-2">
               {hero.headline}
             </h1>
-            <p className="onarvo-text-hero-body">{hero.intro}</p>
+            <p className="text-body text-case-study-hero-text">{hero.intro}</p>
           </div>
 
           <div className="hidden w-full min-w-0 flex-col min-[768px]:flex min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-6 min-[1024px]:w-[44%] min-[1024px]:shrink-0 min-[1024px]:flex-col min-[1024px]:gap-6">
