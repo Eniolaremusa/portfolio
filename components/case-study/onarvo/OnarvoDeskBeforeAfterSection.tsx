@@ -48,12 +48,12 @@ export function OnarvoDeskBeforeAfterSection({
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-case-study-v2-within">
           <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start">
-            <div className="flex w-full min-w-0 flex-col gap-2 min-[1280px]:w-[27%] min-[1280px]:shrink-0">
+            <div className="flex w-full min-w-0 flex-col gap-2 min-[1280px]:w-[30%] min-[1280px]:shrink-0">
               <h2 className="text-h2 text-text-on-light">{title}</h2>
               <p className="text-body text-text-on-light">{subtitle}</p>
             </div>
 
-            <div className="flex w-full min-w-0 flex-col gap-6 min-[768px]:flex-row min-[1280px]:w-[73%]">
+            <div className="flex w-full min-w-0 flex-col gap-6 min-[1024px]:flex-row min-[1280px]:w-[73%]">
               <div className="onarvo-card-before flex min-w-0 flex-1 flex-col gap-4 p-case-study-v2-card">
                 <p className="text-label-sm text-text-on-light">{beforeLabel}</p>
                 <BulletList items={before} />
@@ -65,7 +65,7 @@ export function OnarvoDeskBeforeAfterSection({
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-case-study-v2-within">
             <div className="onarvo-decision-image-panel flex min-h-[320px] w-full items-center justify-center overflow-hidden min-[768px]:min-h-[720px]">
               <OnarvoDeskAsset
                 src={screenshot.src}

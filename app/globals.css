@@ -743,6 +743,15 @@ html.page-intro-active .page-main {
       line-height: var(--text-case-study-body-leading-mobile);
     }
   }
+
+  /* Case study tablet — restore desktop body scale; labels/eyebrows use base utilities */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .case-study-page .text-body,
+    .onarvo-desk-page .text-body {
+      font-size: var(--text-body-size);
+      line-height: var(--text-body-leading);
+    }
+  }
 }
 
 body {

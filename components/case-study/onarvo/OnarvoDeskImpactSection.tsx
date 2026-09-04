@@ -14,24 +14,24 @@ export function OnarvoDeskImpactSection({
   return (
     <section className="onarvo-section-warm px-page-case-study py-case-study-v2-section">
       <CaseStudyPageContainer>
-        <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start min-[1280px]:gap-16">
-          <h2 className="text-h2 w-full shrink-0 text-text-on-light min-[1280px]:w-[357px]">
+        <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start">
+          <h2 className="text-h2 w-full shrink-0 text-text-on-light min-[1280px]:w-[30%]">
             {title}
           </h2>
 
-          <div className="flex w-full min-w-0 flex-col gap-6 min-[768px]:flex-row min-[768px]:items-stretch min-[1280px]:flex-1 min-[1280px]:gap-[31px]">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-6 min-[768px]:grid-cols-2 min-[1280px]:flex min-[1280px]:w-[70%] min-[1280px]:flex-row min-[1280px]:items-stretch min-[1280px]:gap-0">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="flex min-w-0 flex-1 min-[768px]:flex-row min-[768px]:items-stretch"
+                className="flex min-w-0 flex-1 min-[1280px]:flex-row min-[1280px]:items-stretch"
               >
                 {index > 0 ? (
                   <OnarvoDeskDivider
                     orientation="vertical"
-                    className="mx-0 mr-[31px] hidden min-[768px]:block"
+                    className="mx-0 mr-6 hidden min-[1280px]:block"
                   />
                 ) : null}
-                <div className="onarvo-card-impact flex min-h-[111px] min-w-0 flex-1 flex-col gap-4 px-6 py-4">
+                <div className="onarvo-card-impact flex min-w-0 flex-1 flex-col gap-4 p-case-study-v2-card">
                   <p className="text-stat-value text-text-on-light">{stat.value}</p>
                   <p className="text-body text-text-on-light">{stat.label}</p>
                 </div>
