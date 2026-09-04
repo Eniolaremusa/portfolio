@@ -8,9 +8,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { CaseStudyV2 } from "@/data/cbf-flo-v2-types";
 import type { CaseStudy } from "@/data/types";
 import { CaseStudyImageLightbox } from "@/components/case-study/CaseStudyImageLightbox";
-import { getCaseStudyGalleryImages } from "@/lib/caseStudyGallery";
+import {
+  getCaseStudyGalleryImages,
+  getCaseStudyV2GalleryImages,
+} from "@/lib/caseStudyGallery";
 import { useIsMobileViewport } from "@/hooks/useMediaQuery";
 
 interface CaseStudyGalleryContextValue {
@@ -42,15 +46,13 @@ interface CaseStudyGalleryProviderProps {
   children: ReactNode;
 }
 
-export function CaseStudyGalleryProvider({
-  study,
+function CaseStudyGalleryProviderInner({
+  images,
   children,
-}: CaseStudyGalleryProviderProps) {
-  const isMobileViewport = useIsMobileViewport();
-  const images = useMemo(
-    () => getCaseStudyGalleryImages(study, isMobileViewport),
-    [study, isMobileViewport],
-  );
+}: {
+  images: readonly string[];
+  children: ReactNode;
+}) {
   const [index, setIndex] = useState<number | null>(null);
 
   const openIndex = useCallback(
@@ -92,5 +94,44 @@ export function CaseStudyGalleryProvider({
         onIndexChange={setIndex}
       />
     </CaseStudyGalleryContext.Provider>
+  );
+}
+
+export function CaseStudyGalleryProvider({
+  study,
+  children,
+}: CaseStudyGalleryProviderProps) {
+  const isMobileViewport = useIsMobileViewport();
+  const images = useMemo(
+    () => getCaseStudyGalleryImages(study, isMobileViewport),
+    [study, isMobileViewport],
+  );
+
+  return (
+    <CaseStudyGalleryProviderInner images={images}>
+      {children}
+    </CaseStudyGalleryProviderInner>
+  );
+}
+
+interface CaseStudyV2GalleryProviderProps {
+  study: CaseStudyV2;
+  children: ReactNode;
+}
+
+export function CaseStudyV2GalleryProvider({
+  study,
+  children,
+}: CaseStudyV2GalleryProviderProps) {
+  const isMobileViewport = useIsMobileViewport();
+  const images = useMemo(
+    () => getCaseStudyV2GalleryImages(study, isMobileViewport),
+    [study, isMobileViewport],
+  );
+
+  return (
+    <CaseStudyGalleryProviderInner images={images}>
+      {children}
+    </CaseStudyGalleryProviderInner>
   );
 }

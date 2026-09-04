@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { CaseStudyLayout } from "@/components/case-study/CaseStudyLayout";
+import { CaseStudyLayoutV2 } from "@/components/case-study/v2/CaseStudyLayoutV2";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { cbfFloV2 } from "@/data/cbf-flo-v2";
 import { caseStudySlugs, getCaseStudy } from "@/data";
 
 interface CaseStudyPageProps {
@@ -9,7 +11,7 @@ interface CaseStudyPageProps {
 }
 
 export function generateStaticParams() {
-  return caseStudySlugs.map((slug) => ({ slug }));
+  return [...caseStudySlugs, cbfFloV2.slug].map((slug) => ({ slug }));
 }
 
 function CaseStudyPlaceholder({ title }: { title: string }) {
@@ -27,6 +29,19 @@ function CaseStudyPlaceholder({ title }: { title: string }) {
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
+
+  if (slug === cbfFloV2.slug) {
+    return (
+      <>
+        <Header variant="dark" paddingClass="px-page-case-study" />
+        <main className="overflow-x-clip">
+          <CaseStudyLayoutV2 study={cbfFloV2} />
+        </main>
+        <Footer paddingClass="px-page-case-study" />
+      </>
+    );
+  }
+
   const caseStudy = getCaseStudy(slug);
 
   if (!caseStudy) {

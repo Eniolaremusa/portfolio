@@ -67,7 +67,7 @@ export const cbfFlo: CaseStudy = {
     },
   ],
   constraints:
-    "The product was built on Bubble, a no-code platform, which couldn't render the map interactions we needed. Rather than ship a degraded version, we scoped the requirement properly and brought in a developer to build a custom map plugin.\n\nDesign direction wasn't always my call alone. I wanted more colour differentiation across the analytics views; the founder held to the brand's pink palette. We compromised on tonal variation within pink rather than introducing new hues, a reminder that not every disagreement is worth winning outright.",
+    "The product was built on Bubble, a no-code platform, which couldn't render the map interactions we needed. Rather than ship a degraded version, we scoped the requirement properly and brought in a developer to build a custom map plugin.",
   constraintsTitle: "Designing Within Constraints",
   takeaways:
     "In enterprise design, context is everything. The goal is giving the user as much context as they need to act, without overwhelming them, which was the tension running through every decision here.\n\nAnd finally actionable data should always take precedence over informational data, this reduces the chances of choice fatigue.",

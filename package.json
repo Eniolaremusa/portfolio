@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:clean": "node scripts/next-cache-guard.mjs prepare-dev && next dev --turbopack",
+    "prebuild": "node scripts/next-cache-guard.mjs prepare-build",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

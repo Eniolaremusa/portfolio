@@ -1,3 +1,4 @@
+import type { CaseStudyV2 } from "@/data/cbf-flo-v2-types";
 import type { CaseStudy, DecisionContent } from "@/data/types";
 
 function isRenderableDecision(decision: DecisionContent) {
@@ -64,6 +65,39 @@ export function getCaseStudyGalleryImages(
       isMobileProduct: study.isMobile,
       isMobileViewport,
     });
+  }
+
+  return images;
+}
+
+/**
+ * Fullscreen gallery order for CBF Flo v2: hero, product strategy, then each
+ * role flow and decision screenshot in reading order. Persona illustrations
+ * are excluded. Viewport-aware where desktop/mobile assets differ.
+ */
+export function getCaseStudyV2GalleryImages(
+  study: CaseStudyV2,
+  isMobileViewport: boolean,
+): string[] {
+  const images: string[] = [];
+
+  if (study.hero.heroImage) {
+    images.push(study.hero.heroImage);
+  }
+
+  if (!isMobileViewport) {
+    images.push(study.productStrategy.desktopImage);
+  } else {
+    images.push(study.productStrategy.mobileImage);
+  }
+
+  for (const role of study.roles) {
+    images.push(role.flowImage);
+    for (const decision of role.decisions) {
+      for (const image of decision.images) {
+        images.push(image.src);
+      }
+    }
   }
 
   return images;
