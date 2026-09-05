@@ -111,8 +111,6 @@ export const onarvoDesk: OnarvoDesk = {
   },
   decisionsIntro: {
     title: "What actually changed, and what it cost",
-    description:
-      "Designing for each role. Three personas, one shared customer journey. Tradeoffs, constraints and edges cases",
   },
   decisions: [
     {

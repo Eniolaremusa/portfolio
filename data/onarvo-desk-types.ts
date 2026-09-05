@@ -97,7 +97,6 @@ export interface OnarvoDesk {
   };
   decisionsIntro: {
     title: string;
-    description: string;
   };
   decisions: OnarvoDeskDecision[];
   impactStats: {

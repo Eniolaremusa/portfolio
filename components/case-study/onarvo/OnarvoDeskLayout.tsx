@@ -42,10 +42,7 @@ export function OnarvoDeskLayout({ study }: OnarvoDeskLayoutProps) {
         findings={study.research.findings}
       />
 
-      <OnarvoDeskDecisionsIntroSection
-        title={study.decisionsIntro.title}
-        description={study.decisionsIntro.description}
-      />
+      <OnarvoDeskDecisionsIntroSection title={study.decisionsIntro.title} />
 
       {study.decisions.map((decision) => (
         <OnarvoDeskDecisionSection
