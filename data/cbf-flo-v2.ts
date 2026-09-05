@@ -8,7 +8,7 @@ export const cbfFloV2: CaseStudyV2 = {
   hero: {
     eyebrow: "CBF FLO CASE STUDY",
     headline:
-      "Cut estimate creation time by 66% & reduced same-day reassignments by 20%",
+      "Cutting estimate creation from 60 minutes to 15 for a B2B cleaning software",
     intro:
       "I rebuilt how a lead becomes a priced, scheduled, paid customer for commercial cleaning companies",
     role: "Founding Product designer",
