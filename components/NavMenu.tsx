@@ -50,15 +50,6 @@ function NavLinks({
   return (
     <>
       <a
-        href={siteConfig.resumeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-        onClick={onNavigate}
-      >
-        {"{resume}"}
-      </a>
-      <a
         href={siteConfig.linkedinUrl}
         target="_blank"
         rel="noopener noreferrer"
