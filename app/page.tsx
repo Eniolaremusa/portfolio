@@ -4,6 +4,7 @@ import { CaseStudiesSection } from "@/components/home/CaseStudiesSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HobbiesSection } from "@/components/home/HobbiesSection";
 import { PersonalExplorationsSection } from "@/components/home/PersonalExplorationsSection";
+import { showHobbiesSection } from "@/data/home";
 
 export default function HomePage() {
   return (
@@ -13,7 +14,7 @@ export default function HomePage() {
         <HeroSection />
         <CaseStudiesSection />
         <PersonalExplorationsSection />
-        <HobbiesSection />
+        {showHobbiesSection ? <HobbiesSection /> : null}
       </main>
       <Footer />
     </>

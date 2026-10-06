@@ -73,6 +73,9 @@ export const personalExplorations: PersonalExploration[] = [
   },
 ];
 
+/** Homepage hobbies carousel + grid — set true to show again */
+export const showHobbiesSection = false;
+
 /** Order: coding, reading, painting, baking */
 export const hobbyImages = [
   "/Hobbies/Coding.jpg",
