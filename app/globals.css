@@ -108,6 +108,7 @@
   --spacing-case-study-preview-gap: 64px;
   /* Preview sheet: stack copy + carousel at viewport ≤1100px */
   --width-case-study-preview-stack-max: 1100px;
+  --height-case-study-preview-applatch-max: 600px;
   --radius-case-study-preview-sheet: 32px;
   --height-case-study-preview-sheet: 94vh;
   --spacing-case-study-preview-header-pt: 48px;
@@ -475,9 +476,21 @@ html.page-intro-active .page-main {
     }
   }
 
+  .case-study-preview-carousel--applatch .case-study-preview-carousel-image {
+    max-height: var(--height-case-study-preview-applatch-max);
+    object-fit: contain;
+  }
+
   @media (max-width: 1100px) {
     .case-study-preview-carousel-image {
       max-height: min(62vh, 560px);
+    }
+
+    .case-study-preview-carousel--applatch .case-study-preview-carousel-image {
+      max-height: min(
+        62vh,
+        var(--height-case-study-preview-applatch-max)
+      );
     }
   }
 

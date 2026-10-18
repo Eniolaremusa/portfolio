@@ -136,8 +136,12 @@ function Carousel({
     .filter(Boolean)
     .join(" ");
 
+  const isApplatch = slug === "applatch";
+
   return (
-    <div className="case-study-preview-carousel relative flex w-full min-w-0 flex-1 flex-col">
+    <div
+      className={`case-study-preview-carousel relative flex w-full min-w-0 flex-1 flex-col${isApplatch ? " case-study-preview-carousel--applatch" : ""}`}
+    >
       <div className="case-study-preview-carousel-track flex w-full min-w-0 items-stretch gap-2 min-[768px]:gap-3">
         {hasMultiple ? (
           <CarouselSideNav
