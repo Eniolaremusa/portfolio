@@ -79,7 +79,7 @@ export function CaseStudyDesignDecisionSection({
         <div className="flex flex-col gap-case-study-v2-within">
           <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start">
             <div className="flex w-full min-w-0 flex-col gap-2 min-[1280px]:w-[48%]">
-              <h3 className="text-callout text-text-on-light">{decision.title}</h3>
+              <h3 className="text-callout">{decision.title}</h3>
               <p className="text-body text-text-on-light">{decision.body}</p>
             </div>
 

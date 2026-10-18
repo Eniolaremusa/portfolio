@@ -19,7 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: baseUrl,
       lastModified: new Date(),
     },
-    ...homeCaseStudyOrder.map((slug) => ({
+    ...homeCaseStudyOrder
+      .filter((slug) => slug !== "deploy-design-system")
+      .map((slug) => ({
       url: `${baseUrl}/${slug}`,
       lastModified: new Date(),
     })),

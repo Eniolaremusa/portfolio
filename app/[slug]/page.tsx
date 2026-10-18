@@ -23,7 +23,7 @@ function CaseStudyPlaceholder({ title }: { title: string }) {
   return (
     <section className="bg-light-bg px-page py-section pt-16 md:pt-hero-pt">
       <div className="mx-auto max-w-[1312px]">
-        <h1 className="text-title text-text-on-light">{title}</h1>
+        <h1 className="text-title">{title}</h1>
         <p className="text-body mt-6 text-text-on-light">
           Case study content is coming soon.
         </p>

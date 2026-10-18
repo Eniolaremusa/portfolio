@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Crimson_Text } from "next/font/google";
+import { Crimson_Pro } from "next/font/google";
 import { GeistMono, GeistSans } from "geist/font";
 import { Analytics } from "@vercel/analytics/next";
 import { PageLoadIntro } from "@/components/PageLoadIntro";
@@ -7,11 +7,11 @@ import { heroContent } from "@/data/home";
 import { getPageIntroBlockingScript } from "@/lib/pageIntro";
 import "./globals.css";
 
-const crimsonText = Crimson_Text({
+const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400"],
   style: ["normal", "italic"],
-  variable: "--font-crimson-text",
+  variable: "--font-crimson-pro",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${crimsonText.variable} ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${crimsonPro.variable} ${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
       <head>

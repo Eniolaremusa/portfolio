@@ -50,5 +50,24 @@ export function getHomepageCaseStudy(slug: string): CaseStudy | undefined {
       hasPullQuote: false,
     };
   }
+  if (slug === "deploy-design-system") {
+    return {
+      slug: "deploy-design-system",
+      title: "Deploy Design System",
+      description:
+        "A comprehensive Figma component library covering foundational styles, interface components, and complex application patterns.",
+      role: "Product designer",
+      team: "Deploy",
+      timeline: "Ongoing",
+      images: { hero: [] },
+      productContext: "",
+      businessProblem: "",
+      decisions: [],
+      constraints: "",
+      takeaways: "",
+      isMobile: false,
+      hasPullQuote: false,
+    };
+  }
   return caseStudies[slug];
 }

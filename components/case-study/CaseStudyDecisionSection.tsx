@@ -45,7 +45,7 @@ export function CaseStudyDecisionSection({
         <div className="flex flex-col gap-case-study-decision-stack min-[768px]:flex-row min-[768px]:items-start min-[768px]:gap-10">
           <div className="w-full shrink-0 min-[768px]:w-[30%]">
             <p className="text-eyebrow text-text-on-light">{decision.eyebrow}</p>
-            <h2 className="text-callout mt-case-study-decision-eyebrow text-text-on-light">
+            <h2 className="text-callout mt-case-study-decision-eyebrow">
               {decision.title}
             </h2>
           </div>

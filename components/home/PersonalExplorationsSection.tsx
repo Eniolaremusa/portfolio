@@ -1,45 +1,67 @@
-import Link from "next/link";
-import { ExternalLinkArrow } from "@/components/ExternalLinkArrow";
-import { StickySection } from "@/components/home/StickySection";
-import { personalExplorations } from "@/data/home";
+import { CaseStudyTextCtaContent } from "@/components/CaseStudyTextCta";
+import {
+  personalExplorations,
+  personalExplorationsHeading,
+} from "@/data/home";
+
+function PersonalExplorationRow({
+  exploration,
+}: {
+  exploration: (typeof personalExplorations)[number];
+}) {
+  return (
+    <a
+      href={exploration.prototypeUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group exploration-row flex w-full min-w-0 flex-col gap-6 min-[768px]:flex-row min-[768px]:items-center min-[768px]:gap-12"
+      aria-label={`${exploration.title} — explore prototype`}
+    >
+      <div className="card-hover-press relative aspect-[2/1] w-full shrink-0 overflow-hidden bg-light-image-bg min-[768px]:aspect-auto min-[768px]:h-[280px] min-[768px]:w-[70%] min-[768px]:max-w-[918px]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="card-hover-press-media size-full object-cover"
+          aria-hidden
+        >
+          <source src={encodeURI(exploration.video)} type="video/mp4" />
+        </video>
+      </div>
+
+      <div className="home-mobile-text flex min-w-0 flex-1 flex-col justify-center min-[768px]:max-w-[calc(30%-0px)] min-[768px]:flex-[0_1_30%]">
+        <div className="flex flex-col gap-1">
+          <h3 className="text-link-medium text-on-dark">{exploration.title}</h3>
+          <p className="text-body text-on-dark">{exploration.description}</p>
+        </div>
+        <span className="exploration-prototype-cta text-body mt-3 inline-flex w-fit items-center gap-1.5 text-on-dark">
+          <CaseStudyTextCtaContent label="Explore prototype" />
+        </span>
+      </div>
+    </a>
+  );
+}
 
 export function PersonalExplorationsSection() {
   return (
-    <StickySection
-      label="PERSONAL EXPLORATIONS"
-      contentClassName="flex w-full max-w-none flex-col gap-exploration-row-gap min-[768px]:max-w-[884px] xl:justify-self-end"
-    >
-      {personalExplorations.map((exploration) => (
-        <div
-          key={exploration.slug}
-          className="flex w-full max-w-none flex-col gap-6 min-[768px]:max-w-[884px] min-[768px]:flex-row min-[768px]:items-end min-[768px]:gap-10"
-        >
-          <div className="relative aspect-video w-full max-w-none shrink-0 overflow-hidden bg-light-image-bg min-[768px]:aspect-auto min-[768px]:h-[200px] min-[768px]:w-[400px]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="size-full object-cover"
-              aria-label={`${exploration.title} prototype preview`}
-            >
-              <source src={encodeURI(exploration.video)} type="video/mp4" />
-            </video>
-          </div>
-          <div className="home-mobile-text flex w-full flex-col gap-1 min-[768px]:flex-1">
-            <Link
-              href={exploration.prototypeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group text-link-medium inline-flex w-fit items-center gap-1.5 underline decoration-from-font underline-offset-2"
-            >
-              {exploration.title}
-              <ExternalLinkArrow className="max-[495px]:hidden opacity-0 scale-90 transition-all duration-200 ease-out nav-group-hover:opacity-100 nav-group-hover:scale-100" />
-            </Link>
-            <p className="text-body text-text-on-light">{exploration.description}</p>
-          </div>
+    <section className="personal-explorations-section bg-accent px-page py-section">
+      <div className="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-8 min-[768px]:gap-10 xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:items-start xl:gap-x-12 xl:gap-y-0">
+        <header className="xl:sticky xl:top-[69px] xl:z-10 xl:col-start-1 xl:row-start-1 xl:self-start xl:bg-accent xl:py-2">
+          <h2 className="text-home-case-studies-lead max-w-[26rem] text-on-dark">
+            {personalExplorationsHeading}
+          </h2>
+        </header>
+
+        <div className="flex w-full min-w-0 flex-col gap-8 xl:col-start-2 xl:row-start-1">
+          {personalExplorations.map((exploration) => (
+            <PersonalExplorationRow
+              key={exploration.slug}
+              exploration={exploration}
+            />
+          ))}
         </div>
-      ))}
-    </StickySection>
+      </div>
+    </section>
   );
 }

@@ -16,7 +16,7 @@ export default function HomePage() {
         <PersonalExplorationsSection />
         {showHobbiesSection ? <HobbiesSection /> : null}
       </main>
-      <Footer />
+      <Footer variant="home" />
     </>
   );
 }

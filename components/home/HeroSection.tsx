@@ -1,53 +1,42 @@
+import { HeroClientLogo } from "@/components/home/HeroClientLogo";
+import { HeroReachOutButton } from "@/components/home/HeroReachOutButton";
+import { HeroRevealGroup } from "@/components/home/HeroRevealGroup";
 import { heroContent } from "@/data/home";
-
-function HeroInfoItem({
-  label,
-  items,
-}: {
-  label: string;
-  items: readonly string[];
-}) {
-  return (
-    <div className="flex min-w-0 flex-col gap-1 min-[768px]:max-[1023px]:flex-1">
-      <p className="text-label-sm text-text-muted">{label}</p>
-      {/*
-        flex-wrap keeps each item inside the column width; commas stay between
-        items on the same line without forcing a single unbreakable string.
-      */}
-      <p className="text-body flex min-w-0 flex-wrap text-text-on-light">
-        {items.map((item, index) => (
-          <span key={item} className="min-w-0 max-w-full break-words">
-            {item}
-            {index < items.length - 1 ? (
-              <span aria-hidden>,&nbsp;</span>
-            ) : null}
-          </span>
-        ))}
-      </p>
-    </div>
-  );
-}
 
 export function HeroSection() {
   return (
-    <section className="bg-light-bg px-page pt-hero-section max-[767px]:pb-10">
-      {/*
-        60/40 via 3fr/2fr grid at ≥1024 so the 100px gap is inside the track
-        math (flex 60%+40%+gap was overflowing past page padding).
-        Mobile: info stacks under intro and stays visible.
-      */}
-      <div className="mx-auto flex max-w-[1312px] flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:grid min-[1024px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
-        <div className="flex w-full min-w-0 flex-col gap-3">
-          <h1 className="text-title text-text-on-light min-[1024px]:text-balance">
-            {heroContent.headline}
-          </h1>
-          <p className="text-body text-text-on-light">{heroContent.bio}</p>
-        </div>
+    <section className="bg-light-bg px-page pt-hero-section pb-section">
+      <div className="home-hero-column home-hero-split mx-auto flex w-full max-w-page flex-col gap-12">
+        <div className="home-hero-split__row flex w-full flex-col items-start gap-10 text-left min-[768px]:grid min-[768px]:grid-cols-2 min-[768px]:items-center min-[768px]:gap-[72px]">
+          <HeroRevealGroup className="home-hero-split__intro min-w-0 w-full">
+            <div className="flex w-full flex-col items-start gap-6">
+              <div className="home-mobile-text flex w-full flex-col items-start gap-3 text-left">
+                <h1 className="text-home-hero-headline text-balance">
+                  {heroContent.headline}
+                </h1>
+                <p className="text-body text-text-on-light text-pretty">
+                  {heroContent.bio}
+                </p>
+              </div>
+              <HeroReachOutButton label={heroContent.reachOutLabel} />
+            </div>
+          </HeroRevealGroup>
 
-        <div className="flex w-full min-w-0 flex-col gap-6 min-[768px]:max-[1023px]:basis-full min-[768px]:max-[1023px]:flex-row min-[768px]:max-[1023px]:gap-8 min-[1024px]:flex-col min-[1024px]:gap-6">
-          <HeroInfoItem label="Skills" items={heroContent.skills} />
-          <HeroInfoItem label="Industries" items={heroContent.industries} />
-          <HeroInfoItem label={heroContent.toolsLabel} items={heroContent.tools} />
+          <HeroRevealGroup
+            offset={0.08}
+            className="home-hero-split__clients min-w-0 w-full"
+          >
+            <div className="flex w-full flex-col items-start gap-3 text-left">
+              <p className="text-home-hero-client-label text-balance">
+                {heroContent.clientsLabel}
+              </p>
+              <ul className="home-hero-logos home-hero-logos--split flex w-full flex-wrap items-center gap-x-6 gap-y-5">
+                {heroContent.clients.map((client) => (
+                  <HeroClientLogo key={client.name} {...client} />
+                ))}
+              </ul>
+            </div>
+          </HeroRevealGroup>
         </div>
       </div>
     </section>

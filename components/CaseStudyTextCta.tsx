@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ExternalLinkArrow } from "@/components/ExternalLinkArrow";
 
-/** Shared with homepage case study cards and case study title prototype link */
+/** Prototype / external links — accent by default */
 export const caseStudyTextCtaClassName =
-  "group text-body inline-flex w-fit items-center gap-1.5 text-text-on-light";
+  "group text-body inline-flex w-fit items-center gap-1.5 text-accent transition-opacity duration-200 ease-out hover:opacity-85";
+
+/** Homepage “Read case study” — body color until hover */
+export const caseStudyReadCaseStudyCtaClassName =
+  "group text-body inline-flex w-fit items-center gap-1.5 text-text-on-light transition-colors duration-220 ease-out group-hover:text-accent hover:text-accent";
 
 export const caseStudyTextCtaArrowClassName =
   "max-[495px]:hidden opacity-0 scale-90 transition-all duration-200 ease-out nav-group-hover:opacity-100 nav-group-hover:scale-100";
@@ -24,6 +28,8 @@ interface CaseStudyTextCtaProps {
   label: string;
   external?: boolean;
   className?: string;
+  /** `read` matches homepage case study preview entry links */
+  tone?: "accent" | "read";
 }
 
 export function CaseStudyTextCta({
@@ -31,10 +37,15 @@ export function CaseStudyTextCta({
   label,
   external = false,
   className = "",
+  tone = "accent",
 }: CaseStudyTextCtaProps) {
+  const baseClassName =
+    tone === "read"
+      ? caseStudyReadCaseStudyCtaClassName
+      : caseStudyTextCtaClassName;
   const classes = className
-    ? `${caseStudyTextCtaClassName} ${className}`
-    : caseStudyTextCtaClassName;
+    ? `${baseClassName} ${className}`
+    : baseClassName;
 
   if (external) {
     return (

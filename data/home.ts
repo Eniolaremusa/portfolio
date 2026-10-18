@@ -7,30 +7,43 @@ export const siteConfig = {
 } as const;
 
 export const heroContent = {
-  headline: "Designing the complex products people depend on daily.",
-  bio: "I design complex B2B and B2C platforms: operations software, scheduling, and multi-role systems where one decision affects everyone downstream. I design them and increasingly I build them too.",
-  skills: [
-    "Product Strategy",
-    "0→1 Product Design",
-    "UX Design",
-    "Interaction Design",
-    "Design Systems",
-    "User Research",
-    "Cross-Functional Collaboration",
-    "AI Engineering",
-    "Prompt Prototyping",
+  headline:
+    "Designing products that feel intuitive & human, especially in complex, regulated industries.",
+  bio: "I work across product strategy, UX, and interaction design, taking products from early ideas to thoughtful, scalable experiences. Lately, I've been spending more time in Cursor and Codex, exploring how far I can take my design ideas beyond Figma.",
+  reachOutLabel: "{Reach out to me}",
+  clientsLabel: "Designed websites and products for:",
+  clients: [
+    {
+      name: "DoorLoop",
+      src: "/images/home/hero-logos/doorloop.svg",
+      width: 86,
+      height: 22,
+    },
+    {
+      name: "Daloopa",
+      src: "/images/home/hero-logos/daloopa.svg",
+      width: 107,
+      height: 18,
+    },
+    {
+      name: "Dealpage",
+      src: "/images/home/hero-logos/dealpage.svg",
+      width: 72,
+      height: 22,
+    },
+    {
+      name: "Applatch",
+      src: "/images/home/hero-logos/applatch.svg",
+      width: 94,
+      height: 22,
+    },
+    {
+      name: "Wedgewood Weddings",
+      src: "/images/home/hero-logos/wedgewood-weddings.svg",
+      width: 119,
+      height: 22,
+    },
   ],
-  industries: [
-    "B2B SaaS",
-    "B2C",
-    "Operations",
-    "Healthtech",
-    "Edtech",
-    "Sports",
-    "Real Estate",
-  ],
-  toolsLabel: "Tools I Use",
-  tools: ["Figma", "Cursor", "Framer", "Claude"],
 } as const;
 
 export interface PersonalExploration {
@@ -41,35 +54,34 @@ export interface PersonalExploration {
   prototypeUrl: string;
 }
 
-/** Order matches Figma frame 56:3158, plus Farm AI */
+export const personalExplorationsHeading =
+  "Small personal experiments in design, interaction, and code. Give one a try.";
+
+/** Homepage personal explorations — FarmAI, Font Selector, Stock Purchase */
 export const personalExplorations: PersonalExploration[] = [
   {
+    slug: "farm-ai",
+    title: "FarmAI",
+    description:
+      "Discover which crops are best suited to a piece of farmland using simulated USDA soil data.",
+    video: "/Explorations/farm ai framer.mp4",
+    prototypeUrl: "https://farm-ai-mu.vercel.app/",
+  },
+  {
     slug: "font-selector",
-    title: "Font selector",
-    description: "Subjective style of choosing fonts.",
+    title: "Font Selector",
+    description:
+      "Find fonts that match your style by adjusting characteristics like warmth, presence, width, and serifness.",
     video: "/Explorations/Font selector.mp4",
     prototypeUrl: "https://font-selector-phi.vercel.app/",
   },
   {
-    slug: "stock-approval",
-    title: "Stock approval",
-    description: "Purchasing a stock on web.",
+    slug: "stock-purchase",
+    title: "Stock Purchase",
+    description:
+      "Explore buying stocks on the web, from selecting a stock and entering an amount to completing a purchase.",
     video: "/Explorations/Stock Linkedin.mp4",
     prototypeUrl: "https://stock-purchase-amber.vercel.app/",
-  },
-  {
-    slug: "contract-reader",
-    title: "Contract reader",
-    description: "Using AI to verify contracts before signing",
-    video: "/Explorations/Contract framer.mp4",
-    prototypeUrl: "https://july-stream-13187209.figma.site",
-  },
-  {
-    slug: "farm-ai",
-    title: "Farm AI",
-    description: "Soil intelligence platform.",
-    video: "/Explorations/farm ai framer.mp4",
-    prototypeUrl: "https://farm-ai-mu.vercel.app/",
   },
 ];
 
@@ -88,7 +100,7 @@ export const homeCaseStudyOrder = [
   "cbf-flo",
   "onarvo-desk",
   "applatch",
-  "propheski",
+  "deploy-design-system",
 ] as const;
 
 export const homeCaseStudyCardImages: Record<string, string> = {
@@ -96,12 +108,13 @@ export const homeCaseStudyCardImages: Record<string, string> = {
   applatch: "/case study/Applatch.svg",
   "vendor-connect": "/case study/Vendor.svg",
   propheski: "/case study/image copy.png",
+  "deploy-design-system":
+    "/Preview overlay/Deploy Design system/Frame 1618873207.png",
   "onarvo-desk": "/case study/Onarvo homepage.png",
   homeward: "/images/home/case-studies/Homeward case study.svg",
 };
 
-/** Mobile-only homepage card thumbnails (<768px) */
-export const homeCaseStudyCardImagesMobile: Partial<Record<string, string>> = {
+export const homeCaseStudyCardImagesMobile: Record<string, string> = {
   "cbf-flo": "/case study/CBF FLO/cb home m.svg",
   "vendor-connect": "/case study/Vendor connect/vc home m.svg",
 };

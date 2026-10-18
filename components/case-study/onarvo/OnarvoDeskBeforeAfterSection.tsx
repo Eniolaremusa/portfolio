@@ -49,7 +49,7 @@ export function OnarvoDeskBeforeAfterSection({
         <div className="flex flex-col gap-case-study-v2-within">
           <div className="flex flex-col gap-case-study-v2-within min-[1280px]:flex-row min-[1280px]:items-start">
             <div className="flex w-full min-w-0 flex-col gap-2 min-[1280px]:w-[30%] min-[1280px]:shrink-0">
-              <h2 className="text-h2 text-text-on-light">{title}</h2>
+              <h2 className="text-h2">{title}</h2>
               <p className="text-body text-text-on-light">{subtitle}</p>
             </div>
 

@@ -52,7 +52,7 @@ export function OnarvoDeskDecisionSection({
           <div className="flex w-full min-w-0 flex-col gap-6 min-[1280px]:max-w-[480px] min-[1280px]:shrink-0">
             <div className="flex flex-col gap-2">
               <p className="text-label-sm text-text-on-light">{decision.number}</p>
-              <h3 className="text-callout text-text-on-light">{decision.title}</h3>
+              <h3 className="text-callout">{decision.title}</h3>
               <p className="text-body text-text-on-light">{decision.body}</p>
             </div>
 

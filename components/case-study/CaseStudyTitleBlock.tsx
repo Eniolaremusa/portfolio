@@ -36,24 +36,25 @@ export function CaseStudyTitleBlock({
   const headline = study.headline ?? study.title;
   const intro = study.intro ?? study.description;
   const isDark = variant === "dark";
-  const primaryText = isDark ? "text-on-dark" : "text-text-on-light";
+  const headingClass = isDark ? "text-on-dark" : "text-text-heading";
+  const bodyClass = isDark ? "text-on-dark" : "text-text-on-light";
 
   return (
     <div className="flex flex-col gap-10 min-[768px]:flex-row min-[768px]:flex-wrap min-[768px]:items-start min-[1024px]:flex-nowrap min-[1024px]:items-center min-[1024px]:gap-case-study-title-gap">
       <div className="flex w-full min-w-0 flex-col gap-3 min-[1024px]:w-[60%] min-[1024px]:shrink-0">
-        <p className={`text-eyebrow ${primaryText}`}>{eyebrow}</p>
+        <p className={`text-eyebrow ${bodyClass}`}>{eyebrow}</p>
         <h1
-          className={`text-title ${primaryText} min-[768px]:max-[1023px]:line-clamp-2`}
+          className={`text-title ${headingClass} min-[768px]:max-[1023px]:line-clamp-2`}
         >
           {headline}
         </h1>
-        <p className={`text-body ${primaryText}`}>{intro}</p>
+        <p className={`text-body ${bodyClass}`}>{intro}</p>
         {study.prototypeUrl ? (
           <a
             href={study.prototypeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group text-body mt-1 inline-flex w-fit items-center gap-1.5 ${primaryText}`}
+            className="group text-body mt-1 inline-flex w-fit items-center gap-1.5 text-accent transition-opacity duration-200 ease-out hover:opacity-85"
           >
             <span className="underline decoration-from-font underline-offset-2">
               View Prototype

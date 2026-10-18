@@ -109,7 +109,7 @@ export function PageLoadIntro() {
         {LETTERS.map((letter, index) => (
           <motion.span
             key={`${letter}-${index}`}
-            className="inline-block font-crimson text-title italic text-text-on-light"
+            className="inline-block font-crimson text-title italic"
             initial={{ opacity: 0, y: LETTER_RISE_PX }}
             animate={{ opacity: 1, y: 0 }}
             transition={{

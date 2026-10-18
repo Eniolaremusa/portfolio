@@ -23,7 +23,7 @@ export function CaseStudyRoleIntroSection({
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-case-study-v2-within min-[768px]:flex-row min-[768px]:items-end">
           <div className="flex w-full min-w-0 flex-col gap-2 min-[768px]:w-[30%] min-[768px]:max-w-[357px]">
-            <h2 className="text-callout text-text-on-light">{title}</h2>
+            <h2 className="text-callout">{title}</h2>
             <p className="text-body text-text-on-light">{description}</p>
             <CaseStudyViewUserFlowCta
               src={flowImage}

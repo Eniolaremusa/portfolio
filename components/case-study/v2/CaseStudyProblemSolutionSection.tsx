@@ -43,7 +43,7 @@ export function CaseStudyProblemSolutionSection({
     <section className="bg-light-bg px-page-case-study py-case-study-v2-section">
       <CaseStudyPageContainer>
         <div className="flex flex-col gap-6">
-          <h2 className="text-h2 text-text-on-light">{title}</h2>
+          <h2 className="text-h2">{title}</h2>
 
           <div className="flex flex-col gap-case-study-v2-within border border-light-image-bg p-case-study-v2-card min-[1024px]:flex-row min-[1024px]:items-stretch min-[1024px]:gap-12">
             <CardGrid label="PROBLEMS" cards={problems} variant="problem" />

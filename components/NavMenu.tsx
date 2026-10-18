@@ -5,7 +5,10 @@ import { createPortal } from "react-dom";
 import { EmailLink } from "@/components/EmailLink";
 import { siteConfig } from "@/data/home";
 
-function getNavLinkClass(theme: "light" | "dark") {
+type NavTheme = "light" | "dark" | "accent";
+
+function getNavLinkClass(theme: NavTheme) {
+  if (theme === "accent") return "text-nav text-nav-link-on-accent";
   return theme === "dark" ? "text-nav text-nav-link-on-dark" : "text-nav text-nav-link";
 }
 
@@ -30,7 +33,10 @@ function CloseIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function getMobileNavLinkClass(theme: "light" | "dark") {
+function getMobileNavLinkClass(theme: NavTheme) {
+  if (theme === "accent") {
+    return "text-nav text-nav-link-on-accent block w-full self-start text-left";
+  }
   return theme === "dark"
     ? "text-nav text-on-dark block w-full self-start text-left"
     : "text-nav text-text-on-light block w-full self-start text-left";
@@ -42,7 +48,7 @@ function NavLinks({
   mobile = false,
 }: {
   onNavigate?: () => void;
-  theme?: "light" | "dark";
+  theme?: NavTheme;
   mobile?: boolean;
 }) {
   const linkClass = mobile ? getMobileNavLinkClass(theme) : getNavLinkClass(theme);
@@ -108,7 +114,7 @@ function useMobilePanelPosition(
 
 interface MobileNavMenuProps {
   placement?: "header" | "footer";
-  theme?: "light" | "dark";
+  theme?: NavTheme;
 }
 
 export function MobileNavMenu({ placement = "header", theme = "light" }: MobileNavMenuProps) {
@@ -119,9 +125,12 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelPosition = useMobilePanelPosition(open, buttonRef, placement);
   const isDark = theme === "dark";
-  const menuButtonClass = isDark
-    ? "text-nav text-nav-link-on-dark cursor-pointer"
-    : "text-nav text-nav-link cursor-pointer";
+  const isAccent = theme === "accent";
+  const menuButtonClass = isAccent
+    ? "text-nav text-nav-link-on-accent cursor-pointer"
+    : isDark
+      ? "text-nav text-nav-link-on-dark cursor-pointer"
+      : "text-nav text-nav-link cursor-pointer";
 
   useEffect(() => {
     setMounted(true);
@@ -200,7 +209,7 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
   );
 }
 
-export function DesktopNavLinks({ theme = "light" }: { theme?: "light" | "dark" }) {
+export function DesktopNavLinks({ theme = "light" }: { theme?: NavTheme }) {
   return (
     <nav className="text-nav max-[495px]:hidden min-[496px]:flex min-[496px]:flex-wrap min-[496px]:items-center min-[496px]:justify-end min-[496px]:gap-nav-gap">
       <NavLinks theme={theme} />
