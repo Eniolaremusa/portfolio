@@ -23,8 +23,10 @@ export function SiteNav({
       ? "bg-case-study-hero-bg"
       : "bg-light-bg";
 
+  const fullBleed = isAccent && as === "footer" ? "page-full-bleed" : "";
+
   return (
-    <Tag className={`${paddingClass} py-6 ${surfaceClass}`}>
+    <Tag className={`${paddingClass} py-6 ${surfaceClass} ${fullBleed}`}>
       <div className="mx-auto flex w-full min-w-0 max-w-page items-center justify-between gap-6">
         <Link
           href="/"

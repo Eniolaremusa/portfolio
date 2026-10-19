@@ -5,7 +5,7 @@
   --color-light-bg: #fcfaf4;
   --color-text-on-light: #5b5855;
   --color-text-heading: #22201d;
-  --color-accent: #2700ff;
+  --color-accent: #2c0fca;
   --color-text-muted: #99938e;
   --color-nav-link: #94908b;
   --color-nav-link-hover: #5b5855;
@@ -21,7 +21,7 @@
   --color-text-on-dark: #fcfaf4;
   --color-home-hero-headline: #22201d;
   --color-home-hero-client-label: #97938e;
-  --color-home-hero-cta: #2700ff;
+  --color-home-hero-cta: #2c0fca;
   --text-home-hero-headline-size: 28px;
   --text-home-hero-headline-leading: 32px;
   --text-home-hero-headline-size-mobile: 24px;
@@ -588,6 +588,17 @@ html.page-intro-active .page-main {
     .home-hero-logo-item:hover .home-hero-logo-accent {
       opacity: 1;
     }
+  }
+
+  /*
+   * Full-width bands inside .page-main (max-w-viewport): background spans
+   * the viewport on large monitors; content keeps px-page / max-w-page.
+   */
+  .page-full-bleed {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    box-sizing: border-box;
   }
 
   .personal-explorations-section {

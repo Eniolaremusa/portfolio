@@ -45,7 +45,7 @@ function PersonalExplorationRow({
 
 export function PersonalExplorationsSection() {
   return (
-    <section className="personal-explorations-section bg-accent px-page py-section">
+    <section className="personal-explorations-section page-full-bleed bg-accent px-page py-section">
       <div className="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-8 min-[768px]:gap-10 xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:items-start xl:gap-x-12 xl:gap-y-0">
         <header className="xl:sticky xl:top-[69px] xl:z-10 xl:col-start-1 xl:row-start-1 xl:self-start xl:bg-accent xl:py-2">
           <h2 className="text-home-case-studies-lead max-w-[26rem] text-on-dark">
