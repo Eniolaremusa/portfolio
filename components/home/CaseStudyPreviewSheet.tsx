@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
-import { createPortal } from "react-dom";
+import { Drawer } from "vaul";
 import {
   caseStudyPreviewSlides,
   getCaseStudyPreviewContent,
@@ -14,8 +14,6 @@ import type { CaseStudy } from "@/data/types";
 import { MOTION_EASE } from "@/lib/motion";
 
 const SHEET_EASE = MOTION_EASE;
-const BACKDROP_DURATION = 0.28;
-const SHEET_DURATION = 0.36;
 const SLIDE_CROSSFADE_DURATION = 0.42;
 
 interface CaseStudyPreviewSheetProps {
@@ -264,66 +262,65 @@ export function CaseStudyPreviewSheet({
   const reduceMotion = useReducedMotion();
   const titleId = useId();
   const open = Boolean(study);
-  const slug = study?.slug as CaseStudyPreviewSheetSlug | undefined;
+  const [cachedStudy, setCachedStudy] = useState<CaseStudy | null>(null);
+
+  useEffect(() => {
+    if (study) setCachedStudy(study);
+  }, [study]);
+
+  const activeStudy = study ?? cachedStudy;
+  const slug = activeStudy?.slug as CaseStudyPreviewSheetSlug | undefined;
   const content = slug ? getCaseStudyPreviewContent(slug) : null;
   const slides =
     slug && slug in caseStudyPreviewSlides
       ? caseStudyPreviewSlides[slug]
       : [];
 
-  useEffect(() => {
-    if (!open) return;
+  const handleOpenChange = useCallback(
+    (nextOpen: boolean) => {
+      if (!nextOpen) onClose();
+    },
+    [onClose],
+  );
 
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-
-    document.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [open, onClose]);
-
-  if (typeof document === "undefined") return null;
+  const handleAnimationEnd = useCallback((nextOpen: boolean) => {
+    if (!nextOpen) setCachedStudy(null);
+  }, []);
 
   const headerCtaClassName =
     "case-study-preview-read-full inline-flex h-8 shrink-0 items-center justify-center rounded-full bg-accent px-3";
 
-  return createPortal(
-    <AnimatePresence>
-      {open && study && content && slug ? (
-        <motion.div
-          key="case-study-preview-sheet"
-          className="fixed inset-0 z-[120] flex items-end justify-center"
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={reduceMotion ? undefined : { opacity: 0 }}
-          transition={{ duration: BACKDROP_DURATION, ease: SHEET_EASE }}
-        >
-          <button
-            type="button"
-            aria-label="Close preview"
-            className="case-study-preview-sheet-backdrop absolute inset-0 cursor-default border-0 p-0"
-            onClick={onClose}
-          />
+  if (!activeStudy && !open) {
+    return null;
+  }
 
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            className="case-study-preview-sheet-panel case-study-preview-sheet-panel-height relative flex w-full flex-col overflow-hidden bg-light-bg"
-            initial={reduceMotion ? false : { y: "100%" }}
-            animate={{ y: 0 }}
-            exit={reduceMotion ? undefined : { y: "100%" }}
-            transition={{ duration: SHEET_DURATION, ease: SHEET_EASE }}
-            onClick={(event) => event.stopPropagation()}
-          >
+  return (
+    <Drawer.Root
+      open={open}
+      onOpenChange={handleOpenChange}
+      onAnimationEnd={handleAnimationEnd}
+      shouldScaleBackground={false}
+      repositionInputs={false}
+    >
+      <Drawer.Portal>
+        <Drawer.Overlay
+          className="case-study-preview-sheet-backdrop fixed inset-0 z-[120]"
+          {...(reduceMotion ? { "data-vaul-animate": "false" } : {})}
+        />
+        <Drawer.Content
+          aria-labelledby={titleId}
+          className="case-study-preview-sheet-panel case-study-preview-sheet-panel-height fixed inset-x-0 bottom-0 z-[120] flex w-full flex-col overflow-hidden bg-light-bg outline-none"
+          {...(reduceMotion ? { "data-vaul-animate": "false" } : {})}
+        >
+          <div className="case-study-preview-sheet-handle-wrap">
+            <Drawer.Handle
+              className="case-study-preview-sheet-handle"
+              aria-hidden
+            />
+          </div>
+          {activeStudy && content && slug ? (
             <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden px-page">
-              <div className="mx-auto flex min-h-0 w-full max-w-[1312px] flex-1 flex-col overflow-hidden pb-8 pt-[var(--spacing-case-study-preview-header-pt)] min-[768px]:pb-10">
+              <div className="mx-auto flex min-h-0 w-full max-w-[1312px] flex-1 flex-col overflow-hidden pb-8 min-[768px]:pb-10">
                 <header className="mb-[var(--spacing-case-study-preview-header-main-gap)] flex shrink-0 items-center justify-between gap-4">
                   <p className="text-case-study-preview-header-eyebrow min-w-0 truncate">
                     {content.eyebrow}
@@ -336,50 +333,53 @@ export function CaseStudyPreviewSheet({
 
                 <div className="case-study-preview-sheet-scroll">
                   <div className="case-study-preview-sheet-grid-wrap">
-                  <div className="case-study-preview-sheet-grid">
-                    <div className="flex min-w-0 flex-col gap-6">
-                      <div className="flex flex-col gap-3">
-                        <h2
-                          id={titleId}
-                          className="text-case-study-preview-headline"
-                        >
-                          {content.headline}
-                        </h2>
-                        <p className="text-body text-text-on-light text-pretty">
-                          {content.summary}
-                        </p>
+                    <div className="case-study-preview-sheet-grid">
+                      <div className="flex min-w-0 flex-col gap-6">
+                        <div className="flex flex-col gap-3">
+                          <Drawer.Title asChild>
+                            <h2
+                              id={titleId}
+                              className="text-case-study-preview-headline"
+                            >
+                              {content.headline}
+                            </h2>
+                          </Drawer.Title>
+                          <Drawer.Description asChild>
+                            <p className="text-body text-text-on-light text-pretty">
+                              {content.summary}
+                            </p>
+                          </Drawer.Description>
+                        </div>
+
+                        <div className="flex flex-col gap-6 bg-case-study-hero-bg p-8">
+                          {content.highlights.map((item) => (
+                            <div key={item.label} className="flex flex-col">
+                              <p className="text-case-study-preview-highlight-label">
+                                {item.label}
+                              </p>
+                              <p className="text-body text-on-dark text-pretty">
+                                {item.body}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
 
-                      <div className="flex flex-col gap-6 bg-case-study-hero-bg p-8">
-                        {content.highlights.map((item) => (
-                          <div key={item.label} className="flex flex-col">
-                            <p className="text-case-study-preview-highlight-label">
-                              {item.label}
-                            </p>
-                            <p className="text-body text-on-dark text-pretty">
-                              {item.body}
-                            </p>
-                          </div>
-                        ))}
+                      <div className="min-w-0 w-full">
+                        <Carousel
+                          slug={activeStudy.slug}
+                          slides={slides}
+                          title={activeStudy.title}
+                        />
                       </div>
                     </div>
-
-                    <div className="min-w-0 w-full">
-                      <Carousel
-                        slug={study.slug}
-                        slides={slides}
-                        title={study.title}
-                      />
-                    </div>
-                  </div>
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>,
-    document.body,
+          ) : null}
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
   );
 }

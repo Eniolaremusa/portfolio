@@ -6,6 +6,7 @@ import { PageLoadIntro } from "@/components/PageLoadIntro";
 import { heroContent } from "@/data/home";
 import { getPageIntroBlockingScript } from "@/lib/pageIntro";
 import "./globals.css";
+import "./vaul-drawer.css";
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],

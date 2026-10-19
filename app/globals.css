@@ -111,7 +111,7 @@
   --height-case-study-preview-applatch-max: 600px;
   --radius-case-study-preview-sheet: 32px;
   --height-case-study-preview-sheet: 94vh;
-  --spacing-case-study-preview-header-pt: 48px;
+  --spacing-case-study-preview-header-pt: 24px;
   --spacing-case-study-preview-header-main-gap: 48px;
   --text-case-study-preview-headline-size: 40px;
   --text-case-study-preview-headline-leading: 44px;
@@ -317,6 +317,30 @@ html.page-intro-active .page-main {
     border-top-left-radius: var(--radius-case-study-preview-sheet);
     border-top-right-radius: var(--radius-case-study-preview-sheet);
     box-shadow: 0 -12px 48px rgba(34, 32, 29, 0.14);
+  }
+
+  .case-study-preview-sheet-handle {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 5px;
+    width: 32px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background-color: color-mix(
+      in srgb,
+      var(--color-text-heading) 18%,
+      var(--color-light-bg)
+    );
+    opacity: 1;
+  }
+
+  .case-study-preview-sheet-handle-wrap {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    padding-top: var(--spacing-case-study-preview-header-pt);
+    padding-bottom: var(--spacing-case-study-preview-header-pt);
   }
 
   .case-study-preview-sheet-panel-height {
