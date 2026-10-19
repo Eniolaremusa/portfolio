@@ -162,6 +162,11 @@ export const caseStudyPreviewSlides: Record<
   ],
 };
 
+/** Mobile preview header — drop “case study” so the eyebrow fits without truncating. */
+export function formatCaseStudyPreviewEyebrowMobile(eyebrow: string): string {
+  return eyebrow.replace(/\s+case\s+study\s*/gi, " ").replace(/\s+/g, " ").trim();
+}
+
 export function getCaseStudyPreviewContent(
   slug: CaseStudyPreviewSheetSlug,
 ): CaseStudyPreviewSheetContent {

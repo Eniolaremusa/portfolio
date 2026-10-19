@@ -104,7 +104,7 @@ function CaseStudyCardImage({
 
 function CaseStudyCardCopy({ study }: { study: CaseStudy }) {
   return (
-    <div className="home-mobile-text flex flex-col gap-1">
+    <div className="flex flex-col gap-1">
       <h3 className="text-link-medium text-text-heading">{study.title}</h3>
       <p className="text-body text-text-on-light">{study.description}</p>
     </div>
@@ -196,7 +196,7 @@ export function CaseStudyCard({
       </Link>
 
       <div className="flex flex-col gap-2">
-        <Link href={href} className="home-mobile-text flex flex-col gap-1">
+        <Link href={href} className="flex flex-col gap-1">
           <CaseStudyCardCopy study={study} />
         </Link>
         <div className="flex flex-col gap-1.5 min-[496px]:flex-row min-[496px]:flex-wrap min-[496px]:gap-x-5 min-[496px]:gap-y-1">

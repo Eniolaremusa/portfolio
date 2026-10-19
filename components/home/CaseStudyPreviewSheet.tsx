@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useState } from "react";
 import { Drawer } from "vaul";
 import {
   caseStudyPreviewSlides,
+  formatCaseStudyPreviewEyebrowMobile,
   getCaseStudyPreviewContent,
   getCaseStudyPreviewHeaderCta,
   type CaseStudyPreviewSheetSlug,
@@ -322,8 +323,11 @@ export function CaseStudyPreviewSheet({
             <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden px-page">
               <div className="mx-auto flex min-h-0 w-full max-w-[1312px] flex-1 flex-col overflow-hidden pb-8 min-[768px]:pb-10">
                 <header className="mb-[var(--spacing-case-study-preview-header-main-gap)] flex shrink-0 items-center justify-between gap-4">
-                  <p className="text-case-study-preview-header-eyebrow min-w-0 truncate">
-                    {content.eyebrow}
+                  <p className="text-case-study-preview-header-eyebrow min-w-0 text-pretty">
+                    <span className="min-[768px]:hidden">
+                      {formatCaseStudyPreviewEyebrowMobile(content.eyebrow)}
+                    </span>
+                    <span className="max-[767px]:hidden">{content.eyebrow}</span>
                   </p>
                   <PreviewHeaderCta
                     slug={slug}

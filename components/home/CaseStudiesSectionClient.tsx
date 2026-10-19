@@ -28,8 +28,8 @@ export function CaseStudiesSectionClient() {
     <>
       <StickySection
         label="Read about some of my favorite work."
-        labelHeadingClassName="text-home-case-studies-lead bg-light-bg xl:sticky xl:top-[69px] xl:z-10 xl:py-2"
-        gridClassName="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-[34px] min-[768px]:gap-10 xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:gap-12"
+        labelHeadingClassName="text-home-section-lead bg-light-bg xl:sticky xl:top-[69px] xl:z-10 xl:py-2"
+        gridClassName="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-home-section-label xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)]"
         contentClassName="grid w-full min-w-0 grid-cols-1 gap-y-grid-gap-y min-[768px]:grid-cols-2 min-[768px]:gap-x-grid-gap-x"
       >
         {studies.map((study) => (

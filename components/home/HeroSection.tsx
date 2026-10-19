@@ -10,8 +10,8 @@ export function HeroSection() {
         <div className="home-hero-split__row flex w-full flex-col items-start gap-10 text-left min-[768px]:grid min-[768px]:grid-cols-2 min-[768px]:items-center min-[768px]:gap-[72px]">
           <HeroRevealGroup className="home-hero-split__intro min-w-0 w-full">
             <div className="flex w-full flex-col items-start gap-6">
-              <div className="home-mobile-text flex w-full flex-col items-start gap-3 text-left">
-                <h1 className="text-home-hero-headline text-balance">
+              <div className="flex w-full flex-col items-start gap-3 text-left">
+                <h1 className="text-home-h1">
                   {heroContent.headline}
                 </h1>
                 <p className="text-body text-text-on-light text-pretty">
@@ -27,7 +27,7 @@ export function HeroSection() {
             className="home-hero-split__clients min-w-0 w-full"
           >
             <div className="flex w-full flex-col items-start gap-3 text-left">
-              <p className="text-home-hero-client-label text-balance">
+              <p className="text-eyebrow text-home-hero-client-label text-balance">
                 {heroContent.clientsLabel}
               </p>
               <ul className="home-hero-logos home-hero-logos--split flex w-full flex-wrap items-center gap-x-6 gap-y-5">

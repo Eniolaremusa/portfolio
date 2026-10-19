@@ -162,7 +162,11 @@ export function MobileNavMenu({ placement = "header", theme = "light" }: MobileN
     };
   }, [open]);
 
-  const panelBg = isDark ? "bg-case-study-hero-bg" : "bg-light-bg";
+  const panelBg = isAccent
+    ? "bg-accent"
+    : isDark
+      ? "bg-case-study-hero-bg"
+      : "bg-light-bg";
 
   const panel =
     open && panelPosition && mounted ? (

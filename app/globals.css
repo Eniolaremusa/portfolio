@@ -19,15 +19,8 @@
   --color-case-study-solution-card: #ccf7c6;
   --color-case-study-persona-label: #3e3b38;
   --color-text-on-dark: #fcfaf4;
-  --color-home-hero-headline: #22201d;
   --color-home-hero-client-label: #97938e;
   --color-home-hero-cta: #2c0fca;
-  --text-home-hero-headline-size: 28px;
-  --text-home-hero-headline-leading: 32px;
-  --text-home-hero-headline-size-mobile: 24px;
-  --text-home-hero-headline-leading-mobile: 28px;
-  --tracking-home-hero-headline: -0.56px;
-  --tracking-home-hero-headline-mobile: -0.48px;
   --color-photo-border: #fcfcfc;
   --color-photo-shadow: rgba(91, 88, 85, 0.16);
 
@@ -44,6 +37,13 @@
   --spacing-container-below-desktop-offset: 20px;
   --spacing-section-heading-gap: 24px;
   --spacing-section-heading-gap-mobile: 20px;
+  /* Home sticky H2 → cards (75% of prior 34 / 40 / 48px column gaps) */
+  --spacing-home-section-label-gap: 24px;
+  --spacing-home-section-label-gap-tablet: 28px;
+  --spacing-home-section-label-gap-desktop: 40px;
+  --text-home-hero-client-label-size-mobile: 13px;
+  --text-home-hero-client-label-leading-mobile: 19px;
+  --home-hero-logo-max-height-mobile: 16.5px;
   --spacing-section-heading-mt: 16px;
   --spacing-section-heading-mt-mobile: 14px;
   --spacing-section-mobile: 24px;
@@ -66,10 +66,6 @@
   --spacing-case-study-v2-card-inset-mobile: 16px;
   --spacing-case-study-v2-card-x: 24px;
   --spacing-case-study-v2-card-y: 16px;
-  --text-options-label-size-mobile: 15px;
-  --tracking-options-label-mobile: -0.3px;
-  --text-case-study-body-size-mobile: 13px;
-  --text-case-study-body-leading-mobile: 19px;
   --spacing-hero-pt: 100px;
   --spacing-hero-section-pt-mobile: 32px;
   --spacing-hero-section-pt-tablet: 40px;
@@ -88,7 +84,6 @@
   --spacing-case-study-frame-inset-y: 40px;
   --text-case-study-callout-size-mobile: 17px;
   --text-case-study-callout-leading-mobile: 22px;
-  --text-case-study-eyebrow-size-mobile: 13px;
   --spacing-grid-gap-x: 32px;
   --spacing-grid-gap-y: 40px;
   --spacing-exploration-row-gap: 32px;
@@ -121,17 +116,19 @@
   --tracking-case-study-preview-read-full: -0.28px;
 
   /* Typography — desktop reference values */
-  --text-title-size: 48px;
-  --text-title-leading: 48px;
+  --text-title-size: 40px;
+  --text-title-leading: 44px;
+  --text-title-size-mobile: 28px;
+  --text-title-leading-mobile: 32px;
   --text-callout-size: 24px;
   --text-callout-leading: 24px;
-  --text-home-case-studies-lead-size: 24px;
-  --text-home-case-studies-lead-leading: 28px;
-  --text-home-case-studies-lead-size-tablet: 20px;
-  --text-home-case-studies-lead-leading-tablet: 24px;
+  --text-home-h1-size-mobile: 24px;
+  --text-home-h1-leading-mobile: 28px;
+  --tracking-home-h1-mobile: -0.48px;
   --text-h2-size: 32px;
-  --text-h2-leading: normal;
+  --text-h2-leading: 36px;
   --text-h2-size-mobile: 24px;
+  --text-h2-leading-mobile: 28px;
   --tracking-h2: -0.64px;
   --text-title-h3-size-mobile: 20px;
   --text-title-h3-leading-mobile: 24px;
@@ -237,6 +234,18 @@ html.page-intro-active .page-main {
     color: var(--color-text-heading);
   }
 
+  /* Homepage hero H1 + sticky section leads (desktop matches callout) */
+  .text-home-h1,
+  .text-home-section-lead {
+    font-family: var(--font-crimson);
+    font-size: var(--text-callout-size);
+    line-height: var(--text-callout-leading);
+    letter-spacing: var(--tracking-tight);
+    font-weight: 400;
+    color: var(--color-text-heading);
+    text-wrap: balance;
+  }
+
   .text-h2 {
     font-family: var(--font-crimson);
     font-size: var(--text-h2-size);
@@ -293,16 +302,6 @@ html.page-intro-active .page-main {
     font-size: var(--text-eyebrow-size);
     letter-spacing: var(--tracking-body);
     text-transform: uppercase;
-  }
-
-  .text-home-case-studies-lead {
-    font-family: var(--font-crimson);
-    font-size: var(--text-home-case-studies-lead-size);
-    line-height: var(--text-home-case-studies-lead-leading);
-    font-weight: 400;
-    letter-spacing: var(--tracking-tight);
-    text-wrap: balance;
-    color: var(--color-text-heading);
   }
 
   .case-study-preview-sheet-backdrop {
@@ -563,18 +562,25 @@ html.page-intro-active .page-main {
     padding-block: var(--spacing-section-mobile);
   }
 
+  .gap-home-section-label {
+    gap: var(--spacing-home-section-label-gap);
+  }
+
+  @media (min-width: 768px) {
+    .gap-home-section-label {
+      gap: var(--spacing-home-section-label-gap-tablet);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .gap-home-section-label {
+      gap: var(--spacing-home-section-label-gap-desktop);
+    }
+  }
+
   /* Homepage + case study hero — 32px mobile, 40px tablet, 48px desktop */
   .pt-hero-section {
     padding-top: var(--spacing-hero-section-pt-mobile);
-  }
-
-  .text-home-hero-headline {
-    font-family: var(--font-crimson);
-    font-size: var(--text-home-hero-headline-size);
-    line-height: var(--text-home-hero-headline-leading);
-    font-weight: 400;
-    letter-spacing: var(--tracking-home-hero-headline);
-    color: var(--color-text-heading);
   }
 
   .text-text-heading {
@@ -646,11 +652,6 @@ html.page-intro-active .page-main {
   }
 
   .text-home-hero-client-label {
-    font-family: var(--font-geist);
-    font-size: var(--text-case-study-body-size-mobile);
-    line-height: var(--text-case-study-body-leading-mobile);
-    letter-spacing: var(--tracking-body);
-    text-transform: uppercase;
     color: var(--color-home-hero-client-label);
   }
 
@@ -1185,8 +1186,8 @@ html.page-intro-active .page-main {
 
   @media (max-width: 767px) {
     .text-title {
-      font-size: 32px;
-      line-height: 36px;
+      font-size: var(--text-title-size-mobile);
+      line-height: var(--text-title-leading-mobile);
     }
 
     /* Section titles (decision titles, pull quotes, etc.) — 17px on mobile sitewide */
@@ -1196,89 +1197,34 @@ html.page-intro-active .page-main {
     }
 
     .text-h2,
-    .case-study-page .text-h2 {
-      font-size: calc(var(--text-h2-size-mobile) * 1.2);
-      line-height: 1.25;
-    }
-
-    .case-study-page .text-role-impact {
-      font-size: calc(var(--text-h2-size-mobile) * 1.2);
-      line-height: 1.25;
-    }
-
-    .case-study-page .text-callout {
-      font-size: var(--text-title-h3-size-mobile);
-      line-height: var(--text-title-h3-leading-mobile);
-    }
-
-    /* Case study body — keep established 13/19 mobile scale */
-    .case-study-page .text-body {
-      font-size: var(--text-case-study-body-size-mobile);
-      line-height: var(--text-case-study-body-leading-mobile);
-    }
-
-    /* Decision eyebrows / section labels — 13px on mobile */
-    .case-study-page .text-eyebrow {
-      font-size: var(--text-case-study-eyebrow-size-mobile);
-    }
-
-    .case-study-page .text-options-label {
-      font-size: var(--text-options-label-size-mobile);
-      letter-spacing: var(--tracking-options-label-mobile);
-    }
-
-    /* Homepage mobile: case study cards + explorations + mobile nav links */
-    .home-mobile-text .text-body,
-    .home-mobile-text .text-link-medium,
-    .home-mobile-nav-menu .text-nav {
-      font-size: var(--text-case-study-body-size-mobile);
-      line-height: var(--text-case-study-body-leading-mobile);
-    }
-
-    .text-home-hero-headline {
-      font-size: var(--text-home-hero-headline-size-mobile);
-      line-height: var(--text-home-hero-headline-leading-mobile);
-      letter-spacing: var(--tracking-home-hero-headline-mobile);
+    .text-role-impact {
+      font-size: var(--text-h2-size-mobile);
+      line-height: var(--text-h2-leading-mobile);
     }
 
     .text-home-hero-client-label {
       white-space: normal;
+      font-size: var(--text-home-hero-client-label-size-mobile);
+      line-height: var(--text-home-hero-client-label-leading-mobile);
     }
 
-    .text-home-case-studies-lead {
-      font-size: var(--text-case-study-callout-size-mobile);
-      line-height: var(--text-case-study-callout-leading-mobile);
+    .home-hero-logos .home-hero-logo-base,
+    .home-hero-logos .home-hero-logo-accent {
+      max-height: var(--home-hero-logo-max-height-mobile);
+    }
+
+    .text-home-h1 {
+      font-size: var(--text-home-h1-size-mobile);
+      line-height: var(--text-home-h1-leading-mobile);
+      letter-spacing: var(--tracking-home-h1-mobile);
+    }
+
+    .text-home-section-lead {
+      font-size: var(--text-title-h3-size-mobile);
+      line-height: var(--text-title-h3-leading-mobile);
     }
   }
 
-  /* Case study tablet — restore desktop body scale; labels/eyebrows use base utilities */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .text-home-case-studies-lead {
-      font-size: var(--text-home-case-studies-lead-size-tablet);
-      line-height: var(--text-home-case-studies-lead-leading-tablet);
-    }
-
-    .text-h2,
-    .case-study-page .text-h2,
-    .case-study-page .text-role-impact {
-      font-size: calc(var(--text-h2-size) * 1.2);
-    }
-
-    .case-study-page .text-body,
-    .onarvo-desk-page .text-body {
-      font-size: var(--text-body-size);
-      line-height: var(--text-body-leading);
-    }
-  }
-
-  /* Smaller desktop — scaled h2 between tablet and full-width layouts */
-  @media (min-width: 1024px) and (max-width: 1279px) {
-    .text-h2,
-    .case-study-page .text-h2,
-    .case-study-page .text-role-impact {
-      font-size: calc(var(--text-h2-size) * 1.2);
-    }
-  }
 }
 
 body {

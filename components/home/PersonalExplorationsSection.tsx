@@ -30,7 +30,7 @@ function PersonalExplorationRow({
         </video>
       </div>
 
-      <div className="home-mobile-text flex min-w-0 flex-1 flex-col justify-center min-[768px]:max-w-[calc(30%-0px)] min-[768px]:flex-[0_1_30%]">
+      <div className="flex min-w-0 flex-1 flex-col justify-center min-[768px]:max-w-[calc(30%-0px)] min-[768px]:flex-[0_1_30%]">
         <div className="flex flex-col gap-1">
           <h3 className="text-link-medium text-on-dark">{exploration.title}</h3>
           <p className="text-body text-on-dark">{exploration.description}</p>
@@ -46,9 +46,9 @@ function PersonalExplorationRow({
 export function PersonalExplorationsSection() {
   return (
     <section className="personal-explorations-section page-full-bleed bg-accent px-page py-section">
-      <div className="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-8 min-[768px]:gap-10 xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:items-start xl:gap-x-12 xl:gap-y-0">
+      <div className="mx-auto grid w-full max-w-[1312px] grid-cols-1 gap-home-section-label xl:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] xl:items-start xl:gap-y-0">
         <header className="xl:sticky xl:top-[69px] xl:z-10 xl:col-start-1 xl:row-start-1 xl:self-start xl:bg-accent xl:py-2">
-          <h2 className="text-home-case-studies-lead max-w-[26rem] text-on-dark">
+          <h2 className="text-home-section-lead max-w-[26rem] text-on-dark">
             {personalExplorationsHeading}
           </h2>
         </header>

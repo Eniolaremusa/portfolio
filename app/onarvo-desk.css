@@ -60,7 +60,7 @@
   color: var(--color-text-on-dark);
 }
 
-/* Hero + labels — fixed sizes, not subject to case-study body mobile scale */
+/* Hero + labels */
 .onarvo-desk-page .onarvo-hero-eyebrow {
   font-family: var(--font-geist-mono);
   font-size: var(--text-eyebrow-size);
@@ -79,9 +79,9 @@
 
 .onarvo-desk-page .onarvo-options-label {
   font-family: var(--font-geist-mono);
-  font-size: var(--text-options-label-size-mobile);
+  font-size: var(--text-options-label-size);
   font-weight: 500;
-  letter-spacing: var(--tracking-options-label-mobile);
+  letter-spacing: var(--tracking-options-label);
   text-transform: uppercase;
 }
 
